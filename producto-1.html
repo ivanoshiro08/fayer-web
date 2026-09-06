@@ -354,6 +354,16 @@
     .gallery-thumbs { margin-left: 40px; margin-right: 0; max-width: none; }
     .gallery-thumbs img { width: 64px; height: 64px; }
   }
+
+  .related-scroll { display:flex; gap:14px; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch; }
+  .related-card { flex:0 0 140px; text-decoration:none; color:var(--text); background:var(--bg-raised); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  .related-card img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+  .related-body { padding:10px; }
+  .related-name { font-size:0.78rem; font-weight:600; margin:0 0 4px; line-height:1.3; }
+  .related-price { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:0.85rem; color:var(--accent); }
+  @media (min-width: 860px) {
+    .related-card { flex-basis: 180px; }
+  }
 </style>
 </head>
 <body>
@@ -469,6 +479,36 @@
     </div>
   </div>
 
+
+  <!-- ============ PRODUCTOS SIMILARES ============ -->
+  <div class="section">
+    <div class="section-inner">
+      <h2 class="section-title">También te puede interesar</h2>
+      <div class="related-scroll">
+        <a href="producto-2.html" class="related-card">
+          <img src="foto-2.jpg" alt="Secador de Pelo 2100W">
+          <div class="related-body">
+            <p class="related-name">Secador de Pelo 2100W</p>
+            <span class="related-price">$32.009</span>
+          </div>
+        </a>
+        <a href="producto-3.html" class="related-card">
+          <img src="foto-3.jpg" alt="Cámara de Seguridad Wi-Fi 360°">
+          <div class="related-body">
+            <p class="related-name">Cámara de Seguridad Wi-Fi 360°</p>
+            <span class="related-price">$17.398</span>
+          </div>
+        </a>
+        <a href="producto-4.html" class="related-card">
+          <img src="foto-4.jpg" alt="TP-Link Tapo C200">
+          <div class="related-body">
+            <p class="related-name">TP-Link Tapo C200</p>
+            <span class="related-price">$37.000</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
   <!-- ============ FAQ ============ -->
   <div class="section">
     <div class="section-inner">
