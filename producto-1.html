@@ -233,11 +233,12 @@
   .review-text { font-size: 0.9rem; line-height: 1.55; color: var(--text); margin: 0 0 10px; }
 
   .review-author { font-size: 0.75rem; color: var(--text-dim); }
-  .review-footer { display:flex; justify-content:space-between; align-items:center; margin-top:10px; }
+  .review-footer { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; margin-top:10px; }
   .review-like-btn {
-    display:flex; align-items:center; gap:6px; background:transparent;
+    display:flex; align-items:center; gap:5px; background:transparent;
     border:1px solid var(--line); color:var(--text-dim); font-size:0.75rem;
     padding:6px 10px; border-radius:999px; cursor:pointer; font-family:inherit;
+    white-space:nowrap; flex-shrink:0;
   }
   .review-like-btn:hover { border-color: var(--accent); color: var(--text); }
   .review-like-btn.liked { background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
@@ -445,7 +446,7 @@
           <p class="review-text">La verdad que me sorprendió lo práctico, potente y trasportable que es y todos los accesorios que tiene, buena calidad de materiales, hermoso estuche para guardarla, eso sí, recarguen la batería conectándola a un usb de pc por ejemplo, no a cargadores rápidos porque van a estropear la batería aparte lo advierte el manual. Lo demás genial recomendadísimo!!!.</p>
           <div class="review-footer">
             <div class="review-author">Argentina · hace 8 meses</div>
-            <button class="review-like-btn" data-review-id="p1-r1" data-base="21">👍 Útil (<span class="review-like-count">21</span>)</button>
+            <button class="review-like-btn" data-review-id="p1-r1" data-base="21">👍 <span class="review-like-count">21</span> útil</button>
           </div>
         </div>
         <div class="review-card">
@@ -453,7 +454,7 @@
           <p class="review-text">Ruido: moderado. Potencia: aceptable. Se aprecia un producto de buena calidad. Sus funciones son suficientes para aspirar o soplar. El diseño y tamaño son excelentes al igual que el estuche. Muy recomendable.</p>
           <div class="review-footer">
             <div class="review-author">Argentina · hace 1 mes</div>
-            <button class="review-like-btn" data-review-id="p1-r2" data-base="5">👍 Útil (<span class="review-like-count">5</span>)</button>
+            <button class="review-like-btn" data-review-id="p1-r2" data-base="5">👍 <span class="review-like-count">5</span> útil</button>
           </div>
         </div>
         <div class="review-card">
@@ -461,7 +462,7 @@
           <p class="review-text">Es excelente, mucha potencia, ideal para sacar pelos de mascotas. El sistema de calefacción andaba mal, antes de llevarlo a arreglar al tener esta aspiradora, la utilizamos para soplarlo desde afuera sin sacar nada y listo se solucionó el problema. Era polvo el problema. Mejor imposible!!.</p>
           <div class="review-footer">
             <div class="review-author">Argentina · hace 3 meses</div>
-            <button class="review-like-btn" data-review-id="p1-r3" data-base="3">👍 Útil (<span class="review-like-count">3</span>)</button>
+            <button class="review-like-btn" data-review-id="p1-r3" data-base="3">👍 <span class="review-like-count">3</span> útil</button>
           </div>
         </div>
       </div>
