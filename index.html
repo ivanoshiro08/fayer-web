@@ -48,6 +48,21 @@
   }
 
   .value-props { padding: 32px 24px; display: flex; flex-direction: column; gap: 20px; border-bottom: 1px solid var(--line); }
+
+  .impact-banner {
+    margin: 0 24px 32px;
+    padding: 28px 24px;
+    border-radius: 18px;
+    background: radial-gradient(120% 140% at 15% 0%, var(--accent-soft) 0%, transparent 60%), var(--bg-raised);
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+  .impact-banner .stars { color: var(--accent); font-size: 1.3rem; letter-spacing: 3px; margin-bottom: 10px; }
+  .impact-banner h2 {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.35rem;
+    line-height: 1.3; margin: 0 0 8px; letter-spacing: -0.01em;
+  }
+  .impact-banner p { font-size: 0.88rem; color: var(--text-dim); margin: 0; }
   .value-item { display: flex; gap: 14px; align-items: flex-start; }
   .value-mark {
     flex-shrink:0; width:34px; height:34px; border-radius:10px; background:var(--accent-soft);
@@ -82,6 +97,9 @@
   @media (min-width: 860px) {
     .wrap { max-width: 1080px; }
     header, .hero, .value-props, .section, footer { padding-left: 40px; padding-right: 40px; }
+    .impact-banner { margin-left: 40px; margin-right: 40px; padding: 40px; }
+    .impact-banner h2 { font-size: 1.7rem; }
+    .impact-banner p { max-width: 60ch; margin: 0 auto; }
     .hero { padding-top: 64px; padding-bottom: 48px; }
     .hero h1 { font-size: 2.6rem; max-width: 16ch; }
     .value-props { flex-direction: row; }
@@ -108,6 +126,12 @@
     <h1>Productos elegidos y probados, sin vueltas</h1>
     <p>Seleccionamos lo que realmente vale la pena — vos entrás, elegís y comprás directo en el sitio oficial.</p>
     <a href="productos.html" class="hero-cta">Ver productos</a>
+  </div>
+
+  <div class="impact-banner">
+    <div class="stars">★★★★★</div>
+    <h2>Elegimos solo lo mejor valorado</h2>
+    <p>Cada producto que ves acá tiene 4.5 estrellas o más y cientos de compradores reales que lo respaldan — nada entra al catálogo por casualidad.</p>
   </div>
 
   <div class="value-props">

@@ -233,6 +233,15 @@
   .review-text { font-size: 0.9rem; line-height: 1.55; color: var(--text); margin: 0 0 10px; }
 
   .review-author { font-size: 0.75rem; color: var(--text-dim); }
+  .review-footer { display:flex; justify-content:space-between; align-items:center; margin-top:10px; }
+  .review-like-btn {
+    display:flex; align-items:center; gap:6px; background:transparent;
+    border:1px solid var(--line); color:var(--text-dim); font-size:0.75rem;
+    padding:6px 10px; border-radius:999px; cursor:pointer; font-family:inherit;
+  }
+  .review-like-btn:hover { border-color: var(--accent); color: var(--text); }
+  .review-like-btn.liked { background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+
 
   /* FAQ */
   .faq-list { display: flex; flex-direction: column; gap: 10px; }

@@ -39,3 +39,26 @@
     bar.remove();
   };
 })();
+
+/* Fayer — botón "Útil" en reseñas (like/quitar like, persistido en localStorage) */
+(function () {
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.review-like-btn');
+    if (!btn) return;
+    var id = btn.dataset.reviewId;
+    var base = parseInt(btn.dataset.base, 10);
+    var key = 'fayer_review_like_' + id;
+    var liked = localStorage.getItem(key) === '1';
+    var countEl = btn.querySelector('.review-like-count');
+
+    if (liked) {
+      localStorage.removeItem(key);
+      btn.classList.remove('liked');
+      countEl.textContent = base;
+    } else {
+      localStorage.setItem(key, '1');
+      btn.classList.add('liked');
+      countEl.textContent = base + 1;
+    }
+  });
+})();

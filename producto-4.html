@@ -233,6 +233,15 @@
   .review-text { font-size: 0.9rem; line-height: 1.55; color: var(--text); margin: 0 0 10px; }
 
   .review-author { font-size: 0.75rem; color: var(--text-dim); }
+  .review-footer { display:flex; justify-content:space-between; align-items:center; margin-top:10px; }
+  .review-like-btn {
+    display:flex; align-items:center; gap:6px; background:transparent;
+    border:1px solid var(--line); color:var(--text-dim); font-size:0.75rem;
+    padding:6px 10px; border-radius:999px; cursor:pointer; font-family:inherit;
+  }
+  .review-like-btn:hover { border-color: var(--accent); color: var(--text); }
+  .review-like-btn.liked { background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+
 
   /* FAQ */
   .faq-list { display: flex; flex-direction: column; gap: 10px; }
@@ -426,21 +435,39 @@
   <div class="section">
     <div class="section-inner">
       <h2 class="section-title">Lo que dicen quienes ya lo compraron</h2>
+      <p style="font-size:0.8rem;color:var(--text-dim);margin:-10px 0 20px;">Opiniones reales de compradores en Mercado Libre — tocá "Útil" si te sirvió</p>
       <div class="reviews">
         <div class="review-card">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">Acá va una reseña corta y creíble — un detalle concreto de la experiencia, no un elogio genérico.</p>
-          <div class="review-author">— Nombre, ciudad</div>
+          <p class="review-text">Se ve súper bien !!!!.</p>
+          <div class="review-footer">
+            <div class="review-author">Argentina · hace más de 1 año</div>
+            <button class="review-like-btn" data-review-id="p4-r1" data-base="16">👍 Útil (<span class="review-like-count">16</span>)</button>
+          </div>
         </div>
         <div class="review-card">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">Otra reseña real. Si todavía no tenés reseñas de verdad, sacá esta sección hasta tener las primeras.</p>
-          <div class="review-author">— Nombre, ciudad</div>
+          <p class="review-text">¡Muy práctica y funciona de diez! Y como la desenchufás y la podés trasladar a otro enchufe, la uso en diferentes lados de la casa o el estudio cuando la necesito.</p>
+          <div class="review-footer">
+            <div class="review-author">Argentina · hace más de 1 año</div>
+            <button class="review-like-btn" data-review-id="p4-r2" data-base="6">👍 Útil (<span class="review-like-count">6</span>)</button>
+          </div>
         </div>
         <div class="review-card">
-          <div class="review-stars">★★★★☆</div>
-          <p class="review-text">Una tercera, con algún matiz honesto (no todo tiene que ser perfecto) — genera más confianza.</p>
-          <div class="review-author">— Nombre, ciudad</div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Me sorprendió gratamente el producto. Al principio desconfiaba que en su descripción diera cuenta de tanta versatilidad a un precio accesible. No tuve otra opción que comprar para…</p>
+          <div class="review-footer">
+            <div class="review-author">Argentina · hace 6 meses</div>
+            <button class="review-like-btn" data-review-id="p4-r3" data-base="4">👍 Útil (<span class="review-like-count">4</span>)</button>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Re práctico para instalar y muy buena definición de imagen, lo único que la nube solo te la dan gratis por 7 días, pero automáticamente incorporando la micro memoria podés ver las…</p>
+          <div class="review-footer">
+            <div class="review-author">Argentina · hace más de 1 año</div>
+            <button class="review-like-btn" data-review-id="p4-r4" data-base="4">👍 Útil (<span class="review-like-count">4</span>)</button>
+          </div>
         </div>
       </div>
     </div>
