@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fayer — Productos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0A0A0A; --bg-raised:#161616; --line:rgba(255,255,255,0.09);
+    --text:#F7F6F3; --text-dim:#9A9791;
+    --accent:#FF6A1A; --accent-soft:rgba(255,106,26,0.14); --accent-dark:#D9550F;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin:0; padding:0; background:var(--bg); color:var(--text);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 480px; margin: 0 auto; }
+
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.1rem; letter-spacing:-0.01em; }
+  .brand span { color: var(--accent); }
+  nav { display: flex; gap: 20px; }
+  nav a { font-size: 0.85rem; color: var(--text-dim); font-weight: 500; }
+  nav a.active { color: var(--text); }
+
+  .hero { padding: 40px 24px 28px; border-bottom: 1px solid var(--line); }
+  .hero-kicker {
+    font-size:0.75rem; color:var(--accent); font-weight:600; background:var(--accent-soft);
+    display:inline-block; padding:5px 12px; border-radius:999px; margin-bottom:14px;
+  }
+  h1 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.9rem; line-height:1.15;
+    letter-spacing:-0.015em; margin:0 0 10px; }
+  .hero p { font-size:0.95rem; line-height:1.55; color:var(--text-dim); margin:0; max-width:34ch; }
+
+  .catalog { padding: 28px 24px 40px; }
+  .catalog-title { font-size:0.8rem; color:var(--text-dim); font-weight:600; margin:0 0 16px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .card { display:block; background:var(--bg-raised); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  .card-image {
+    aspect-ratio:1/1;
+    background: radial-gradient(80% 60% at 30% 20%, var(--accent-soft) 0%, transparent 60%), linear-gradient(160deg,#191919 0%,#0d0d0d 80%);
+    display:flex; align-items:center; justify-content:center; color:var(--text-dim); font-size:0.7rem; text-align:center; padding:12px;
+  }
+  .card-body { padding: 12px 12px 14px; }
+  .card-name { font-size:0.85rem; font-weight:600; line-height:1.3; margin:0 0 6px; }
+  .card-price { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:0.95rem; color:var(--accent); }
+  .card-old { font-size:0.72rem; color:var(--text-dim); text-decoration:line-through; margin-left:6px; }
+
+  footer { padding:24px; border-top:1px solid var(--line); text-align:center; }
+  footer p { font-size:0.72rem; color:rgba(154,151,145,0.55); margin:0 0 6px; }
+  footer .foot-links a { font-size:0.72rem; color:var(--text-dim); margin: 0 8px; }
+
+  @media (min-width: 860px) {
+    .wrap { max-width: 1080px; }
+    header { padding: 20px 40px; }
+    .hero { padding: 56px 40px 36px; }
+    .hero p { max-width: 46ch; }
+    .catalog { padding: 36px 40px 56px; }
+    .grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    footer { padding: 28px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="brand">fay<span>er</span></div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="productos.html" class="active">Productos</a>
+      <a href="ayuda.html">Ayuda</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <span class="hero-kicker">Catálogo</span>
+    <h1>Encontrá lo que estás buscando</h1>
+    <p>Una selección de productos elegidos y probados — así de simple.</p>
+  </div>
+
+  <div class="catalog">
+    <p class="catalog-title">HOGAR</p>
+    <div class="grid">
+      <a href="producto-1.html" class="card">
+        <div class="card-image" style="padding:0;"><img src="foto-1.jpg" style="width:100%;height:100%;object-fit:cover;" alt="Aspiradora 3 en 1"></div>
+        <div class="card-body">
+          <p class="card-name">Aspiradora Sopladora 3 en 1 Inalámbrica</p>
+          <span class="card-price">$159.000</span>
+          <span class="card-old">$300.000</span>
+        </div>
+      </a>
+    </div>
+
+    <p class="catalog-title" style="margin-top:32px;">CUIDADO PERSONAL</p>
+    <div class="grid">
+      <a href="producto-2.html" class="card">
+        <div class="card-image" style="padding:0;"><img src="foto-2.jpg" style="width:100%;height:100%;object-fit:cover;" alt="Secador de Pelo 2100W"></div>
+        <div class="card-body">
+          <p class="card-name">Secador de Pelo Compacto 2100W</p>
+          <span class="card-price">$32.009</span>
+          <span class="card-old">$50.000</span>
+        </div>
+      </a>
+    </div>
+
+    <p class="catalog-title" style="margin-top:32px;">TECNOLOGÍA</p>
+    <div class="grid">
+      <a href="producto-3.html" class="card">
+        <div class="card-image" style="padding:0;"><img src="foto-3.jpg" style="width:100%;height:100%;object-fit:cover;" alt="Cámara de Seguridad Wi-Fi"></div>
+        <div class="card-body">
+          <p class="card-name">Cámara de Seguridad Wi-Fi 1080p 360°</p>
+          <span class="card-price">$17.398</span>
+        </div>
+      </a>
+      <a href="producto-4.html" class="card">
+        <div class="card-image" style="padding:0;"><img src="foto-4.jpg" style="width:100%;height:100%;object-fit:cover;" alt="TP-Link Tapo C200"></div>
+        <div class="card-body">
+          <p class="card-name">TP-Link Tapo C200</p>
+          <span class="card-price">$37.000</span>
+          <span class="card-old">$58.979</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- ============================================================
+      Para agregar más productos: copiá un bloque <a class="card">
+      completo y pegalo dentro del .grid de su categoría. Si sumás
+      una categoría nueva (ej: TECNOLOGÍA), copiá todo el bloque
+      "catalog-title + grid" y ponele el nombre de categoría nuevo.
+    ============================================================= -->
+  </div>
+
+  <footer>
+    <p>Fayer — algunos enlaces pueden ser de afiliado.</p>
+    <div class="foot-links">
+      <a href="ayuda.html">Ayuda</a>·<a href="cookies.html">Cookies</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="site.js"></script>
+</body>
+</html>

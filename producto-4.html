@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fayer — Producto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- ======================================================================
+  TU PIXEL DE META VA ACÁ (reemplazá TU_PIXEL_ID). TikTok pixel se pega igual,
+  justo debajo, con el snippet que te da Ads Manager.
+======================================================================= -->
+
+<style>
+  :root{
+    --bg: #0A0A0A;
+    --bg-raised: #161616;
+    --bg-raised-2: #1D1D1D;
+    --line: rgba(255,255,255,0.09);
+    --text: #F7F6F3;
+    --text-dim: #9A9791;
+    --accent: #FF6A1A;
+    --accent-soft: rgba(255,106,26,0.14);
+    --accent-dark: #D9550F;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  /* ---- Mobile-first: todo en columna, max 480px ---- */
+  .wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+
+  .brand span { color: var(--accent); }
+
+  .stock-tag {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .stock-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+  }
+
+  /* ---- Bloque principal: hero + info ---- */
+  .main-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    margin: 18px 24px 0;
+    border-radius: 20px;
+    background:
+      radial-gradient(85% 65% at 30% 20%, var(--accent-soft) 0%, transparent 60%),
+      linear-gradient(160deg, #141414 0%, #0A0A0A 75%);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Reemplazá por: <img src="TU_FOTO.jpg" style="width:100%;height:100%;object-fit:cover;"> */
+  .hero-image-placeholder {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 20px;
+    border: 1px dashed rgba(255,255,255,0.18);
+    border-radius: 14px;
+    margin: 16px;
+  }
+
+  .content {
+    padding: 26px 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .kicker {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
+    display: inline-flex;
+    width: fit-content;
+    background: var(--accent-soft);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.85rem;
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    margin: 12px 0 0;
+  }
+
+  .price-row { display: flex; align-items: baseline; gap: 12px; }
+
+  .price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 2.1rem;
+  }
+
+  .price-old { font-size: 1rem; color: var(--text-dim); text-decoration: line-through; }
+
+  .price-badge {
+    font-size: 0.72rem; font-weight: 600; color: var(--accent);
+    border: 1px solid var(--accent); padding: 3px 9px; border-radius: 999px;
+  }
+
+  .desc { font-size: 0.97rem; line-height: 1.6; color: var(--text-dim); margin: 0; }
+
+  .divider { height: 1px; background: var(--line); border: none; margin: 0; }
+
+  .benefits { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+
+  .benefits li { display: flex; gap: 14px; align-items: flex-start; font-size: 0.95rem; line-height: 1.5; }
+
+  .benefit-mark {
+    flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+    background: var(--accent-soft); display: flex; align-items: center; justify-content: center; margin-top: 1px;
+  }
+
+  .benefit-mark svg { width: 10px; height: 10px; }
+
+  .trust-strip { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0 2px; }
+
+  .trust-item { flex: 1; text-align: center; }
+
+  .trust-item .num {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem;
+    color: var(--accent); display: block;
+  }
+
+  .trust-item .label { font-size: 0.68rem; color: var(--text-dim); margin-top: 2px; }
+
+  /* CTA dentro del flujo (desktop) */
+  .cta-inline { display: none; }
+
+  .cta-button {
+    display: block; width: 100%; text-align: center;
+    background: var(--accent); color: #0A0A0A; font-weight: 700; font-size: 1.03rem;
+    padding: 17px 20px; border-radius: 12px; text-decoration: none;
+    box-shadow: 0 10px 30px rgba(255,106,26,0.28);
+    transition: transform 0.12s ease, background 0.12s ease;
+  }
+
+  .cta-button:active { background: var(--accent-dark); transform: scale(0.985); }
+
+  .trust-line { text-align: center; font-size: 0.76rem; color: var(--text-dim); margin-top: 12px; }
+
+  /* CTA flotante (mobile) */
+  .cta-block-mobile {
+    position: sticky; bottom: 0;
+    background: linear-gradient(0deg, var(--bg) 55%, rgba(10,10,10,0));
+    padding: 22px 24px 24px; margin-top: 8px;
+  }
+
+  /* ---- Secciones extra ---- */
+  .section {
+    padding: 36px 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 0 0 20px;
+  }
+
+  /* Reseñas */
+  .reviews { display: flex; flex-direction: column; gap: 14px; }
+
+  .review-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+  }
+
+  .review-stars { color: var(--accent); font-size: 0.85rem; margin-bottom: 8px; letter-spacing: 2px; }
+
+  .review-text { font-size: 0.9rem; line-height: 1.55; color: var(--text); margin: 0 0 10px; }
+
+  .review-author { font-size: 0.75rem; color: var(--text-dim); }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .faq-item {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .faq-item summary {
+    padding: 16px 18px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-item summary::after {
+    content: "+";
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-left: 12px;
+  }
+
+  .faq-item[open] summary::after { content: "–"; }
+
+  .faq-item p {
+    padding: 0 18px 16px;
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+
+  footer {
+    padding: 24px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+
+  footer p { font-size: 0.7rem; color: rgba(154,151,145,0.55); margin: 0; }
+
+  /* ============================================================
+     DESKTOP / TABLET — a partir de 860px el layout pasa a 2
+     columnas (foto a la izquierda, info a la derecha) y las
+     secciones de abajo usan grillas más anchas.
+  ============================================================ */
+  @media (min-width: 860px) {
+
+    .wrap { max-width: 1080px; }
+
+    .topbar { padding: 20px 40px; }
+
+    .main-block {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 48px;
+      padding: 48px 40px 0;
+    }
+
+    .hero-col {
+      flex: 0 0 46%;
+      position: sticky;
+      top: 96px;
+    }
+    .hero {
+      margin: 0;
+      aspect-ratio: 1 / 1;
+    }
+
+    .content {
+      flex: 1;
+      padding: 0;
+      max-width: 480px;
+    }
+
+    /* En desktop el CTA vive en el flujo, no flota abajo */
+    .cta-block-mobile { display: none; }
+    .cta-inline { display: block; margin-top: 4px; }
+
+    .section { padding: 56px 40px; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+
+    .reviews { flex-direction: row; }
+    .review-card { flex: 1; }
+
+    .faq-list { max-width: 640px; }
+  }
+
+  .gallery-thumbs {
+    display: flex; gap: 8px; margin: 12px 24px 0;
+  }
+  .gallery-thumbs img {
+    width: 56px; height: 56px; object-fit: cover; border-radius: 10px;
+    border: 1px solid var(--line); cursor: pointer; opacity: 0.7; transition: opacity .15s, border-color .15s;
+  }
+  .gallery-thumbs img:hover, .gallery-thumbs img.active {
+    opacity: 1; border-color: var(--accent);
+  }
+  @media (min-width: 860px) {
+    .gallery-thumbs { margin-left: 40px; margin-right: 0; max-width: none; }
+    .gallery-thumbs img { width: 64px; height: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <a href="index.html" class="brand" style="text-decoration:none;">fay<span>er</span></a>
+    <nav style="display:flex;gap:18px;align-items:center;">
+      <a href="index.html" style="font-size:0.82rem;color:var(--text-dim);text-decoration:none;">Inicio</a>
+      <a href="productos.html" style="font-size:0.82rem;color:var(--text-dim);text-decoration:none;">Productos</a>
+      <a href="ayuda.html" style="font-size:0.82rem;color:var(--text-dim);text-decoration:none;">Ayuda</a>
+    </nav>
+  </div>
+
+  <div class="main-block">
+
+    <div class="hero-col">
+    <div class="hero">
+      <img src="foto-4.jpg" id="gallery-4" style="width:100%;height:100%;object-fit:cover;" alt="TP-Link Tapo C200">
+    </div>
+    <div class="gallery-thumbs">
+    <img src="foto-4.jpg" class="active" onclick="document.getElementById('gallery-4').src=this.src; this.parentElement.querySelectorAll('img').forEach(function(i){i.classList.remove('active')}); this.classList.add('active');">
+    <img src="foto-4b.jpg" class="" onclick="document.getElementById('gallery-4').src=this.src; this.parentElement.querySelectorAll('img').forEach(function(i){i.classList.remove('active')}); this.classList.add('active');">
+    </div>
+    </div>
+
+    <div class="content">
+
+      <div>
+        <span class="kicker">Elegido por Fayer</span>
+        <h1>TP-Link Tapo C200 — Cámara de Seguridad</h1>
+      </div>
+
+      <div class="price-row">
+        <span class="price">$37.000</span>
+        <span class="price-old">$58.979</span>
+        <span class="price-badge">-37%</span>
+      </div>
+
+      <p class="desc">
+        Cámara de seguridad Wi-Fi de TP-Link, con movimiento pan/tilt (se mueve para cubrir todo el ambiente), visión nocturna y grabación en tarjeta microSD — controlada 100% desde el celular.
+      </p>
+
+      <hr class="divider">
+
+      <ul class="benefits">
+        <li>
+          <span class="benefit-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="#FF6A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Marca reconocida (TP-Link) — respaldo y soporte más sólido que una cámara genérica.
+        </li>
+        <li>
+          <span class="benefit-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="#FF6A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Full HD 1080p con visión nocturna de hasta 9 metros.
+        </li>
+        <li>
+          <span class="benefit-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="#FF6A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Grabación local en microSD (hasta 128GB) — sin depender de la nube.
+        </li>
+      </ul>
+
+      <hr class="divider">
+
+      <div class="trust-strip">
+        <div class="trust-item"><span class="num">4.9</span><span class="label">valoración</span></div>
+        <div class="trust-item"><span class="num">+500</span><span class="label">vendidos</span></div>
+        <div class="trust-item"><span class="num">Envío hoy</span><span class="label">envío</span></div>
+      </div>
+
+      <!-- CTA que se muestra dentro del flujo en desktop -->
+      <div class="cta-inline">
+        <a href="https://meli.la/1DmKpn7" class="cta-button" target="_blank" rel="noopener">Ver precio y comprar</a>
+        <p class="trust-line">Vas a ser redirigido a Mercado Libre para completar la compra</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ RESEÑAS ============ -->
+  <div class="section">
+    <div class="section-inner">
+      <h2 class="section-title">Lo que dicen quienes ya lo compraron</h2>
+      <div class="reviews">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Acá va una reseña corta y creíble — un detalle concreto de la experiencia, no un elogio genérico.</p>
+          <div class="review-author">— Nombre, ciudad</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Otra reseña real. Si todavía no tenés reseñas de verdad, sacá esta sección hasta tener las primeras.</p>
+          <div class="review-author">— Nombre, ciudad</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★☆</div>
+          <p class="review-text">Una tercera, con algún matiz honesto (no todo tiene que ser perfecto) — genera más confianza.</p>
+          <div class="review-author">— Nombre, ciudad</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FAQ ============ -->
+  <div class="section">
+    <div class="section-inner">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Cuánto tarda el envío?</summary>
+          <p>Completá acá el tiempo real de entrega según el vendedor/plataforma.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Tiene garantía?</summary>
+          <p>Completá acá la política de garantía o devolución del vendedor.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo hago el pago?</summary>
+          <p>Se paga directo en el sitio oficial al que te lleva el botón de compra — nosotros no procesamos el pago.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo comprar más de uno?</summary>
+          <p>Completá acá según disponibilidad de stock del vendedor.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA flotante solo en mobile -->
+  <div class="cta-block-mobile">
+    <a href="https://meli.la/1DmKpn7" class="cta-button" target="_blank" rel="noopener">Ver precio y comprar</a>
+    <p class="trust-line">Vas a ser redirigido a Mercado Libre para completar la compra</p>
+  </div>
+
+  <footer>
+    <p>Fayer — esta página puede incluir enlaces de afiliado.</p>
+  </footer>
+
+</div>
+
+<script src="site.js"></script>
+</body>
+</html>
