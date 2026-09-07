@@ -21,11 +21,21 @@
   h2 { font-size: 1.05rem; margin: 28px 0 10px; }
   p, li { font-size: 0.92rem; line-height: 1.6; color: var(--text-dim); }
   .back { display:inline-block; margin-top: 32px; font-size: 0.85rem; }
+
+  .brand-logo { height: 30px; width: auto; display: block;
+    animation: flame-flicker 2.4s ease-in-out infinite; }
+  @keyframes flame-flicker {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(255,106,26,0.45)) brightness(1); }
+    22% { filter: drop-shadow(0 0 7px rgba(255,140,30,0.75)) brightness(1.08); }
+    48% { filter: drop-shadow(0 0 3px rgba(255,90,20,0.35)) brightness(0.95); }
+    70% { filter: drop-shadow(0 0 8px rgba(255,150,45,0.8)) brightness(1.1); }
+    85% { filter: drop-shadow(0 0 5px rgba(255,110,25,0.5)) brightness(1.02); }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <a href="index.html" class="brand">fay<span>er</span></a>
+  <a href="index.html" class="brand"><img src="logo.png" class="brand-logo" alt="Fayer"></a>
   <h1>Política de cookies</h1>
   <p class="updated">Última actualización: 07/09/2026.</p>
 

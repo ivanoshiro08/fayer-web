@@ -376,6 +376,16 @@
   @media (min-width: 860px) {
     .related-card { flex-basis: 180px; }
   }
+
+  .brand-logo { height: 30px; width: auto; display: block;
+    animation: flame-flicker 2.4s ease-in-out infinite; }
+  @keyframes flame-flicker {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(255,106,26,0.45)) brightness(1); }
+    22% { filter: drop-shadow(0 0 7px rgba(255,140,30,0.75)) brightness(1.08); }
+    48% { filter: drop-shadow(0 0 3px rgba(255,90,20,0.35)) brightness(0.95); }
+    70% { filter: drop-shadow(0 0 8px rgba(255,150,45,0.8)) brightness(1.1); }
+    85% { filter: drop-shadow(0 0 5px rgba(255,110,25,0.5)) brightness(1.02); }
+  }
 </style>
 </head>
 <body>
@@ -383,7 +393,7 @@
 <div class="wrap">
 
   <div class="topbar">
-    <a href="index.html" class="brand" style="text-decoration:none;">fay<span>er</span></a>
+    <a href="index.html" class="brand" style="text-decoration:none;"><img src="logo.png" class="brand-logo" alt="Fayer"></a>
     <nav style="display:flex;gap:18px;align-items:center;">
       <a href="index.html" style="font-size:0.82rem;color:var(--text-dim);text-decoration:none;">Inicio</a>
       <a href="productos.html" style="font-size:0.82rem;color:var(--text-dim);text-decoration:none;">Productos</a>
