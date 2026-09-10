@@ -2,6 +2,9 @@
 <html lang="es-AR">
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="Producto seleccionado por Fayer — mirá precio, opiniones reales y comprá.">
+<meta property="og:image" content="https://fayer.site/logo.png">
+<meta name="theme-color" content="#FF5B14">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fayer — Producto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,379 +28,20 @@
 </script>
 <!-- TikTok Pixel Code End -->
 
-<style>
-  :root{
-    --bg: #FFFFFF;
-    --bg-raised: #F4F3EF;
-    --bg-raised-2: #EAE8E2;
-    --line: rgba(0,0,0,0.10);
-    --text: #17160F;
-    --text-dim: #6E6D66;
-    --accent: #FF6A1A;
-    --accent-soft: rgba(255,106,26,0.14);
-    --accent-dark: #D9550F;
-  }
-
-  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  a { color: inherit; }
-
-  /* ---- Mobile-first: todo en columna, max 480px ---- */
-  .wrap {
-    max-width: 480px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .brand {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: -0.01em;
-  }
-
-  .brand span { color: var(--accent); }
-
-  .stock-tag {
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .stock-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 6px var(--accent);
-  }
-
-  /* ---- Bloque principal: hero + info ---- */
-  .main-block {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .hero {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    margin: 18px 24px 0;
-    border-radius: 20px;
-    background:
-      radial-gradient(85% 65% at 30% 20%, var(--accent-soft) 0%, transparent 60%),
-      linear-gradient(160deg, #F7F5F1 0%, #FFFFFF 75%);
-    border: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  /* Reemplazá por: <img src="TU_FOTO.jpg" style="width:100%;height:100%;object-fit:cover;"> */
-  .hero-image-placeholder {
-    color: var(--text-dim);
-    font-size: 0.85rem;
-    text-align: center;
-    padding: 20px;
-    border: 1px dashed rgba(0,0,0,0.18);
-    border-radius: 14px;
-    margin: 16px;
-  }
-
-  .content {
-    padding: 26px 24px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .kicker {
-    font-size: 0.75rem;
-    color: var(--accent);
-    font-weight: 600;
-    display: inline-flex;
-    width: fit-content;
-    background: var(--accent-soft);
-    padding: 5px 12px;
-    border-radius: 999px;
-  }
-
-  h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 1.85rem;
-    line-height: 1.18;
-    letter-spacing: -0.015em;
-    margin: 12px 0 0;
-  }
-
-  .price-row { display: flex; align-items: baseline; gap: 12px; }
-
-  .price {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 2.1rem;
-  }
-
-  .price-old { font-size: 1rem; color: var(--text-dim); text-decoration: line-through; }
-
-  .price-badge {
-    font-size: 0.72rem; font-weight: 600; color: var(--accent);
-    border: 1px solid var(--accent); padding: 3px 9px; border-radius: 999px;
-  }
-
-  .desc { font-size: 0.97rem; line-height: 1.6; color: var(--text-dim); margin: 0; }
-
-  .divider { height: 1px; background: var(--line); border: none; margin: 0; }
-
-  .benefits { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
-
-  .benefits li { display: flex; gap: 14px; align-items: flex-start; font-size: 0.95rem; line-height: 1.5; }
-
-  .benefit-mark {
-    flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
-    background: var(--accent-soft); display: flex; align-items: center; justify-content: center; margin-top: 1px;
-  }
-
-  .benefit-mark svg { width: 10px; height: 10px; }
-
-  .trust-strip { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0 2px; }
-
-  .trust-item { flex: 1; text-align: center; }
-
-  .trust-item .num {
-    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem;
-    color: var(--accent); display: block;
-  }
-
-  .trust-item .label { font-size: 0.68rem; color: var(--text-dim); margin-top: 2px; }
-
-  /* CTA dentro del flujo (desktop) */
-  .cta-inline { display: none; }
-
-  .cta-button {
-    display: block; width: 100%; text-align: center;
-    background: var(--accent); color: #0A0A0A; font-weight: 700; font-size: 1.03rem;
-    padding: 17px 20px; border-radius: 12px; text-decoration: none;
-    box-shadow: 0 10px 30px rgba(255,106,26,0.28);
-    transition: transform 0.12s ease, background 0.12s ease;
-  }
-
-  .cta-button:active { background: var(--accent-dark); transform: scale(0.985); }
-
-  .trust-line { text-align: center; font-size: 0.76rem; color: var(--text-dim); margin-top: 12px; }
-
-  /* CTA flotante (mobile) */
-  .cta-block-mobile {
-    position: sticky; bottom: 0;
-    background: linear-gradient(0deg, var(--bg) 55%, rgba(10,10,10,0));
-    padding: 22px 24px 24px; margin-top: 8px;
-  }
-
-  /* ---- Secciones extra ---- */
-  .section {
-    padding: 36px 24px;
-    border-top: 1px solid var(--line);
-  }
-
-  .section-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 1.3rem;
-    margin: 0 0 20px;
-  }
-
-  /* Reseñas */
-  .reviews { display: flex; flex-direction: column; gap: 14px; }
-
-  .review-card {
-    background: var(--bg-raised);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 16px;
-  }
-
-  .review-stars { color: var(--accent); font-size: 0.85rem; margin-bottom: 8px; letter-spacing: 2px; }
-
-  .review-text { font-size: 0.9rem; line-height: 1.55; color: var(--text); margin: 0 0 10px; }
-
-  .review-author { font-size: 0.75rem; color: var(--text-dim); }
-  .review-footer { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; margin-top:10px; }
-  .review-like-btn {
-    display:flex; align-items:center; gap:5px; background:transparent;
-    border:1px solid var(--line); color:var(--text-dim); font-size:0.75rem;
-    padding:6px 10px; border-radius:999px; cursor:pointer; font-family:inherit;
-    white-space:nowrap; flex-shrink:0;
-  }
-  .review-like-btn:hover { border-color: var(--accent); color: var(--text); }
-  .review-like-btn.liked { background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
-
-
-  /* FAQ */
-  .faq-list { display: flex; flex-direction: column; gap: 10px; }
-
-  .faq-item {
-    background: var(--bg-raised);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    overflow: hidden;
-  }
-
-  .faq-item summary {
-    padding: 16px 18px;
-    font-size: 0.92rem;
-    font-weight: 600;
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .faq-item summary::-webkit-details-marker { display: none; }
-
-  .faq-item summary::after {
-    content: "+";
-    color: var(--accent);
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-left: 12px;
-  }
-
-  .faq-item[open] summary::after { content: "–"; }
-
-  .faq-item p {
-    padding: 0 18px 16px;
-    margin: 0;
-    font-size: 0.88rem;
-    line-height: 1.55;
-    color: var(--text-dim);
-  }
-
-  footer {
-    padding: 24px;
-    border-top: 1px solid var(--line);
-    text-align: center;
-  }
-
-  footer p { font-size: 0.7rem; color: rgba(110,109,102,0.65); margin: 0; }
-
-  /* ============================================================
-     DESKTOP / TABLET — a partir de 860px el layout pasa a 2
-     columnas (foto a la izquierda, info a la derecha) y las
-     secciones de abajo usan grillas más anchas.
-  ============================================================ */
-  @media (min-width: 860px) {
-
-    .wrap { max-width: 1080px; }
-
-    .topbar { padding: 20px 40px; }
-
-    .main-block {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 48px;
-      padding: 48px 40px 0;
-    }
-
-    .hero-col {
-      flex: 0 0 46%;
-      position: sticky;
-      top: 96px;
-    }
-    .hero {
-      margin: 0;
-      aspect-ratio: 1 / 1;
-    }
-
-    .content {
-      flex: 1;
-      padding: 0;
-      max-width: 480px;
-    }
-
-    /* En desktop el CTA vive en el flujo, no flota abajo */
-    .cta-block-mobile { display: none; }
-    .cta-inline { display: block; margin-top: 4px; }
-
-    .section { padding: 56px 40px; }
-    .section-inner { max-width: 1000px; margin: 0 auto; }
-
-    .reviews { flex-direction: row; }
-    .review-card { flex: 1; }
-
-    .faq-list { max-width: 640px; }
-  }
-
-  .gallery-thumbs {
-    display: flex; gap: 8px; margin: 12px 24px 0;
-  }
-  .gallery-thumbs img {
-    width: 56px; height: 56px; object-fit: cover; border-radius: 10px;
-    border: 1px solid var(--line); cursor: pointer; opacity: 0.7; transition: opacity .15s, border-color .15s;
-  }
-  .gallery-thumbs img:hover, .gallery-thumbs img.active {
-    opacity: 1; border-color: var(--accent);
-  }
-  @media (min-width: 860px) {
-    .gallery-thumbs { margin-left: 40px; margin-right: 0; max-width: none; }
-    .gallery-thumbs img { width: 64px; height: 64px; }
-  }
-
-  .related-scroll { display:flex; gap:14px; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch; }
-  .related-card { flex:0 0 140px; text-decoration:none; color:var(--text); background:var(--bg-raised); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
-  .related-card img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
-  .related-body { padding:10px; }
-  .related-name { font-size:0.78rem; font-weight:600; margin:0 0 4px; line-height:1.3; }
-  .related-price { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:0.85rem; color:var(--accent); }
-  @media (min-width: 860px) {
-    .related-card { flex-basis: 180px; }
-  }
-
-  .brand-logo { height: 30px; width: auto; display: block;
-    animation: flame-flicker 2.4s ease-in-out infinite; }
-  @keyframes flame-flicker {
-    0%, 100% { filter: drop-shadow(0 0 2px rgba(255,106,26,0.55)) brightness(1); }
-    22% { filter: drop-shadow(0 0 3px rgba(255,140,30,0.85)) brightness(1.08); }
-    48% { filter: drop-shadow(0 0 1px rgba(255,90,20,0.4)) brightness(0.95); }
-    70% { filter: drop-shadow(0 0 4px rgba(255,150,45,0.9)) brightness(1.1); }
-    85% { filter: drop-shadow(0 0 2px rgba(255,110,25,0.6)) brightness(1.02); }
-  }
-</style>
+<script>document.documentElement.className+=" js";</script>
+<link rel="stylesheet" href="fayer.css">
+<link rel="icon" href="logo.png" type="image/png">
 </head>
 <body>
 
 <div class="wrap">
 
   <div class="topbar">
-    <a href="index.html" class="brand" style="text-decoration:none;"><img src="logo.png" class="brand-logo" alt="Fayer"></a>
-    <nav style="display:flex;gap:18px;align-items:center;">
-      <a href="index.html" style="font-size:0.82rem;color:var(--text-dim);text-decoration:none;">Inicio</a>
-      <a href="productos.html" style="font-size:0.82rem;color:var(--text-dim);text-decoration:none;">Productos</a>
-      <a href="ayuda.html" style="font-size:0.82rem;color:var(--text-dim);text-decoration:none;">Ayuda</a>
+    <a href="index.html" class="brand"><img loading="lazy" decoding="async" src="logo.png" class="brand-logo" alt="Fayer"></a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="ayuda.html">Ayuda</a>
     </nav>
   </div>
 
@@ -405,11 +49,11 @@
 
     <div class="hero-col">
     <div class="hero">
-      <img src="foto-4.jpg" id="gallery-4" style="width:100%;height:100%;object-fit:cover;" alt="TP-Link Tapo C200">
+      <img fetchpriority="high" decoding="async" src="foto-4.jpg" id="gallery-4" alt="TP-Link Tapo C200">
     </div>
     <div class="gallery-thumbs">
-    <img src="foto-4.jpg" class="active" onclick="document.getElementById('gallery-4').src=this.src; this.parentElement.querySelectorAll('img').forEach(function(i){i.classList.remove('active')}); this.classList.add('active');">
-    <img src="foto-4b.jpg" class="" onclick="document.getElementById('gallery-4').src=this.src; this.parentElement.querySelectorAll('img').forEach(function(i){i.classList.remove('active')}); this.classList.add('active');">
+    <img loading="lazy" decoding="async" role="button" tabindex="0" alt="Ver otra foto" src="foto-4.jpg" class="active">
+    <img loading="lazy" decoding="async" role="button" tabindex="0" alt="Ver otra foto" src="foto-4b.jpg" class="">
     </div>
     </div>
 
@@ -513,77 +157,77 @@
       <h2 class="section-title">También te puede interesar</h2>
       <div class="related-scroll">
         <a href="producto-1.html" class="related-card">
-          <img src="foto-1.jpg" alt="Aspiradora Sopladora 3 en 1">
+          <img loading="lazy" decoding="async" src="foto-1.jpg" alt="Aspiradora Sopladora 3 en 1">
           <div class="related-body">
             <p class="related-name">Aspiradora Sopladora 3 en 1</p>
             <span class="related-price">$159.000</span>
           </div>
         </a>
         <a href="producto-2.html" class="related-card">
-          <img src="foto-2.jpg" alt="Secador de Pelo 2100W">
+          <img loading="lazy" decoding="async" src="foto-2.jpg" alt="Secador de Pelo 2100W">
           <div class="related-body">
             <p class="related-name">Secador de Pelo 2100W</p>
             <span class="related-price">$32.009</span>
           </div>
         </a>
         <a href="producto-3.html" class="related-card">
-          <img src="foto-3.jpg" alt="Cámara de Seguridad Wi-Fi 360°">
+          <img loading="lazy" decoding="async" src="foto-3.jpg" alt="Cámara de Seguridad Wi-Fi 360°">
           <div class="related-body">
             <p class="related-name">Cámara de Seguridad Wi-Fi 360°</p>
             <span class="related-price">$17.398</span>
           </div>
         </a>
         <a href="producto-5.html" class="related-card">
-          <img src="foto-5.jpg" alt="Balanza Digital Bluetooth Femmto">
+          <img loading="lazy" decoding="async" src="foto-5.jpg" alt="Balanza Digital Bluetooth Femmto">
           <div class="related-body">
             <p class="related-name">Balanza Digital Bluetooth Femmto</p>
             <span class="related-price">$14.999</span>
           </div>
         </a>
         <a href="producto-6.html" class="related-card">
-          <img src="foto-6.jpg" alt="Afeitadora Eléctrica VGR V-325">
+          <img loading="lazy" decoding="async" src="foto-6.jpg" alt="Afeitadora Eléctrica VGR V-325">
           <div class="related-body">
             <p class="related-name">Afeitadora Eléctrica VGR V-325</p>
             <span class="related-price">$42.790</span>
           </div>
         </a>
         <a href="producto-7.html" class="related-card">
-          <img src="foto-7.jpg" alt="Alfombra Peluda 100x60cm">
+          <img loading="lazy" decoding="async" src="foto-7.jpg" alt="Alfombra Peluda 100x60cm">
           <div class="related-body">
             <p class="related-name">Alfombra Peluda 100x60cm</p>
             <span class="related-price">$14.852</span>
           </div>
         </a>
         <a href="producto-8.html" class="related-card">
-          <img src="foto-8.jpg" alt="Máscara Fotosensible Kommberg">
+          <img loading="lazy" decoding="async" src="foto-8.jpg" alt="Máscara Fotosensible Kommberg">
           <div class="related-body">
             <p class="related-name">Máscara Fotosensible Kommberg</p>
             <span class="related-price">$19.828</span>
           </div>
         </a>
         <a href="producto-9.html" class="related-card">
-          <img src="foto-9.jpg" alt="Micrófono Inalámbrico Ringo x2">
+          <img loading="lazy" decoding="async" src="foto-9.jpg" alt="Micrófono Inalámbrico Ringo x2">
           <div class="related-body">
             <p class="related-name">Micrófono Inalámbrico Ringo x2</p>
             <span class="related-price">$28.599</span>
           </div>
         </a>
         <a href="producto-10.html" class="related-card">
-          <img src="foto-10.jpg" alt="Intercomunicador Moto EJEAS V6-PRO+">
+          <img loading="lazy" decoding="async" src="foto-10.jpg" alt="Intercomunicador Moto EJEAS V6-PRO+">
           <div class="related-body">
             <p class="related-name">Intercomunicador Moto EJEAS V6-PRO+</p>
             <span class="related-price">$79.800</span>
           </div>
         </a>
         <a href="producto-11.html" class="related-card">
-          <img src="foto-11.jpg" alt="Tostadora Liliana Tostler AT900">
+          <img loading="lazy" decoding="async" src="foto-11.jpg" alt="Tostadora Liliana Tostler AT900">
           <div class="related-body">
             <p class="related-name">Tostadora Liliana Tostler AT900</p>
             <span class="related-price">$40.412</span>
           </div>
         </a>
         <a href="producto-12.html" class="related-card">
-          <img src="foto-12.jpg" alt="Casco Moto Integral Vertigo V32">
+          <img loading="lazy" decoding="async" src="foto-12.jpg" alt="Casco Moto Integral Vertigo V32">
           <div class="related-body">
             <p class="related-name">Casco Moto Integral Vertigo V32</p>
             <span class="related-price">$70.385</span>
@@ -598,20 +242,20 @@
       <h2 class="section-title">Preguntas frecuentes</h2>
       <div class="faq-list">
         <details class="faq-item">
-          <summary>¿Cuánto tarda el envío?</summary>
-          <p>El tiempo de envío se muestra dentro de la página de compra a la que te lleva el botón — varía según tu ubicación y el vendedor.</p>
+          <summary><span>¿Cuánto tarda el envío?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <div class="faq-body"><div><p>El tiempo de envío se muestra dentro de la página de compra a la que te lleva el botón — varía según tu ubicación y el vendedor.</p></div></div>
         </details>
         <details class="faq-item">
-          <summary>¿Tiene garantía?</summary>
-          <p>La garantía y política de devolución la vas a ver dentro de la página de compra, en la ficha del vendedor.</p>
+          <summary><span>¿Tiene garantía?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <div class="faq-body"><div><p>La garantía y política de devolución la vas a ver dentro de la página de compra, en la ficha del vendedor.</p></div></div>
         </details>
         <details class="faq-item">
-          <summary>¿Cómo hago el pago?</summary>
-          <p>Se paga directo en el sitio oficial al que te lleva el botón de compra — nosotros no procesamos el pago.</p>
+          <summary><span>¿Cómo hago el pago?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <div class="faq-body"><div><p>Se paga directo en el sitio oficial al que te lleva el botón de compra — nosotros no procesamos el pago.</p></div></div>
         </details>
         <details class="faq-item">
-          <summary>¿Puedo comprar más de uno?</summary>
-          <p>Sí, según el stock disponible — la cantidad máxima la ves al entrar a la página de compra.</p>
+          <summary><span>¿Puedo comprar más de uno?</span><span class="faq-sign" aria-hidden="true"></span></summary>
+          <div class="faq-body"><div><p>Sí, según el stock disponible — la cantidad máxima la ves al entrar a la página de compra.</p></div></div>
         </details>
       </div>
     </div>
