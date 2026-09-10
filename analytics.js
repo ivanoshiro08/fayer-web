@@ -7,11 +7,11 @@
   'use strict';
 
   /* --- Configuración ---------------------------------------------------- */
-  var GA4 = 'G-XXXXXXXXXX';   // ← reemplazar por el ID real de GA4
+  var GA4 = 'G-JHRBRHRYED';   // ← reemplazar por el ID real de GA4
 
   /* Si algún día querés que el pixel dispare siempre (sin esperar la
      decisión de cookies), poné esto en true. Ojo: legalmente es más flojo. */
-  var SIEMPRE_ACTIVO = false;
+  var SIEMPRE_ACTIVO = true;
 
   var CLAVE = 'fayer_cookie_consent';
   var cola = [];
