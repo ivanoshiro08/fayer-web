@@ -1,196 +1,230 @@
 /* ==========================================================================
-   Fayer — comportamiento compartido de todo el sitio.
-   Sin dependencias. Todo respeta prefers-reduced-motion.
+   FAYER — comportamiento del sitio. Sin dependencias.
+   Regla: nada se mueve sin motivo, y todo respeta prefers-reduced-motion.
    ========================================================================== */
 (function () {
   'use strict';
 
-  // Marca que hay JS: el CSS sólo esconde cosas para animarlas si esto existe,
-  // así sin JS la página se ve entera igual.
-  document.documentElement.classList.add('js');
-
   var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hayObs = 'IntersectionObserver' in window;
 
-  function alCargar(fn) {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fn);
-    } else {
-      fn();
-    }
+  function listo(fn) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
   }
 
-  /* --- 1. Borde del header sólo cuando scrolleás ------------------------ */
-  function headerPegajoso() {
-    var head = document.querySelector('header, .topbar');
-    if (!head) return;
-
-    var pegado = false;
-    function revisar() {
-      var deberia = window.scrollY > 8;
-      if (deberia !== pegado) {
-        pegado = deberia;
-        head.classList.toggle('is-stuck', pegado);
-      }
+  /* --- Cabecera: el borde aparece sólo cuando hace falta separar ---------- */
+  function cabecera() {
+    var barra = document.querySelector('.barra');
+    if (!barra) return;
+    var estado = false;
+    function ver() {
+      var debe = window.scrollY > 6;
+      if (debe !== estado) { estado = debe; barra.classList.toggle('pegada', debe); }
     }
-    revisar();
-    window.addEventListener('scroll', revisar, { passive: true });
+    ver();
+    window.addEventListener('scroll', ver, { passive: true });
   }
 
-  /* --- 2. Aparición escalonada de las tarjetas -------------------------- */
-  function revelar() {
-    var items = document.querySelectorAll('.reveal');
-    if (!items.length) return;
+  /* --- Termómetro: la barra se llena al entrar en pantalla ---------------- */
+  /* No es adorno: dibuja un dato (calor = valoración × ventas). Por eso
+     se anima una sola vez, cuando el ojo la puede leer. */
+  function termometros() {
+    var barras = document.querySelectorAll('.calor');
+    if (!barras.length) return;
 
-    if (quieto || !('IntersectionObserver' in window)) {
-      items.forEach(function (el) { el.classList.add('shown'); });
+    if (quieto || !hayObs) {
+      barras.forEach(function (b) { b.classList.add('encendida'); });
       return;
     }
 
     var obs = new IntersectionObserver(function (entradas) {
-      // Las que entran juntas se escalonan entre sí, no todas de una.
-      var visibles = entradas.filter(function (e) { return e.isIntersecting; });
-      visibles.forEach(function (e, i) {
-        var el = e.target;
-        el.style.transitionDelay = Math.min(i * 45, 260) + 'ms';
-        el.classList.add('shown');
-        obs.unobserve(el);
+      entradas.forEach(function (en, i) {
+        if (!en.isIntersecting) return;
+        var b = en.target;
+        // Un respiro antes de arrancar: si empieza en el borde no se ve.
+        setTimeout(function () { b.classList.add('encendida'); }, 60 + Math.min(i * 40, 200));
+        obs.unobserve(b);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    }, { threshold: 0.4 });
+
+    barras.forEach(function (b) { obs.observe(b); });
+  }
+
+  /* --- Filas del índice: entran escalonadas, una sola vez ----------------- */
+  function apariciones() {
+    var items = document.querySelectorAll('.aparece');
+    if (!items.length) return;
+
+    if (quieto || !hayObs) {
+      items.forEach(function (el) { el.classList.add('visible'); });
+      return;
+    }
+
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.filter(function (en) { return en.isIntersecting; })
+        .forEach(function (en, i) {
+          en.target.style.transitionDelay = Math.min(i * 45, 240) + 'ms';
+          en.target.classList.add('visible');
+          obs.unobserve(en.target);
+        });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
 
     items.forEach(function (el) { obs.observe(el); });
   }
 
-  /* --- 3. Galería: crossfade con desenfoque ----------------------------- */
-  /* Cambiar el src de golpe se ve como un corte. El blur tapa el salto y
-     hace que se lea como una sola imagen transformándose. */
-  function galeria() {
-    var thumbs = document.querySelectorAll('.gallery-thumbs img');
-    if (!thumbs.length) return;
+  /* --- Riel de categorías: marca en cuál estás mientras scrolleás --------- */
+  /* Sirve para orientarse, que es justo lo que un catálogo largo necesita. */
+  function riel() {
+    var riel = document.querySelector('.riel');
+    if (!riel || !hayObs) return;
 
-    // Precargamos para que el cambio sea instantáneo al tocar.
-    thumbs.forEach(function (t) { new Image().src = t.src; });
+    var enlaces = Array.prototype.slice.call(riel.querySelectorAll('a'));
+    var bloques = enlaces
+      .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+      .filter(Boolean);
+    if (!bloques.length) return;
 
-    thumbs.forEach(function (thumb) {
-      // Son role="button": Enter y Espacio tienen que funcionar igual que el click.
-      thumb.addEventListener('keydown', function (e) {
-        if (e.key !== 'Enter' && e.key !== ' ') return;
-        e.preventDefault();
-        thumb.click();
+    function marcar(id) {
+      enlaces.forEach(function (a) {
+        var activo = a.getAttribute('href') === '#' + id;
+        a.classList.toggle('aqui', activo);
+        // Que la pastilla activa quede siempre a la vista dentro del riel.
+        if (activo && riel.scrollWidth > riel.clientWidth) {
+          var izq = a.offsetLeft - riel.clientWidth / 2 + a.offsetWidth / 2;
+          riel.scrollTo({ left: izq, behavior: quieto ? 'auto' : 'smooth' });
+        }
       });
+    }
 
-      thumb.addEventListener('click', function () {
-        var contenedor = thumb.closest('.hero-col') || document;
-        var principal = contenedor.querySelector('.hero img');
-        if (!principal || principal.src === thumb.src) return;
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (en) {
+        if (en.isIntersecting) marcar(en.target.id);
+      });
+    }, { rootMargin: '-25% 0px -65% 0px' });
 
-        thumb.parentElement.querySelectorAll('img').forEach(function (i) {
-          i.classList.remove('active');
-        });
-        thumb.classList.add('active');
+    bloques.forEach(function (b) { obs.observe(b); });
+    marcar(bloques[0].id);
+  }
 
-        if (quieto) { principal.src = thumb.src; return; }
+  /* --- Galería: crossfade con desenfoque ---------------------------------- */
+  /* Cambiar el src de golpe se ve como un corte entre dos imágenes.
+     El blur las mezcla y el ojo lee una sola foto transformándose. */
+  function galeria() {
+    var minis = document.querySelectorAll('.miniaturas img');
+    var principal = document.getElementById('foto-principal');
+    if (!minis.length || !principal) return;
 
-        principal.classList.add('swapping');
-        var listo = new Image();
-        listo.onload = function () {
-          principal.src = thumb.src;
-          requestAnimationFrame(function () {
-            principal.classList.remove('swapping');
-          });
-        };
-        listo.src = thumb.src;
+    minis.forEach(function (m) { new Image().src = m.src; });
+
+    function cambiar(mini) {
+      if (principal.src === mini.src) return;
+      minis.forEach(function (i) { i.classList.remove('activa'); });
+      mini.classList.add('activa');
+
+      if (quieto) { principal.src = mini.src; return; }
+
+      principal.classList.add('cambiando');
+      var lista = new Image();
+      lista.onload = function () {
+        principal.src = mini.src;
+        requestAnimationFrame(function () { principal.classList.remove('cambiando'); });
+      };
+      lista.src = mini.src;
+    }
+
+    minis.forEach(function (mini) {
+      mini.addEventListener('click', function () { cambiar(mini); });
+      mini.addEventListener('keydown', function (ev) {
+        if (ev.key !== 'Enter' && ev.key !== ' ') return;
+        ev.preventDefault();
+        cambiar(mini);
       });
     });
   }
 
-  /* --- 4. FAQ: cerrar la anterior al abrir una nueva -------------------- */
-  function acordeon() {
-    var items = document.querySelectorAll('.faq-item');
-    if (!items.length) return;
-
+  /* --- Preguntas: se abre una y se cierra la anterior --------------------- */
+  function preguntas() {
+    var items = document.querySelectorAll('.pregunta');
     items.forEach(function (item) {
       item.addEventListener('toggle', function () {
         if (!item.open) return;
-        items.forEach(function (otro) {
-          if (otro !== item) otro.open = false;
-        });
+        items.forEach(function (otro) { if (otro !== item) otro.open = false; });
       });
     });
   }
 
-  /* --- 5. Botón "Útil" de las reseñas ----------------------------------- */
-  function likes() {
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest('.review-like-btn');
-      if (!btn) return;
+  /* --- Botón "útil" ------------------------------------------------------- */
+  function utiles() {
+    var botones = document.querySelectorAll('.util');
+    if (!botones.length) return;
 
-      var id = btn.dataset.reviewId;
+    botones.forEach(function (btn) {
+      var clave = 'fayer_util_' + btn.dataset.op;
       var base = parseInt(btn.dataset.base, 10) || 0;
-      var clave = 'fayer_review_like_' + id;
-      var contador = btn.querySelector('.review-like-count');
-      var yaEstaba = localStorage.getItem(clave) === '1';
+      var n = btn.querySelector('.util-n');
 
-      if (yaEstaba) {
-        localStorage.removeItem(clave);
-        btn.classList.remove('liked');
-        contador.textContent = base;
-      } else {
-        localStorage.setItem(clave, '1');
-        btn.classList.add('liked');
-        contador.textContent = base + 1;
-        if (!quieto) {
-          contador.classList.remove('bump');
-          void contador.offsetWidth; // reinicia la animación
-          contador.classList.add('bump');
-        }
+      if (localStorage.getItem(clave) === '1') {
+        btn.classList.add('marcado');
+        n.textContent = base + 1;
       }
-    });
 
-    // Restaurar el estado guardado al cargar.
-    document.querySelectorAll('.review-like-btn').forEach(function (btn) {
-      if (localStorage.getItem('fayer_review_like_' + btn.dataset.reviewId) !== '1') return;
-      btn.classList.add('liked');
-      var contador = btn.querySelector('.review-like-count');
-      if (contador) contador.textContent = (parseInt(btn.dataset.base, 10) || 0) + 1;
+      btn.addEventListener('click', function () {
+        if (btn.classList.contains('marcado')) {
+          localStorage.removeItem(clave);
+          btn.classList.remove('marcado');
+          n.textContent = base;
+        } else {
+          localStorage.setItem(clave, '1');
+          btn.classList.add('marcado');
+          n.textContent = base + 1;
+          if (!quieto) {
+            n.classList.remove('salta');
+            void n.offsetWidth;
+            n.classList.add('salta');
+          }
+        }
+      });
     });
   }
 
-  /* --- 6. Banner de cookies -------------------------------------------- */
+  /* --- Cookies ------------------------------------------------------------ */
   function cookies() {
     var CLAVE = 'fayer_cookie_consent';
     if (localStorage.getItem(CLAVE)) return;
 
-    var barra = document.createElement('div');
-    barra.id = 'fayer-cookie-bar';
-    barra.setAttribute('role', 'region');
-    barra.setAttribute('aria-label', 'Aviso de cookies');
-    barra.innerHTML =
-      '<p>Usamos cookies propias para mejorar tu navegación. ' +
-      '<a href="cookies.html">Más información</a>.</p>' +
-      '<div class="fc-actions">' +
-      '<button class="fc-reject" type="button">Rechazar</button>' +
-      '<button class="fc-accept" type="button">Aceptar</button>' +
+    var caja = document.createElement('div');
+    caja.id = 'fayer-cookies';
+    caja.setAttribute('role', 'region');
+    caja.setAttribute('aria-label', 'Aviso de cookies');
+    caja.innerHTML =
+      '<p>Usamos cookies propias para entender qué productos mirás. ' +
+      '<a href="cookies.html">Más info</a>.</p>' +
+      '<div class="cc-btns">' +
+      '<button class="cc-no" type="button">Rechazar</button>' +
+      '<button class="cc-si" type="button">Aceptar</button>' +
       '</div>';
 
-    document.body.appendChild(barra);
+    document.body.appendChild(caja);
 
     function cerrar(valor) {
       localStorage.setItem(CLAVE, valor);
-      barra.classList.add('leaving');
-      barra.addEventListener('transitionend', function () { barra.remove(); }, { once: true });
-      setTimeout(function () { if (barra.parentNode) barra.remove(); }, 400);
+      caja.classList.add('yendose');
+      caja.addEventListener('transitionend', function () { caja.remove(); }, { once: true });
+      setTimeout(function () { if (caja.parentNode) caja.remove(); }, 420);
     }
-
-    barra.querySelector('.fc-accept').addEventListener('click', function () { cerrar('accepted'); });
-    barra.querySelector('.fc-reject').addEventListener('click', function () { cerrar('rejected'); });
+    caja.querySelector('.cc-si').addEventListener('click', function () { cerrar('accepted'); });
+    caja.querySelector('.cc-no').addEventListener('click', function () { cerrar('rejected'); });
   }
 
-  alCargar(function () {
-    headerPegajoso();
-    revelar();
+  listo(function () {
+    cabecera();
+    termometros();
+    apariciones();
+    riel();
     galeria();
-    acordeon();
-    likes();
+    preguntas();
+    utiles();
     cookies();
   });
 })();
