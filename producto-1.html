@@ -20,17 +20,14 @@
 <script>
 !function (w, d, t) {
   w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for( var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-  ttq.load('DAF531BC77UDHLL3KIH0');
-  ttq.page();
-  ttq.track('ViewContent', {
-    content_id: 'producto-1',
-    content_name: 'Aspiradora Sopladora 3 en 1 Inalámbrica',
-    content_type: 'product',
-    currency: 'ARS',
-    value: 159000
-  });
+  ttq._pixel='DAF531BC77UDHLL3KIH0';
+  // El pixel no carga hasta que el visitante acepte las cookies.
+  if (localStorage.getItem('fayer_cookie_consent')==='accepted') {
+    ttq.load('DAF531BC77UDHLL3KIH0'); ttq.page();
+  }
 }(window, document, 'ttq');
 </script>
+<script type="application/json" id="fayer-item">{"id": "1", "nombre": "Aspiradora Sopladora 3 en 1 Inalámbrica", "precio": 159000, "cat": "Hogar", "rank": 11, "calor": 56}</script>
 </head>
 <body>
 
@@ -94,14 +91,14 @@
       </ul>
 
       <div class="cta-escritorio">
-        <a href="https://meli.la/1i8jXsG" class="boton boton-fuego" target="_blank" rel="noopener sponsored" onclick="ttq.track('ClickButton',{content_id:'producto-1',content_name:'Aspiradora Sopladora 3 en 1 Inalámbrica',currency:'ARS',value:159000});">Ver precio y comprar<svg class="boton-flecha" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="https://meli.la/1i8jXsG" class="boton boton-fuego" target="_blank" rel="noopener sponsored">Ver precio y comprar<svg class="boton-flecha" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <p class="nota-bajo-boton">Te lleva a Mercado Libre para completar la compra</p>
       </div>
     </div>
   </article>
 
   <div class="cta-movil">
-    <a href="https://meli.la/1i8jXsG" class="boton boton-fuego" target="_blank" rel="noopener sponsored" onclick="ttq.track('ClickButton',{content_id:'producto-1',content_name:'Aspiradora Sopladora 3 en 1 Inalámbrica',currency:'ARS',value:159000});">Ver precio y comprar<svg class="boton-flecha" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a href="https://meli.la/1i8jXsG" class="boton boton-fuego" target="_blank" rel="noopener sponsored">Ver precio y comprar<svg class="boton-flecha" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <p class="nota-bajo-boton">Te lleva a Mercado Libre para completar la compra</p>
   </div>
 
@@ -233,6 +230,7 @@
   </div>
 </footer>
 
+<script src="analytics.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

@@ -209,6 +209,17 @@
 
     function cerrar(valor) {
       localStorage.setItem(CLAVE, valor);
+
+      // Recién acá arranca el seguimiento, y sólo si aceptó.
+      if (valor === 'accepted') {
+        if (window.ttq && window.ttq._pixel && !window.ttq._cargado) {
+          window.ttq._cargado = true;
+          window.ttq.load(window.ttq._pixel);
+          window.ttq.page();
+        }
+        if (window.fayer) window.fayer.liberarCola();
+      }
+
       caja.classList.add('yendose');
       caja.addEventListener('transitionend', function () { caja.remove(); }, { once: true });
       setTimeout(function () { if (caja.parentNode) caja.remove(); }, 420);

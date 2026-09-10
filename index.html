@@ -20,12 +20,15 @@
 <script>
 !function (w, d, t) {
   w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for( var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-  ttq.load('DAF531BC77UDHLL3KIH0');
-  ttq.page();
+  ttq._pixel='DAF531BC77UDHLL3KIH0';
+  // El pixel no carga hasta que el visitante acepte las cookies.
+  if (localStorage.getItem('fayer_cookie_consent')==='accepted') {
+    ttq.load('DAF531BC77UDHLL3KIH0'); ttq.page();
+  }
 }(window, document, 'ttq');
 </script>
 </head>
-<body>
+<body data-lista="indice_home">
 
 <header class="barra">
   <div class="barra-in">
@@ -82,7 +85,7 @@
     <p class="seccion-nota">Ordenados por <b>calor</b>: cuánto se vende y cómo lo puntúa la gente que ya lo compró. Nada entra por casualidad — si no llega a 4.2 estrellas, queda afuera.</p>
 
     <div class="indice indice-2col">
-      <a href="producto-6.html" class="fila aparece">
+      <a data-producto="6" data-rank="02" data-nombre="Afeitadora Eléctrica VGR V-325 Recargable" data-cat="Cuidado personal" href="producto-6.html" class="fila aparece">
         <span class="fila-rank numeros">02</span>
         <div class="fila-foto"><img src="foto-6.jpg" alt="Afeitadora Eléctrica VGR V-325 Recargable" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -95,7 +98,7 @@
           <div class="calor calor-mini" style="--nivel:0.83"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">83°</span></div>
         </div>
       </a>
-      <a href="producto-7.html" class="fila aparece">
+      <a data-producto="7" data-rank="03" data-nombre="Alfombra Peluda 100x60cm Pie de Cama" data-cat="Hogar" href="producto-7.html" class="fila aparece">
         <span class="fila-rank numeros">03</span>
         <div class="fila-foto"><img src="foto-7.jpg" alt="Alfombra Peluda 100x60cm Pie de Cama" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -108,7 +111,7 @@
           <div class="calor calor-mini" style="--nivel:0.79"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">79°</span></div>
         </div>
       </a>
-      <a href="producto-2.html" class="fila aparece">
+      <a data-producto="2" data-rank="04" data-nombre="Secador de Pelo Compacto 2100W Aire Frío/Calor" data-cat="Cuidado personal" href="producto-2.html" class="fila aparece">
         <span class="fila-rank numeros">04</span>
         <div class="fila-foto"><img src="foto-2.jpg" alt="Secador de Pelo Compacto 2100W Aire Frío/Calor" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -121,7 +124,7 @@
           <div class="calor calor-mini" style="--nivel:0.77"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">77°</span></div>
         </div>
       </a>
-      <a href="producto-10.html" class="fila aparece">
+      <a data-producto="10" data-rank="05" data-nombre="Intercomunicador Moto EJEAS V6-PRO+ Bluetooth" data-cat="Motos" href="producto-10.html" class="fila aparece">
         <span class="fila-rank numeros">05</span>
         <div class="fila-foto"><img src="foto-10.jpg" alt="Intercomunicador Moto EJEAS V6-PRO+ Bluetooth" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -134,7 +137,7 @@
           <div class="calor calor-mini" style="--nivel:0.76"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">76°</span></div>
         </div>
       </a>
-      <a href="producto-11.html" class="fila aparece">
+      <a data-producto="11" data-rank="06" data-nombre="Tostadora Liliana Tostler AT900" data-cat="Hogar" href="producto-11.html" class="fila aparece">
         <span class="fila-rank numeros">06</span>
         <div class="fila-foto"><img src="foto-11.jpg" alt="Tostadora Liliana Tostler AT900" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -147,7 +150,7 @@
           <div class="calor calor-mini" style="--nivel:0.76"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">76°</span></div>
         </div>
       </a>
-      <a href="producto-12.html" class="fila aparece">
+      <a data-producto="12" data-rank="07" data-nombre="Casco Moto Integral Vertigo V32 Vanguard" data-cat="Motos" href="producto-12.html" class="fila aparece">
         <span class="fila-rank numeros">07</span>
         <div class="fila-foto"><img src="foto-12.jpg" alt="Casco Moto Integral Vertigo V32 Vanguard" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -160,7 +163,7 @@
           <div class="calor calor-mini" style="--nivel:0.72"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">72°</span></div>
         </div>
       </a>
-      <a href="producto-9.html" class="fila aparece">
+      <a data-producto="9" data-rank="08" data-nombre="Micrófono Inalámbrico Ringo x2 con Cubreviento" data-cat="Tecnología" href="producto-9.html" class="fila aparece">
         <span class="fila-rank numeros">08</span>
         <div class="fila-foto"><img src="foto-9.jpg" alt="Micrófono Inalámbrico Ringo x2 con Cubreviento" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -173,7 +176,7 @@
           <div class="calor calor-mini" style="--nivel:0.71"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">71°</span></div>
         </div>
       </a>
-      <a href="producto-4.html" class="fila aparece">
+      <a data-producto="4" data-rank="09" data-nombre="TP-Link Tapo C200 — Cámara de Seguridad" data-cat="Tecnología" href="producto-4.html" class="fila aparece">
         <span class="fila-rank numeros">09</span>
         <div class="fila-foto"><img src="foto-4.jpg" alt="TP-Link Tapo C200 — Cámara de Seguridad" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -186,7 +189,7 @@
           <div class="calor calor-mini" style="--nivel:0.70"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">70°</span></div>
         </div>
       </a>
-      <a href="producto-8.html" class="fila aparece">
+      <a data-producto="8" data-rank="10" data-nombre="Máscara Fotosensible Kommberg KB-MF25E para Soldar" data-cat="Herramientas" href="producto-8.html" class="fila aparece">
         <span class="fila-rank numeros">10</span>
         <div class="fila-foto"><img src="foto-8.jpg" alt="Máscara Fotosensible Kommberg KB-MF25E para Soldar" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -199,7 +202,7 @@
           <div class="calor calor-mini" style="--nivel:0.66"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">66°</span></div>
         </div>
       </a>
-      <a href="producto-1.html" class="fila aparece">
+      <a data-producto="1" data-rank="11" data-nombre="Aspiradora Sopladora 3 en 1 Inalámbrica" data-cat="Hogar" href="producto-1.html" class="fila aparece">
         <span class="fila-rank numeros">11</span>
         <div class="fila-foto"><img src="foto-1.jpg" alt="Aspiradora Sopladora 3 en 1 Inalámbrica" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -212,7 +215,7 @@
           <div class="calor calor-mini" style="--nivel:0.56"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">56°</span></div>
         </div>
       </a>
-      <a href="producto-3.html" class="fila aparece">
+      <a data-producto="3" data-rank="12" data-nombre="Cámara de Seguridad Wi-Fi 1080p Rotación 360°" data-cat="Tecnología" href="producto-3.html" class="fila aparece">
         <span class="fila-rank numeros">12</span>
         <div class="fila-foto"><img src="foto-3.jpg" alt="Cámara de Seguridad Wi-Fi 1080p Rotación 360°" loading="lazy" decoding="async"></div>
         <div class="fila-cuerpo">
@@ -293,6 +296,7 @@
   </div>
 </footer>
 
+<script src="analytics.js"></script>
 <script src="site.js"></script>
 </body>
 </html>
