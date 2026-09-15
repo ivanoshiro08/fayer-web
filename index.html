@@ -374,6 +374,82 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
 @media (max-width:640px){.lead{grid-template-columns:1fr}}
 @media (max-width:980px){.pro-inner{grid-template-columns:1fr}}
 
+
+/* ===================================================== CALCULADORA PRO === */
+.calc-split{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.pro{margin-top:clamp(16px,2vw,24px);position:relative}
+.pro-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1rem 1.25rem;border-bottom:1px solid var(--line);background:var(--surface)}
+.pro-head b{font-family:var(--f-display);font-size:1.02rem;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
+.pro-head .lock{width:15px;height:15px;color:var(--accent)}
+.pro-head small{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.pro-body{position:relative;min-height:330px}
+.pro-inner{padding:clamp(20px,2.6vw,32px);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,2.6vw,34px)}
+.pro-locked .pro-inner{filter:blur(7px);opacity:.42;pointer-events:none;user-select:none}
+
+.gate{position:absolute;inset:0;z-index:3;display:none;align-items:center;justify-content:center;padding:1.25rem}
+.pro-locked .gate{display:flex}
+.gate-card{width:min(430px,100%);border-radius:22px;padding:1.6rem;text-align:center;
+  background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--line-2);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.85rem;align-items:center}
+.gate-card h4{font-family:var(--f-display);font-size:1.22rem;font-weight:700;letter-spacing:-.025em}
+.gate-card p{font-size:.86rem;color:var(--muted);max-width:34ch}
+.gate-price{font-family:var(--f-mono);font-size:2.05rem;font-weight:700;letter-spacing:-.04em;color:var(--accent);line-height:1}
+.gate-price em{font-style:normal;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:block;margin-top:.3rem}
+.gate-code{display:flex;gap:.4rem;width:100%;max-width:320px}
+.gate-code input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:12px;
+  padding:.58rem .8rem;color:var(--text);font-family:var(--f-mono);font-size:.84rem;letter-spacing:.06em;text-transform:uppercase}
+.gate-code input:focus{outline:none;border-color:var(--accent)}
+.gate-code button{border:1px solid var(--line-2);background:var(--raised);color:var(--text);border-radius:12px;
+  padding:.58rem .95rem;font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--f-body);
+  transition:border-color .45s var(--ease)}
+.gate-code button:hover{border-color:var(--accent)}
+.gate-msg{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;min-height:1em}
+.gate-msg.err{color:var(--bad)}
+.gate-msg.ok{color:var(--ok)}
+
+.proj{display:flex;flex-direction:column;gap:.8rem}
+.proj-bars{display:flex;align-items:flex-end;gap:4px;height:130px;padding-top:.4rem}
+.proj-bars .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
+.proj-bars .b i{display:block;width:64%;margin-inline:auto;border-radius:4px 4px 0 0;background:var(--bad);transition:height .6s var(--ease)}
+.proj-bars .b.pos i{background:var(--accent)}
+.proj-bars.ghost .b i{background:var(--line-2)}
+.proj-bars .b span{font-family:var(--f-mono);font-size:8.5px;color:var(--dim);text-align:center;padding-top:.3rem;letter-spacing:.04em}
+.mini{display:flex;flex-direction:column;gap:.55rem}
+.mini-row{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;padding-bottom:.55rem;border-bottom:1px solid var(--line);font-size:.85rem}
+.mini-row:last-child{border-bottom:0}
+.mini-row span{color:var(--muted)}
+.mini-row b{font-family:var(--f-mono);font-weight:500;font-variant-numeric:tabular-nums}
+.mini-row b.up{color:var(--ok)}
+.mini-row b.down{color:var(--bad)}
+.mini h5{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 .2rem}
+.sens{width:100%;border-collapse:collapse;font-size:.83rem}
+.sens th{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);
+  text-align:right;padding:0 0 .5rem;font-weight:500;border-bottom:1px solid var(--line)}
+.sens th:first-child{text-align:left}
+.sens td{padding:.5rem 0;border-bottom:1px solid var(--line);text-align:right;
+  font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.sens td:first-child{text-align:left;color:var(--muted);font-family:var(--f-body)}
+.sens tr:last-child td{border-bottom:0}
+.sens .hl{color:var(--accent);font-weight:700}
+.sens .delta{color:var(--ok);font-weight:400}
+.growth{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.growth label{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.growth input[type=range]{flex:1;min-width:140px;accent-color:var(--accent)}
+.growth b{font-family:var(--f-mono);font-size:.92rem;min-width:3.4em;text-align:right}
+
+/* ============================================================= FORMULARIO = */
+.lead{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;width:100%;max-width:560px;margin-top:.3rem}
+.lead .full{grid-column:1/-1}
+.lead input,.lead textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:14px;
+  padding:.72rem .95rem;color:var(--text);font-family:var(--f-body);font-size:.9rem;resize:vertical}
+.lead input:focus,.lead textarea:focus{outline:none;border-color:var(--accent)}
+.lead input::placeholder,.lead textarea::placeholder{color:var(--dim)}
+.lead .hp{position:absolute;left:-9999px}
+.form-note{font-size:.78rem;color:var(--dim)}
+@media (max-width:640px){.lead{grid-template-columns:1fr}}
+@media (max-width:980px){.pro-inner{grid-template-columns:1fr}}
+
 /* ========================================================= RESPONSIVE ==== */
 @media (max-width:980px){
   .hero-grid,.sys,.calc-grid{grid-template-columns:1fr}
@@ -562,6 +638,66 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
             <div class="out-line"><span>Margen de contribución</span><b class="num" id="oMc">$4.800 · 40,0%</b></div>
             <div class="out-line"><span>Margen de seguridad</span><b class="num" id="oMs">+76,1%</b></div>
             <div class="verdict good" id="oVer">Vendiendo 1.200 unidades estás 518 por encima del punto de equilibrio. El negocio cubre su estructura.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shell pro" id="pro">
+      <div class="core pro-locked" id="proCore">
+        <div class="pro-head">
+          <b>
+            <svg class="lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 10.5V7.8a5.5 5.5 0 0 1 11 0v2.7M5 10.5h14v9.2H5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            Análisis completo
+          </b>
+          <small id="proState">Acceso Pro</small>
+        </div>
+        <div class="pro-body">
+          <div class="pro-inner">
+            <div class="proj">
+              <div class="growth">
+                <label for="gr">Crecimiento mensual</label>
+                <input id="gr" type="range" min="-5" max="15" step="0.5" value="3">
+                <b class="num" id="grOut">3,0%</b>
+              </div>
+              <h5 style="font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0">Resultado mensual proyectado · 12 meses</h5>
+              <div class="proj-bars" id="projBars" aria-hidden="true"></div>
+              <div class="mini-row"><span>Resultado acumulado del año</span><b class="num" id="pAcum">—</b></div>
+              <div class="mini-row"><span>Primer mes en positivo</span><b class="num" id="pBreak">—</b></div>
+            </div>
+
+            <div class="mini">
+              <div>
+                <h5>Escenarios anuales</h5>
+                <div class="mini-row"><span>Pesimista · −20% unidades</span><b class="num" id="sLow">—</b></div>
+                <div class="mini-row"><span>Base</span><b class="num" id="sMid">—</b></div>
+                <div class="mini-row"><span>Optimista · +20% unidades</span><b class="num" id="sHigh">—</b></div>
+              </div>
+              <div style="margin-top:.6rem">
+                <h5>Si subís el precio</h5>
+                <table class="sens">
+                  <thead><tr><th>Ajuste</th><th>Margen</th><th>Unid. necesarias</th></tr></thead>
+                  <tbody id="sensBody"></tbody>
+                </table>
+                <p class="form-note" style="margin-top:.6rem" id="sensNote"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="gate" id="gate">
+            <div class="gate-card">
+              <span class="gate-price">$9.900<em>Pago único · acceso permanente</em></span>
+              <h4>Desbloqueá el análisis completo</h4>
+              <p>Proyección a doce meses, tres escenarios y la tabla de sensibilidad de precio: cuánto menos podés vender si ajustás el precio.</p>
+              <a class="btn btn-1" id="payBtn" href="https://link.mercadopago.com.ar/fayer" target="_blank" rel="noopener">Comprar acceso
+                <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </a>
+              <div class="gate-code">
+                <input id="codeIn" placeholder="Ya tengo mi código" aria-label="Código de acceso" autocomplete="off" spellcheck="false">
+                <button id="codeBtn" type="button">Entrar</button>
+              </div>
+              <span class="gate-msg" id="gateMsg"></span>
+            </div>
           </div>
         </div>
       </div>
