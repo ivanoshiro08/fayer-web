@@ -1,302 +1,1007 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es-AR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fayer — 12 productos, ordenados por calor</title>
-<meta name="description" content="Índice de productos elegidos por valoración y ventas reales. Tecnología, hogar y más, con el precio y las opiniones a la vista.">
-<meta property="og:title" content="Fayer — 12 productos, ordenados por calor">
-<meta property="og:description" content="Índice de productos elegidos por valoración y ventas reales. Tecnología, hogar y más, con el precio y las opiniones a la vista.">
-<meta property="og:image" content="https://fayer.site/logo.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fayer — Control financiero para PyMEs</title>
+<meta name="description" content="Ordenamos las finanzas de tu PyME: flujo de caja, cuentas por cobrar, costos y punto de equilibrio en un solo sistema. Calculá gratis tu punto de equilibrio.">
+<link rel="canonical" href="https://fayer.site/">
+<meta name="theme-color" content="#131110" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAF8F6" media="(prefers-color-scheme: light)">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#FF4D00">
-<link rel="icon" href="logo.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
-<script>document.documentElement.className+=" js";</script>
-<link rel="stylesheet" href="fayer.css">
-<!-- TikTok Pixel -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for( var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-  ttq._pixel='DAF531BC77UDHLL3KIH0';
-  // El pixel no carga hasta que el visitante acepte las cookies.
-  if (localStorage.getItem('fayer_cookie_consent')==='accepted') {
-    ttq.load('DAF531BC77UDHLL3KIH0'); ttq.page();
-  }
-}(window, document, 'ttq');
+<meta property="og:site_name" content="Fayer">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://fayer.site/">
+<meta property="og:title" content="Fayer — Control financiero para PyMEs">
+<meta property="og:description" content="Flujo de caja, cobranzas, costos y punto de equilibrio en un solo sistema. Calculá gratis cuánto tenés que facturar para no perder plata.">
+<meta property="og:image" content="https://fayer.site/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Fayer",
+"description":"Control financiero para PyMEs: flujo de caja, cuentas por cobrar y por pagar, costeo y punto de equilibrio.",
+"url":"https://fayer.site/","areaServed":{"@type":"Country","name":"Argentina"},
+"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"}}
 </script>
 </head>
-<body data-lista="indice_home">
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,600;12..96,75..100,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
 
-<header class="barra">
-  <div class="barra-in">
-    <a href="index.html" class="marca"><img src="logo.png" alt="Fayer" width="120" height="30"></a>
-    <nav class="menu">
-      <a href="index.html" class="aqui">Índice</a>
-      <a href="productos.html">Catálogo</a>
-      <a href="ayuda.html">Ayuda</a>
-    </nav>
+<style>
+/* ============================================================ TOKENS ===== */
+/* Diseño dark-first: :root define la paleta oscura completa.               */
+:root{
+  color-scheme:dark;
+  --bg:#131110; --bg-deep:#0D0B0A; --surface:#1A1715; --raised:#221E1B;
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.15);
+  --text:#F4F0EC; --muted:#9A9086; --dim:#6E655D;
+  --accent:#FF4D00; --accent-2:#FF8A4C; --accent-ink:#FFFFFF;
+  --ok:#4BAE7E; --warn:#E8B64C; --bad:#E5574D;
+  --glass:rgba(26,23,21,.72); --inset:inset 0 1px 0 rgba(255,255,255,.07);
+  --shadow:0 32px 80px -24px rgba(0,0,0,.72);
+  --grid-line:rgba(255,255,255,.045);
+
+  --ease:cubic-bezier(.32,.72,0,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+
+  --f-display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --f-body:"Instrument Sans","Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+
+  --wrap:1220px;
+  --gutter:clamp(20px,5vw,64px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:#FAF8F6; --bg-deep:#F1ECE7; --surface:#FFFFFF; --raised:#F4EFEA;
+    --line:rgba(24,17,12,.10); --line-2:rgba(24,17,12,.20);
+    --text:#191411; --muted:#6E6259; --dim:#948A81;
+    --accent:#DE4200; --accent-2:#A83200; --accent-ink:#FFFFFF;
+    --ok:#2F8A5E; --warn:#9C6D15; --bad:#C0342B;
+    --glass:rgba(255,255,255,.76); --inset:inset 0 1px 0 rgba(255,255,255,.9);
+    --shadow:0 32px 70px -28px rgba(60,38,20,.28);
+    --grid-line:rgba(24,17,12,.05);
+  }
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#FAF8F6; --bg-deep:#F1ECE7; --surface:#FFFFFF; --raised:#F4EFEA;
+  --line:rgba(24,17,12,.10); --line-2:rgba(24,17,12,.20);
+  --text:#191411; --muted:#6E6259; --dim:#948A81;
+  --accent:#DE4200; --accent-2:#A83200; --accent-ink:#FFFFFF;
+  --ok:#2F8A5E; --warn:#9C6D15; --bad:#C0342B;
+  --glass:rgba(255,255,255,.76); --inset:inset 0 1px 0 rgba(255,255,255,.9);
+  --shadow:0 32px 70px -28px rgba(60,38,20,.28);
+  --grid-line:rgba(24,17,12,.05);
+}
+
+/* ============================================================== BASE ===== */
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--f-body); font-size:16px; line-height:1.62;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+section{position:relative}
+.band{padding-block:clamp(88px,12vw,168px)}
+
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:800;text-wrap:balance;margin:0;line-height:1.02;letter-spacing:-.03em}
+h1{font-size:clamp(2.7rem,6.4vw,5.1rem)}
+h2{font-size:clamp(2rem,4.2vw,3.4rem)}
+h3{font-size:clamp(1.15rem,1.7vw,1.4rem);font-weight:600;letter-spacing:-.02em;line-height:1.24}
+p{margin:0}
+.lede{font-size:clamp(1.02rem,1.35vw,1.2rem);color:var(--muted);max-width:62ch;line-height:1.66}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--f-mono);font-size:10px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.22em;color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;padding:.4rem .8rem;
+  background:var(--surface);box-shadow:var(--inset);
+  align-self:flex-start;flex:0 0 auto;width:max-content;max-width:100%;
+}
+.eyebrow::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+/* Trama de libro mayor: el motivo visual de toda la página */
+.ledger{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px);
+  background-size:100% 46px;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);
+          mask-image:linear-gradient(to bottom,transparent,#000 12%,#000 88%,transparent);
+}
+.rel{position:relative;z-index:1}
+
+/* ============================================================== NAV ====== */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;padding-top:14px;pointer-events:none}
+.nav-inner{
+  pointer-events:auto;width:max-content;max-width:calc(100% - 2*var(--gutter));margin-inline:auto;
+  display:flex;align-items:center;gap:clamp(12px,2vw,28px);
+  padding:7px 7px 7px 18px;border-radius:999px;
+  background:var(--glass);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border:1px solid var(--line);box-shadow:var(--inset),0 16px 40px -20px rgba(0,0,0,.5);
+}
+.brand{display:flex;align-items:center;gap:.55rem;font-family:var(--f-display);font-weight:800;letter-spacing:-.045em;font-size:1.06rem}
+.brand-mark{width:22px;height:22px;flex:0 0 22px}
+.nav-links{display:flex;gap:clamp(10px,1.6vw,22px)}
+.nav-links a{font-size:.83rem;color:var(--muted);transition:color .4s var(--ease)}
+.nav-links a:hover{color:var(--text)}
+.theme-btn{
+  width:34px;height:34px;border-radius:999px;border:1px solid var(--line);
+  background:var(--raised);color:var(--muted);display:grid;place-items:center;cursor:pointer;
+  transition:color .4s var(--ease),transform .4s var(--ease);
+}
+.theme-btn:hover{color:var(--accent);transform:rotate(-18deg)}
+.burger{display:none;width:34px;height:34px;border-radius:999px;border:1px solid var(--line);background:var(--raised);cursor:pointer;position:relative}
+.burger i{position:absolute;left:9px;width:16px;height:1.5px;background:var(--text);border-radius:2px;transition:transform .5s var(--ease),opacity .3s var(--ease)}
+.burger i:nth-child(1){top:14px}
+.burger i:nth-child(2){top:19px}
+body.menu-open .burger i:nth-child(1){transform:translateY(2.5px) rotate(45deg)}
+body.menu-open .burger i:nth-child(2){transform:translateY(-2.5px) rotate(-45deg)}
+.sheet{
+  position:fixed;inset:0;z-index:55;display:none;flex-direction:column;justify-content:center;gap:.4rem;
+  padding:0 var(--gutter);background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+}
+body.menu-open .sheet{display:flex}
+.sheet a{font-family:var(--f-display);font-size:clamp(2rem,9vw,3.2rem);font-weight:800;letter-spacing:-.04em;
+  opacity:0;transform:translateY(38px);animation:rise .75s var(--ease-out) forwards}
+.sheet a:nth-child(1){animation-delay:.06s}.sheet a:nth-child(2){animation-delay:.12s}
+.sheet a:nth-child(3){animation-delay:.18s}.sheet a:nth-child(4){animation-delay:.24s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ============================================================= BUTTON ==== */
+.btn{
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:.62rem .62rem .62rem 1.35rem;border-radius:999px;
+  font-size:.92rem;font-weight:600;border:1px solid transparent;cursor:pointer;
+  transition:transform .5s var(--ease),background .5s var(--ease),border-color .5s var(--ease);
+}
+.btn:active{transform:scale(.975)}
+.btn-ico{
+  width:32px;height:32px;border-radius:999px;display:grid;place-items:center;flex:0 0 32px;
+  transition:transform .55s var(--ease),background .5s var(--ease);
+}
+.btn:hover .btn-ico{transform:translate(3px,-2px) scale(1.06)}
+.btn-1{background:var(--accent);color:var(--accent-ink)}
+.btn-1 .btn-ico{background:rgba(0,0,0,.22)}
+.btn-1:hover{background:var(--accent-2)}
+.btn-2{background:var(--surface);color:var(--text);border-color:var(--line-2);box-shadow:var(--inset)}
+.btn-2 .btn-ico{background:var(--raised)}
+.btn-2:hover{border-color:var(--accent)}
+
+/* =========================================== DOBLE BISEL (contenedores) == */
+.shell{border-radius:30px;padding:7px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.core{border-radius:23px;background:var(--bg-deep);box-shadow:var(--inset);border:1px solid var(--line);overflow:hidden}
+
+/* ============================================================== HERO ===== */
+.hero{padding-top:clamp(40px,7vw,74px);padding-bottom:clamp(60px,9vw,108px);overflow:hidden}
+#gl{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.88}
+/* velo: garantiza que el texto lea sobre la escena 3D en ambos temas */
+.hero-scrim{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    linear-gradient(98deg, var(--bg) 0%, color-mix(in srgb,var(--bg) 88%,transparent) 30%, transparent 58%),
+    linear-gradient(to bottom, var(--bg) 0%, transparent 18%, transparent 66%, var(--bg) 100%);}
+.hero-glow{position:absolute;z-index:0;left:50%;top:-14%;width:min(1000px,120vw);aspect-ratio:1;transform:translateX(-50%);
+  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 17%,transparent) 0%,transparent 62%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(30px,4.4vw,64px);align-items:center}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-copy>*+*{margin-top:1.5rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.7rem}
+.hero-foot{display:flex;flex-wrap:wrap;gap:1.6rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.hero-foot div{display:flex;flex-direction:column;gap:.15rem}
+.hero-foot b{font-family:var(--f-mono);font-size:1.45rem;font-weight:700;letter-spacing:-.03em}
+.hero-foot span{font-size:.72rem;color:var(--dim);text-transform:uppercase;letter-spacing:.14em}
+
+/* panel tablero del hero */
+.panel-top{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.15rem;border-bottom:1px solid var(--line);background:var(--surface)}
+.panel-top span{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.dots{display:flex;gap:5px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line-2)}
+.dots i:first-child{background:var(--accent)}
+.rows{padding:.4rem 0}
+.row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:.8rem;padding:.72rem 1.15rem;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row small{color:var(--muted);font-size:.83rem}
+.row b{font-family:var(--f-mono);font-size:.95rem;font-weight:500}
+.chip{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;padding:.24rem .55rem;border-radius:999px;border:1px solid}
+.chip.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 42%,transparent);background:color-mix(in srgb,var(--ok) 11%,transparent)}
+.chip.bad{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 42%,transparent);background:color-mix(in srgb,var(--bad) 11%,transparent)}
+.chip.warn{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 42%,transparent);background:color-mix(in srgb,var(--warn) 11%,transparent)}
+.spark{display:flex;align-items:flex-end;gap:3px;height:52px;padding:1rem 1.15rem 1.15rem}
+.spark i{flex:1;background:var(--line-2);border-radius:2px 2px 0 0;transition:height .9s var(--ease)}
+.spark i.hi{background:var(--accent)}
+
+/* ============================================================ SECCIONES == */
+.head{max-width:66ch;display:flex;flex-direction:column;gap:1.1rem;margin-bottom:clamp(38px,5vw,66px)}
+
+/* problema */
+.probs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,20px)}
+.prob{padding:1.7rem 1.6rem;border-radius:22px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--inset);
+  display:flex;flex-direction:column;gap:.7rem}
+.prob .k{font-family:var(--f-mono);font-size:2.3rem;font-weight:700;color:var(--accent);letter-spacing:-.04em;line-height:1}
+.prob p{color:var(--muted);font-size:.93rem}
+
+/* sistema */
+.sys{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(30px,4vw,60px);align-items:start}
+.mods{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mod{padding:1.05rem 1.1rem;border-radius:17px;background:var(--surface);border:1px solid var(--line);
+  transition:border-color .55s var(--ease),transform .55s var(--ease)}
+.mod:hover{border-color:var(--accent);transform:translateY(-3px)}
+.mod b{display:block;font-family:var(--f-display);font-weight:600;font-size:.96rem;letter-spacing:-.01em;margin-bottom:.22rem}
+.mod span{font-size:.8rem;color:var(--muted);line-height:1.5}
+.mod .ix{font-family:var(--f-mono);font-size:10px;color:var(--accent);letter-spacing:.1em;display:block;margin-bottom:.5rem}
+
+/* calculadora */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.calc-in{padding:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;gap:1.15rem;border-right:1px solid var(--line)}
+.field{display:flex;flex-direction:column;gap:.45rem}
+.field label{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.field .box{display:flex;align-items:center;gap:.5rem;background:var(--bg);border:1px solid var(--line);border-radius:13px;padding:.6rem .85rem;
+  transition:border-color .45s var(--ease)}
+.field .box:focus-within{border-color:var(--accent)}
+.field .box i{font-style:normal;color:var(--dim);font-family:var(--f-mono);font-size:.9rem}
+.field input{flex:1;min-width:0;background:none;border:0;color:var(--text);font-family:var(--f-mono);font-size:1.02rem;font-weight:500;padding:0;
+  font-variant-numeric:tabular-nums}
+.field input:focus{outline:none}
+.calc-out{padding:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;gap:1.05rem;background:var(--surface)}
+.out-main{display:flex;flex-direction:column;gap:.2rem}
+.out-main span{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.out-main b{font-family:var(--f-mono);font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:700;letter-spacing:-.04em;line-height:1.08;color:var(--accent)}
+.out-line{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:.75rem;border-top:1px solid var(--line);font-size:.88rem}
+.out-line span{color:var(--muted)}
+.out-line b{font-family:var(--f-mono);font-weight:500;font-variant-numeric:tabular-nums}
+.verdict{border-radius:15px;padding:.9rem 1rem;font-size:.87rem;line-height:1.52;border:1px solid}
+.verdict.good{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 34%,transparent);background:color-mix(in srgb,var(--ok) 9%,transparent)}
+.verdict.risk{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 34%,transparent);background:color-mix(in srgb,var(--bad) 9%,transparent)}
+
+/* guias */
+.guias{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,22px)}
+.guia{display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:var(--surface);border:1px solid var(--line);
+  box-shadow:var(--inset);transition:transform .6s var(--ease),border-color .6s var(--ease)}
+.guia:hover{transform:translateY(-6px);border-color:var(--line-2)}
+.cover{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--bg-deep);border-bottom:1px solid var(--line)}
+.cover canvas{position:absolute;inset:0;width:100%;height:100%}
+.cover .tag{position:absolute;left:14px;top:14px;z-index:2;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text);background:var(--glass);backdrop-filter:blur(10px);
+  border:1px solid var(--line-2);border-radius:999px;padding:.3rem .6rem}
+.guia-body{padding:1.35rem 1.4rem 1.5rem;display:flex;flex-direction:column;gap:.6rem;flex:1}
+.guia-body p{font-size:.88rem;color:var(--muted);flex:1}
+.guia-meta{display:flex;align-items:center;justify-content:space-between;padding-top:.85rem;border-top:1px solid var(--line);margin-top:.3rem}
+.guia-meta .num{font-size:1.02rem;font-weight:700}
+.guia-meta em{font-style:normal;font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+
+/* proceso */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px);counter-reset:s}
+.step{position:relative;padding-top:1.6rem;border-top:1px solid var(--line-2);display:flex;flex-direction:column;gap:.6rem}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:-.85rem;left:0;
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;color:var(--accent);background:var(--bg);padding-right:.7rem}
+.step p{font-size:.92rem;color:var(--muted)}
+
+/* cta */
+.cta-core{padding:clamp(34px,5.2vw,74px);display:flex;flex-direction:column;align-items:flex-start;gap:1.5rem;position:relative;overflow:hidden}
+.cta-core::after{content:"";position:absolute;right:-16%;bottom:-58%;width:min(620px,86%);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 24%,transparent),transparent 66%);pointer-events:none}
+.cta-core>*{position:relative;z-index:1}
+
+footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
+.foot{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;justify-content:space-between}
+.foot small{color:var(--dim);font-size:.78rem;max-width:56ch;line-height:1.6}
+
+
+/* ===================================================== CALCULADORA PRO === */
+.calc-split{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.pro{margin-top:clamp(16px,2vw,24px);position:relative}
+.pro-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1rem 1.25rem;border-bottom:1px solid var(--line);background:var(--surface)}
+.pro-head b{font-family:var(--f-display);font-size:1.02rem;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
+.pro-head .lock{width:15px;height:15px;color:var(--accent)}
+.pro-head small{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.pro-body{position:relative;min-height:330px}
+.pro-inner{padding:clamp(20px,2.6vw,32px);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,2.6vw,34px)}
+.pro-locked .pro-inner{filter:blur(7px);opacity:.42;pointer-events:none;user-select:none}
+
+.gate{position:absolute;inset:0;z-index:3;display:none;align-items:center;justify-content:center;padding:1.25rem}
+.pro-locked .gate{display:flex}
+.gate-card{width:min(430px,100%);border-radius:22px;padding:1.6rem;text-align:center;
+  background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--line-2);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.85rem;align-items:center}
+.gate-card h4{font-family:var(--f-display);font-size:1.22rem;font-weight:700;letter-spacing:-.025em}
+.gate-card p{font-size:.86rem;color:var(--muted);max-width:34ch}
+.gate-price{font-family:var(--f-mono);font-size:2.05rem;font-weight:700;letter-spacing:-.04em;color:var(--accent);line-height:1}
+.gate-price em{font-style:normal;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:block;margin-top:.3rem}
+.gate-code{display:flex;gap:.4rem;width:100%;max-width:320px}
+.gate-code input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:12px;
+  padding:.58rem .8rem;color:var(--text);font-family:var(--f-mono);font-size:.84rem;letter-spacing:.06em;text-transform:uppercase}
+.gate-code input:focus{outline:none;border-color:var(--accent)}
+.gate-code button{border:1px solid var(--line-2);background:var(--raised);color:var(--text);border-radius:12px;
+  padding:.58rem .95rem;font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--f-body);
+  transition:border-color .45s var(--ease)}
+.gate-code button:hover{border-color:var(--accent)}
+.gate-msg{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;min-height:1em}
+.gate-msg.err{color:var(--bad)}
+.gate-msg.ok{color:var(--ok)}
+
+.proj{display:flex;flex-direction:column;gap:.8rem}
+.proj-bars{display:flex;align-items:flex-end;gap:4px;height:130px;padding-top:.4rem}
+.proj-bars .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
+.proj-bars .b i{display:block;width:64%;margin-inline:auto;border-radius:4px 4px 0 0;background:var(--bad);transition:height .6s var(--ease)}
+.proj-bars .b.pos i{background:var(--accent)}
+.proj-bars.ghost .b i{background:var(--line-2)}
+.proj-bars .b span{font-family:var(--f-mono);font-size:8.5px;color:var(--dim);text-align:center;padding-top:.3rem;letter-spacing:.04em}
+.mini{display:flex;flex-direction:column;gap:.55rem}
+.mini-row{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;padding-bottom:.55rem;border-bottom:1px solid var(--line);font-size:.85rem}
+.mini-row:last-child{border-bottom:0}
+.mini-row span{color:var(--muted)}
+.mini-row b{font-family:var(--f-mono);font-weight:500;font-variant-numeric:tabular-nums}
+.mini-row b.up{color:var(--ok)}
+.mini-row b.down{color:var(--bad)}
+.mini h5{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 .2rem}
+.sens{width:100%;border-collapse:collapse;font-size:.83rem}
+.sens th{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);
+  text-align:right;padding:0 0 .5rem;font-weight:500;border-bottom:1px solid var(--line)}
+.sens th:first-child{text-align:left}
+.sens td{padding:.5rem 0;border-bottom:1px solid var(--line);text-align:right;
+  font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.sens td:first-child{text-align:left;color:var(--muted);font-family:var(--f-body)}
+.sens tr:last-child td{border-bottom:0}
+.sens .hl{color:var(--accent);font-weight:700}
+.sens .delta{color:var(--ok);font-weight:400}
+.growth{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.growth label{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.growth input[type=range]{flex:1;min-width:140px;accent-color:var(--accent)}
+.growth b{font-family:var(--f-mono);font-size:.92rem;min-width:3.4em;text-align:right}
+
+/* ============================================================= FORMULARIO = */
+.lead{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;width:100%;max-width:560px;margin-top:.3rem}
+.lead .full{grid-column:1/-1}
+.lead input,.lead textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:14px;
+  padding:.72rem .95rem;color:var(--text);font-family:var(--f-body);font-size:.9rem;resize:vertical}
+.lead input:focus,.lead textarea:focus{outline:none;border-color:var(--accent)}
+.lead input::placeholder,.lead textarea::placeholder{color:var(--dim)}
+.lead .hp{position:absolute;left:-9999px}
+.form-note{font-size:.78rem;color:var(--dim)}
+@media (max-width:640px){.lead{grid-template-columns:1fr}}
+@media (max-width:980px){.pro-inner{grid-template-columns:1fr}}
+
+/* ========================================================= RESPONSIVE ==== */
+@media (max-width:980px){
+  .hero-grid,.sys,.calc-grid{grid-template-columns:1fr}
+  .calc-in{border-right:0;border-bottom:1px solid var(--line)}
+  .probs,.guias,.steps{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .burger{display:block}
+}
+@media (max-width:640px){
+  .mods{grid-template-columns:1fr}
+  .hero-foot{gap:1.1rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="1.4" y="1.4" width="21.2" height="21.2" rx="6.4" stroke="currentColor" stroke-width="1.3" opacity=".42"/>
+        <path d="M7 16.4V9.1M12 16.4V6.6M17 16.4v-4.6" stroke="#FF4D00" stroke-width="2.1" stroke-linecap="round"/>
+      </svg>
+      Fayer
+    </a>
+    <div class="nav-links">
+      <a href="#sistema">Sistema</a>
+      <a href="#calculadora">Calculadora</a>
+      <a href="#guias">Guías</a>
+      <a href="#proceso">Cómo trabajamos</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="Cambiar entre modo claro y oscuro">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M20.5 14.3A8.6 8.6 0 1 1 9.7 3.5a6.9 6.9 0 0 0 10.8 10.8Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false"><i></i><i></i></button>
   </div>
-</header>
+</nav>
 
-<main>
+<div class="sheet" id="sheet">
+  <a href="#sistema">Sistema</a>
+  <a href="#calculadora">Calculadora</a>
+  <a href="#guias">Guías</a>
+  <a href="#proceso">Cómo trabajamos</a>
+</div>
 
-  <!-- TAPA: el más caliente del índice -->
-  <section class="tapa">
-    <div class="tapa-cover">
-      <div class="sube sube-1">
-        <div class="tapa-marco">
-          <span class="tapa-rank numeros">01</span>
-          <span class="tapa-linea"></span>
-          <span class="tapa-etiqueta">Lo más caliente ahora</span>
+<!-- ================================================================ HERO -->
+<section class="hero" id="top">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="wrap rel">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Control financiero para PyMEs</span>
+        <h1>La plata entra y sale.<br>El problema es que <em>nadie la mira</em>.</h1>
+        <p class="lede">Ordenamos las finanzas de tu empresa en un solo lugar: flujo de caja, cuentas por cobrar, costos y punto de equilibrio. Sin ERP, sin consultoras de seis cifras, sin cambiar cómo trabajás.</p>
+        <div class="hero-cta">
+          <a class="btn btn-1" href="#sistema">Ver el sistema
+            <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="btn btn-2" href="#calculadora">Calcular mi punto de equilibrio
+            <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
         </div>
-        <div class="tapa-foto">
-          <img src="foto-5.jpg" alt="Balanza Digital Bluetooth Femmto 180kg" fetchpriority="high" decoding="async" width="800" height="600">
+        <div class="hero-foot">
+          <div><b class="num">8</b><span>Módulos</span></div>
+          <div><b class="num">10 min</b><span>De carga por día</span></div>
+          <div><b class="num">12</b><span>Meses proyectados</span></div>
         </div>
       </div>
 
-      <div class="tapa-cuerpo">
-        <h1 class="display tapa-titulo sube sube-2">Balanza Digital Bluetooth Femmto 180kg</h1>
-
-        <div class="tapa-datos sube sube-3">
-          <div class="precio-fila">
-            <span class="precio numeros">$14.999</span>
-            <span class="precio-viejo numeros">$27.999</span><span class="precio-off">-46%</span>
+      <div class="shell">
+        <div class="core">
+          <div class="panel-top"><span>Tablero · Septiembre</span><div class="dots"><i></i><i></i><i></i></div></div>
+          <div class="rows">
+            <div class="row"><small>Saldo de caja proyectado</small><b class="num">$1.640.300</b><span class="chip ok">Positivo</span></div>
+            <div class="row"><small>Cartera vencida</small><b class="num">24,8%</b><span class="chip bad">Alerta</span></div>
+            <div class="row"><small>Vence esta semana</small><b class="num">$508.200</b><span class="chip warn">Atención</span></div>
+            <div class="row"><small>Punto de equilibrio</small><b class="num">$8.175.000</b><span class="chip ok">Superado</span></div>
           </div>
-          <div class="calor" style="--nivel:0.91"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">91°</span></div>
-        </div>
-
-        <div class="sube sube-4">
-          <a href="producto-5.html" class="boton boton-fuego">Ver la ficha<svg class="boton-flecha" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <p class="nota-bajo-boton">4.8 de valoración · más de 100mil vendidos</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ÍNDICE COMPLETO -->
-  <section class="seccion" id="indice">
-    <div class="seccion-cabeza">
-      <h2 class="display seccion-titulo">El índice</h2>
-      <span class="seccion-cuenta numeros">12 productos</span>
-    </div>
-    <p class="seccion-nota">Ordenados por <b>calor</b>: cuánto se vende y cómo lo puntúa la gente que ya lo compró. Nada entra por casualidad — si no llega a 4.2 estrellas, queda afuera.</p>
-
-    <div class="indice indice-2col">
-      <a data-producto="6" data-rank="02" data-nombre="Afeitadora Eléctrica VGR V-325 Recargable" data-cat="Cuidado personal" href="producto-6.html" class="fila aparece">
-        <span class="fila-rank numeros">02</span>
-        <div class="fila-foto"><img src="foto-6.jpg" alt="Afeitadora Eléctrica VGR V-325 Recargable" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Cuidado personal</p>
-          <h3 class="fila-nombre">Afeitadora Eléctrica VGR V-325 Recargable</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$42.790</span>
-            <span class="fila-viejo numeros">$79.580</span>
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.83"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">83°</span></div>
-        </div>
-      </a>
-      <a data-producto="7" data-rank="03" data-nombre="Alfombra Peluda 100x60cm Pie de Cama" data-cat="Hogar" href="producto-7.html" class="fila aparece">
-        <span class="fila-rank numeros">03</span>
-        <div class="fila-foto"><img src="foto-7.jpg" alt="Alfombra Peluda 100x60cm Pie de Cama" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Hogar</p>
-          <h3 class="fila-nombre">Alfombra Peluda 100x60cm Pie de Cama</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$14.852</span>
-            <span class="fila-viejo numeros">$18.113</span>
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.79"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">79°</span></div>
-        </div>
-      </a>
-      <a data-producto="2" data-rank="04" data-nombre="Secador de Pelo Compacto 2100W Aire Frío/Calor" data-cat="Cuidado personal" href="producto-2.html" class="fila aparece">
-        <span class="fila-rank numeros">04</span>
-        <div class="fila-foto"><img src="foto-2.jpg" alt="Secador de Pelo Compacto 2100W Aire Frío/Calor" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Cuidado personal</p>
-          <h3 class="fila-nombre">Secador de Pelo Compacto 2100W Aire Frío/Calor</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$32.009</span>
-            <span class="fila-viejo numeros">$50.000</span>
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.77"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">77°</span></div>
-        </div>
-      </a>
-      <a data-producto="10" data-rank="05" data-nombre="Intercomunicador Moto EJEAS V6-PRO+ Bluetooth" data-cat="Motos" href="producto-10.html" class="fila aparece">
-        <span class="fila-rank numeros">05</span>
-        <div class="fila-foto"><img src="foto-10.jpg" alt="Intercomunicador Moto EJEAS V6-PRO+ Bluetooth" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Motos</p>
-          <h3 class="fila-nombre">Intercomunicador Moto EJEAS V6-PRO+ Bluetooth</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$79.800</span>
-            <span class="fila-viejo numeros">$98.900</span>
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.76"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">76°</span></div>
-        </div>
-      </a>
-      <a data-producto="11" data-rank="06" data-nombre="Tostadora Liliana Tostler AT900" data-cat="Hogar" href="producto-11.html" class="fila aparece">
-        <span class="fila-rank numeros">06</span>
-        <div class="fila-foto"><img src="foto-11.jpg" alt="Tostadora Liliana Tostler AT900" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Hogar</p>
-          <h3 class="fila-nombre">Tostadora Liliana Tostler AT900</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$40.412</span>
-            <span class="fila-viejo numeros">$44.999</span>
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.76"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">76°</span></div>
-        </div>
-      </a>
-      <a data-producto="12" data-rank="07" data-nombre="Casco Moto Integral Vertigo V32 Vanguard" data-cat="Motos" href="producto-12.html" class="fila aparece">
-        <span class="fila-rank numeros">07</span>
-        <div class="fila-foto"><img src="foto-12.jpg" alt="Casco Moto Integral Vertigo V32 Vanguard" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Motos</p>
-          <h3 class="fila-nombre">Casco Moto Integral Vertigo V32 Vanguard</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$70.385</span>
-            
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.72"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">72°</span></div>
-        </div>
-      </a>
-      <a data-producto="9" data-rank="08" data-nombre="Micrófono Inalámbrico Ringo x2 con Cubreviento" data-cat="Tecnología" href="producto-9.html" class="fila aparece">
-        <span class="fila-rank numeros">08</span>
-        <div class="fila-foto"><img src="foto-9.jpg" alt="Micrófono Inalámbrico Ringo x2 con Cubreviento" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Tecnología</p>
-          <h3 class="fila-nombre">Micrófono Inalámbrico Ringo x2 con Cubreviento</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$28.599</span>
-            <span class="fila-viejo numeros">$32.499</span>
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.71"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">71°</span></div>
-        </div>
-      </a>
-      <a data-producto="4" data-rank="09" data-nombre="TP-Link Tapo C200 — Cámara de Seguridad" data-cat="Tecnología" href="producto-4.html" class="fila aparece">
-        <span class="fila-rank numeros">09</span>
-        <div class="fila-foto"><img src="foto-4.jpg" alt="TP-Link Tapo C200 — Cámara de Seguridad" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Tecnología</p>
-          <h3 class="fila-nombre">TP-Link Tapo C200 — Cámara de Seguridad</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$37.000</span>
-            <span class="fila-viejo numeros">$58.979</span>
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.70"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">70°</span></div>
-        </div>
-      </a>
-      <a data-producto="8" data-rank="10" data-nombre="Máscara Fotosensible Kommberg KB-MF25E para Soldar" data-cat="Herramientas" href="producto-8.html" class="fila aparece">
-        <span class="fila-rank numeros">10</span>
-        <div class="fila-foto"><img src="foto-8.jpg" alt="Máscara Fotosensible Kommberg KB-MF25E para Soldar" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Herramientas</p>
-          <h3 class="fila-nombre">Máscara Fotosensible Kommberg KB-MF25E para Soldar</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$19.828</span>
-            <span class="fila-viejo numeros">$23.890</span>
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.66"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">66°</span></div>
-        </div>
-      </a>
-      <a data-producto="1" data-rank="11" data-nombre="Aspiradora Sopladora 3 en 1 Inalámbrica" data-cat="Hogar" href="producto-1.html" class="fila aparece">
-        <span class="fila-rank numeros">11</span>
-        <div class="fila-foto"><img src="foto-1.jpg" alt="Aspiradora Sopladora 3 en 1 Inalámbrica" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Hogar</p>
-          <h3 class="fila-nombre">Aspiradora Sopladora 3 en 1 Inalámbrica</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$159.000</span>
-            <span class="fila-viejo numeros">$300.000</span>
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.56"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">56°</span></div>
-        </div>
-      </a>
-      <a data-producto="3" data-rank="12" data-nombre="Cámara de Seguridad Wi-Fi 1080p Rotación 360°" data-cat="Tecnología" href="producto-3.html" class="fila aparece">
-        <span class="fila-rank numeros">12</span>
-        <div class="fila-foto"><img src="foto-3.jpg" alt="Cámara de Seguridad Wi-Fi 1080p Rotación 360°" loading="lazy" decoding="async"></div>
-        <div class="fila-cuerpo">
-          <p class="fila-cat">Tecnología</p>
-          <h3 class="fila-nombre">Cámara de Seguridad Wi-Fi 1080p Rotación 360°</h3>
-          <div class="fila-pie">
-            <span class="fila-precio numeros">$17.398</span>
-            
-          </div>
-          <div class="calor calor-mini" style="--nivel:0.50"><div class="calor-pista"><div class="calor-llama"></div></div><span class="calor-grados">50°</span></div>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- DATOS DUROS -->
-  <section class="tira">
-    <div class="tira-in">
-      <div class="tira-dato">
-        <span class="tira-num numeros">12</span>
-        <p class="tira-label">productos en el índice, revisados uno por uno</p>
-      </div>
-      <div class="tira-dato">
-        <span class="tira-num numeros">4.6</span>
-        <p class="tira-label">valoración promedio de la selección</p>
-      </div>
-      <div class="tira-dato">
-        <span class="tira-num numeros">+256mil</span>
-        <p class="tira-label">unidades vendidas entre todos ellos</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CÓMO FUNCIONA -->
-  <section class="seccion">
-    <div class="seccion-cabeza">
-      <h2 class="display seccion-titulo">Cómo funciona</h2>
-    </div>
-    <div class="pasos">
-      <div class="paso">
-        <span class="paso-n numeros">01</span>
-        <div>
-          <h3>Filtramos</h3>
-          <p>Miramos valoración y unidades vendidas reales. Si un producto no llega a 4.2 estrellas o no lo compró nadie, no entra al índice.</p>
-        </div>
-      </div>
-      <div class="paso">
-        <span class="paso-n numeros">02</span>
-        <div>
-          <h3>Te mostramos todo</h3>
-          <p>Fotos reales, precio actual, qué hace y qué no, y opiniones textuales de gente que ya lo tiene en la mano.</p>
-        </div>
-      </div>
-      <div class="paso">
-        <span class="paso-n numeros">03</span>
-        <div>
-          <h3>Comprás en Mercado Libre</h3>
-          <p>El botón te lleva al vendedor oficial. El pago, el envío y la garantía los maneja Mercado Libre, no nosotros.</p>
+          <div class="spark" id="spark" aria-hidden="true"></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-</main>
+<!-- ============================================================ PROBLEMA -->
+<section class="band" style="background:var(--bg-deep);border-block:1px solid var(--line)">
+  <div class="ledger" aria-hidden="true"></div>
+  <div class="wrap rel">
+    <div class="head">
+      <span class="eyebrow">El diagnóstico</span>
+      <h2>Casi ninguna PyME quiebra por vender poco.</h2>
+      <p class="lede">Quiebra porque cobra tarde, paga temprano y se entera el día que el cheque no entra. Son tres agujeros, y los tres se tapan con información, no con más ventas.</p>
+    </div>
+    <div class="probs">
+      <article class="prob reveal">
+        <span class="k num">+60</span>
+        <h3>Días de cartera vencida</h3>
+        <p>Facturaste, entregaste y todavía no cobraste. Esa plata figura como ganancia en el balance y no existe en la cuenta.</p>
+      </article>
+      <article class="prob reveal">
+        <span class="k num">¿?</span>
+        <h3>Punto de equilibrio desconocido</h3>
+        <p>Si no sabés cuánto tenés que facturar para no perder plata, cada decisión de precio es una apuesta a ciegas.</p>
+      </article>
+      <article class="prob reveal">
+        <span class="k num">0</span>
+        <h3>Meses de visibilidad</h3>
+        <p>Sin proyección de caja te enterás del problema el mes que pasa, cuando ya no hay margen para negociar nada.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-<footer class="pie">
-  <div class="pie-in">
-    <p class="display pie-marca">fayer</p>
-    <div class="pie-fila">
-      <p class="pie-nota">Fayer participa en programas de afiliados. Si comprás desde nuestros enlaces podemos ganar una comisión — a vos no te cuesta ni un peso más.</p>
-      <div class="pie-links">
-        <a href="index.html">Índice</a>
-        <a href="productos.html">Catálogo</a>
-        <a href="ayuda.html">Ayuda</a>
-        <a href="cookies.html">Cookies</a>
+<!-- ============================================================= SISTEMA -->
+<section class="band" id="sistema">
+  <div class="wrap">
+    <div class="sys">
+      <div class="head" style="margin-bottom:0">
+        <span class="eyebrow">Sistemas financieros</span>
+        <h2>Ocho módulos que se alimentan de una sola carga.</h2>
+        <p class="lede">Cargás los movimientos del día una vez. El flujo de caja, la antigüedad de la deuda, el punto de equilibrio y el tablero se recalculan solos. Viene con un manual de implementación y una sesión de puesta en marcha.</p>
+        <div class="hero-cta" style="margin-top:.6rem">
+          <a class="btn btn-1" href="#contacto">Pedir una demo
+            <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
+      </div>
+      <div class="mods">
+        <div class="mod reveal"><span class="ix">01</span><b>Configuración</b><span>Rubros y listas que se adaptan al vocabulario de tu empresa.</span></div>
+        <div class="mod reveal"><span class="ix">02</span><b>Movimientos</b><span>Libro diario con IVA y período calculados automáticamente.</span></div>
+        <div class="mod reveal"><span class="ix">03</span><b>Cuentas por cobrar</b><span>Antigüedad por tramos: vigente, 1-30, 31-60, 61-90, +90 días.</span></div>
+        <div class="mod reveal"><span class="ix">04</span><b>Cuentas por pagar</b><span>Qué vence esta semana y cuánto estás pagando de más.</span></div>
+        <div class="mod reveal"><span class="ix">05</span><b>Flujo de caja</b><span>Doce meses proyectados con saldo acumulado mes a mes.</span></div>
+        <div class="mod reveal"><span class="ix">06</span><b>Costeo</b><span>Margen de contribución, punto de equilibrio y margen de seguridad.</span></div>
+        <div class="mod reveal"><span class="ix">07</span><b>Tablero</b><span>Semáforo de cuatro preguntas para revisar cada lunes.</span></div>
+        <div class="mod reveal"><span class="ix">08</span><b>Calendario fiscal</b><span>Vencimientos de ARCA e Ingresos Brutos, sin sorpresas.</span></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ======================================================== CALCULADORA -->
+<section class="band" id="calculadora" style="background:var(--bg-deep);border-block:1px solid var(--line)">
+  <div class="ledger" aria-hidden="true"></div>
+  <div class="wrap rel">
+    <div class="head">
+      <span class="eyebrow">Probalo ahora</span>
+      <h2>¿Cuánto tenés que facturar para no perder plata?</h2>
+      <p class="lede">Es el número más importante de cualquier negocio y casi nadie lo tiene calculado. Movés tres valores y lo tenés. Los datos de ejemplo son de una distribuidora mayorista tipo.</p>
+    </div>
+
+    <div class="shell">
+      <div class="core">
+        <div class="calc-grid">
+          <div class="calc-in">
+            <div class="field">
+              <label for="cf">Costos fijos mensuales</label>
+              <div class="box"><i>$</i><input id="cf" type="number" min="0" step="10000" value="3270000" inputmode="numeric"></div>
+            </div>
+            <div class="field">
+              <label for="pv">Precio de venta promedio (sin IVA)</label>
+              <div class="box"><i>$</i><input id="pv" type="number" min="0" step="100" value="12000" inputmode="numeric"></div>
+            </div>
+            <div class="field">
+              <label for="cv">Costo variable por unidad (sin IVA)</label>
+              <div class="box"><i>$</i><input id="cv" type="number" min="0" step="100" value="7200" inputmode="numeric"></div>
+            </div>
+            <div class="field">
+              <label for="uv">Unidades que vendés hoy por mes</label>
+              <div class="box"><i>#</i><input id="uv" type="number" min="0" step="10" value="1200" inputmode="numeric"></div>
+            </div>
+          </div>
+
+          <div class="calc-out">
+            <div class="out-main">
+              <span>Facturación mensual necesaria</span>
+              <b class="num" id="oFact">$8.175.000</b>
+            </div>
+            <div class="out-line"><span>Unidades para llegar</span><b class="num" id="oUnid">682</b></div>
+            <div class="out-line"><span>Margen de contribución</span><b class="num" id="oMc">$4.800 · 40,0%</b></div>
+            <div class="out-line"><span>Margen de seguridad</span><b class="num" id="oMs">+76,1%</b></div>
+            <div class="verdict good" id="oVer">Vendiendo 1.200 unidades estás 518 por encima del punto de equilibrio. El negocio cubre su estructura.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shell pro" id="pro">
+      <div class="core pro-locked" id="proCore">
+        <div class="pro-head">
+          <b>
+            <svg class="lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 10.5V7.8a5.5 5.5 0 0 1 11 0v2.7M5 10.5h14v9.2H5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            Análisis completo
+          </b>
+          <small id="proState">Acceso Pro</small>
+        </div>
+        <div class="pro-body">
+          <div class="pro-inner">
+            <div class="proj">
+              <div class="growth">
+                <label for="gr">Crecimiento mensual</label>
+                <input id="gr" type="range" min="-5" max="15" step="0.5" value="3">
+                <b class="num" id="grOut">3,0%</b>
+              </div>
+              <h5 style="font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0">Resultado mensual proyectado · 12 meses</h5>
+              <div class="proj-bars" id="projBars" aria-hidden="true"></div>
+              <div class="mini-row"><span>Resultado acumulado del año</span><b class="num" id="pAcum">—</b></div>
+              <div class="mini-row"><span>Primer mes en positivo</span><b class="num" id="pBreak">—</b></div>
+            </div>
+
+            <div class="mini">
+              <div>
+                <h5>Escenarios anuales</h5>
+                <div class="mini-row"><span>Pesimista · −20% unidades</span><b class="num" id="sLow">—</b></div>
+                <div class="mini-row"><span>Base</span><b class="num" id="sMid">—</b></div>
+                <div class="mini-row"><span>Optimista · +20% unidades</span><b class="num" id="sHigh">—</b></div>
+              </div>
+              <div style="margin-top:.6rem">
+                <h5>Si subís el precio</h5>
+                <table class="sens">
+                  <thead><tr><th>Ajuste</th><th>Margen</th><th>Unid. necesarias</th></tr></thead>
+                  <tbody id="sensBody"></tbody>
+                </table>
+                <p class="form-note" style="margin-top:.6rem" id="sensNote"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="gate" id="gate">
+            <div class="gate-card">
+              <span class="gate-price">$9.900<em>Pago único · acceso permanente</em></span>
+              <h4>Desbloqueá el análisis completo</h4>
+              <p>Proyección a doce meses, tres escenarios y la tabla de sensibilidad de precio: cuánto menos podés vender si ajustás el precio.</p>
+              <a class="btn btn-1" id="payBtn" href="https://link.mercadopago.com.ar/fayer" target="_blank" rel="noopener">Comprar acceso
+                <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </a>
+              <div class="gate-code">
+                <input id="codeIn" placeholder="Ya tengo mi código" aria-label="Código de acceso" autocomplete="off" spellcheck="false">
+                <button id="codeBtn" type="button">Entrar</button>
+              </div>
+              <span class="gate-msg" id="gateMsg"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== GUÍAS -->
+<section class="band" id="guias">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Guías</span>
+      <h2>Lo mismo que implementamos, explicado para que lo hagas solo.</h2>
+      <p class="lede">Material escrito en criollo, sin jerga de manual universitario, con los ejemplos y los números de una PyME argentina real.</p>
+    </div>
+    <div class="guias">
+      <article class="guia reveal">
+        <div class="cover"><canvas data-cover="0"></canvas><span class="tag">Guía 01</span></div>
+        <div class="guia-body">
+          <h3>Flujo de caja para los que odian Excel</h3>
+          <p>Cómo proyectar doce meses de caja con la información que ya tenés, y cómo leer el mes en que te quedás sin plata dos meses antes de que pase.</p>
+          <div class="guia-meta"><span class="num">$14.900</span><em>48 páginas</em></div>
+        </div>
+      </article>
+      <article class="guia reveal">
+        <div class="cover"><canvas data-cover="1"></canvas><span class="tag">Guía 02</span></div>
+        <div class="guia-body">
+          <h3>Cobrar a tiempo</h3>
+          <p>Política de crédito, antigüedad de cartera y los guiones concretos para reclamar una factura vencida sin perder al cliente.</p>
+          <div class="guia-meta"><span class="num">$12.900</span><em>36 páginas</em></div>
+        </div>
+      </article>
+      <article class="guia reveal">
+        <div class="cover"><canvas data-cover="2"></canvas><span class="tag">Guía 03</span></div>
+        <div class="guia-body">
+          <h3>Poner precio sin adivinar</h3>
+          <p>Costeo por absorción y variable, margen de contribución y cómo recalcular precios en un contexto donde los costos se mueven todos los meses.</p>
+          <div class="guia-meta"><span class="num">$16.900</span><em>52 páginas</em></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PROCESO -->
+<section class="band" id="proceso" style="background:var(--bg-deep);border-block:1px solid var(--line)">
+  <div class="ledger" aria-hidden="true"></div>
+  <div class="wrap rel">
+    <div class="head">
+      <span class="eyebrow">Cómo trabajamos</span>
+      <h2>Tres semanas, y las finanzas quedan ordenadas.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <h3>Diagnóstico</h3>
+        <p>Una reunión de una hora y acceso a lo que ya tengas cargado. Salís con el mapa de dónde se está perdiendo plata, tengas o no ganas de seguir.</p>
+      </div>
+      <div class="step reveal">
+        <h3>Implementación</h3>
+        <p>Armamos el sistema con tus rubros, tus clientes y tus proveedores, y cargamos los últimos tres meses para que arranque con historia.</p>
+      </div>
+      <div class="step reveal">
+        <h3>Autonomía</h3>
+        <p>Capacitación al equipo, manual escrito y treinta días de soporte. El objetivo es que no nos necesites más, no que nos contrates siempre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================= CTA -->
+<section class="band" id="contacto" style="padding-bottom:clamp(60px,8vw,110px)">
+  <div class="wrap">
+    <div class="shell">
+      <div class="core cta-core">
+        <span class="eyebrow">Primer paso</span>
+        <h2 style="max-width:18ch">El diagnóstico es gratis y dura una hora.</h2>
+        <p class="lede">Si después de esa hora no encontramos nada que ordenar, te llevás el informe igual y no nos debés nada.</p>
+        <form class="lead" name="diagnostico" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="diagnostico">
+          <p class="hp"><label>No completar: <input name="bot-field"></label></p>
+          <input name="nombre" placeholder="Tu nombre" required autocomplete="name">
+          <input name="empresa" placeholder="Nombre de la empresa" autocomplete="organization">
+          <input class="full" name="email" type="email" placeholder="Email de contacto" required autocomplete="email">
+          <textarea class="full" name="mensaje" rows="2" placeholder="¿Qué es lo que más te preocupa hoy de tus números?"></textarea>
+          <div class="full" style="display:flex;flex-wrap:wrap;gap:.7rem;align-items:center">
+            <button class="btn btn-1" type="submit">Reservar el diagnóstico
+              <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <a class="btn btn-2" href="#guias">Empezar por una guía
+              <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+          </div>
+          <p class="form-note full">Te respondemos dentro de las 24 horas hábiles. No compartimos tus datos con nadie.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="1.4" y="1.4" width="21.2" height="21.2" rx="6.4" stroke="currentColor" stroke-width="1.3" opacity=".42"/>
+        <path d="M7 16.4V9.1M12 16.4V6.6M17 16.4v-4.6" stroke="#FF4D00" stroke-width="2.1" stroke-linecap="round"/>
+      </svg>
+      Fayer
+    </a>
+    <small>Fayer — Control financiero para PyMEs. Buenos Aires, Argentina. El contenido de este sitio es informativo y no reemplaza el asesoramiento de un contador matriculado.</small>
   </div>
 </footer>
 
-<script src="analytics.js"></script>
-<script src="site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var css = function(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); };
+
+  /* ------------------------------------------------------------ tema --- */
+  var root = document.documentElement;
+  document.getElementById("themeBtn").addEventListener("click", function(){
+    var cur = root.getAttribute("data-theme");
+    if(!cur){ cur = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+    root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+    try{ localStorage.setItem("fayer-theme", root.getAttribute("data-theme")); }catch(e){}
+    repaint();
+  });
+  try{ var saved = localStorage.getItem("fayer-theme"); if(saved){ root.setAttribute("data-theme", saved); } }catch(e){}
+
+  /* ------------------------------------------------------------ menú --- */
+  var burger = document.getElementById("burger");
+  burger.addEventListener("click", function(){
+    var open = document.body.classList.toggle("menu-open");
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.getElementById("sheet").addEventListener("click", function(e){
+    if(e.target.tagName === "A"){ document.body.classList.remove("menu-open"); burger.setAttribute("aria-expanded","false"); }
+  });
+
+  /* ------------------------------------------- sparkline del tablero --- */
+  var spark = document.getElementById("spark");
+  var flow = [34,41,38,52,47,61,55,72,64,58,79,88];
+  flow.forEach(function(v,i){
+    var b = document.createElement("i");
+    b.style.height = v + "%";
+    if(i >= flow.length - 3){ b.className = "hi"; }
+    spark.appendChild(b);
+  });
+
+  /* ------------------------------------------------------ calculadora --- */
+  var ars = new Intl.NumberFormat("es-AR",{maximumFractionDigits:0});
+  var pct = new Intl.NumberFormat("es-AR",{minimumFractionDigits:1,maximumFractionDigits:1});
+  var ids = ["cf","pv","cv","uv"], el = {};
+  ids.forEach(function(k){ el[k] = document.getElementById(k); });
+  var oFact = document.getElementById("oFact"), oUnid = document.getElementById("oUnid"),
+      oMc = document.getElementById("oMc"), oMs = document.getElementById("oMs"), oVer = document.getElementById("oVer");
+
+  function calc(){
+    var cf = +el.cf.value || 0, pv = +el.pv.value || 0, cv = +el.cv.value || 0, uv = +el.uv.value || 0;
+    var mc = pv - cv;
+    var mcp = pv > 0 ? mc / pv : 0;
+
+    if(mc <= 0){
+      oFact.textContent = "—";
+      oUnid.textContent = "—";
+      oMc.textContent = "$" + ars.format(mc) + " · sin margen";
+      oMs.textContent = "—";
+      oVer.className = "verdict risk";
+      oVer.textContent = "El costo variable es igual o mayor al precio: cada unidad que vendés te hace perder plata. No hay volumen que lo arregle — hay que subir el precio o bajar el costo.";
+      return;
+    }
+
+    var unid = Math.ceil(cf / mc);
+    var fact = cf / mcp;
+    var dif = uv - unid;
+    var ms = unid > 0 ? dif / unid : 0;
+
+    oFact.textContent = "$" + ars.format(Math.round(fact));
+    oUnid.textContent = ars.format(unid);
+    oMc.textContent = "$" + ars.format(mc) + " · " + pct.format(mcp * 100) + "%";
+    oMs.textContent = (dif >= 0 ? "+" : "") + pct.format(ms * 100) + "%";
+
+    if(dif > 0){
+      oVer.className = "verdict good";
+      oVer.textContent = "Vendiendo " + ars.format(uv) + " unidades estás " + ars.format(dif) +
+        " por encima del punto de equilibrio. El negocio cubre su estructura.";
+    }else if(dif === 0){
+      oVer.className = "verdict good";
+      oVer.textContent = "Estás justo en el punto de equilibrio: no ganás ni perdés. Cualquier gasto imprevisto te pone en rojo.";
+    }else{
+      oVer.className = "verdict risk";
+      oVer.textContent = "Te faltan " + ars.format(Math.abs(dif)) + " unidades por mes para cubrir los costos fijos. " +
+        "A este ritmo perdés $" + ars.format(Math.round(Math.abs(dif) * mc)) + " por mes.";
+    }
+  }
+  ids.forEach(function(k){ el[k].addEventListener("input", calc); });
+  calc();
+
+  /* ------------------------------------------------- reveals al scroll --- */
+  var revs = document.querySelectorAll(".reveal");
+  if(!reduce && "IntersectionObserver" in window){
+    revs.forEach(function(n){ n.style.opacity = "0"; n.style.transform = "translateY(26px)"; n.style.filter = "blur(5px)"; });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en, i){
+        if(!en.isIntersecting) return;
+        var n = en.target;
+        n.style.transition = "opacity .85s var(--ease-out) " + (i * 70) + "ms, transform .85s var(--ease-out) " + (i * 70) + "ms, filter .85s var(--ease-out) " + (i * 70) + "ms";
+        n.style.opacity = "1"; n.style.transform = "none"; n.style.filter = "none";
+        io.unobserve(n);
+      });
+    }, {rootMargin:"0px 0px -12% 0px", threshold:.12});
+    revs.forEach(function(n){ io.observe(n); });
+  }
+
+  /* -------------------------------------------- portadas de las guías --- */
+  function cover(cv, seed){
+    var ctx = cv.getContext("2d"), w, h;
+    function draw(){
+      var dpr = Math.min(devicePixelRatio || 1, 2);
+      w = cv.clientWidth; h = cv.clientHeight;
+      if(!w || !h) return;
+      cv.width = w * dpr; cv.height = h * dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.clearRect(0,0,w,h);
+      var acc = css("--accent") || "#FF4D00";
+      var line = css("--line-2") || "rgba(255,255,255,.15)";
+      var n = 22, bw = w / n;
+      for(var i=0;i<n;i++){
+        var t = i / n;
+        var v = 0.18 + 0.62 * Math.abs(Math.sin(t * (2.4 + seed * 0.9) + seed * 2.1)) * (0.55 + 0.45 * t);
+        var bh = v * h * 0.82;
+        ctx.fillStyle = (i > n - 6 - seed) ? acc : line;
+        ctx.globalAlpha = (i > n - 6 - seed) ? 0.92 : 0.5;
+        ctx.fillRect(i * bw + bw * 0.22, h - bh, bw * 0.56, bh);
+      }
+      ctx.globalAlpha = 1;
+    }
+    draw();
+    return draw;
+  }
+  var coverRedraws = [];
+  document.querySelectorAll("[data-cover]").forEach(function(cv){
+    coverRedraws.push(cover(cv, +cv.getAttribute("data-cover")));
+  });
+
+  /* ----------------------------------------------------- escena 3D ----- */
+  var canvas = document.getElementById("gl");
+  var renderer, scene, camera, mesh, dummy, colorA, colorB, running = true, raf = 0;
+  var COLS = 26, ROWS = 26, COUNT = COLS * ROWS;
+
+  function initGL(){
+    if(typeof THREE === "undefined") { canvas.style.display = "none"; return false; }
+    try{
+      renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:true});
+    }catch(e){ canvas.style.display = "none"; return false; }
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(38, 1, 0.1, 200);
+    camera.position.set(0, 15.5, 24);
+    camera.lookAt(0, 0, 0);
+
+    var geo = new THREE.BoxGeometry(0.46, 1, 0.46);
+    geo.translate(0, 0.5, 0);
+    var mat = new THREE.MeshStandardMaterial({roughness:.42, metalness:.12});
+    mesh = new THREE.InstancedMesh(geo, mat, COUNT);
+    mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+    scene.add(mesh);
+
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x201812, 0.85));
+    var key = new THREE.DirectionalLight(0xffffff, 1.15);
+    key.position.set(7, 14, 9);
+    scene.add(key);
+    var rim = new THREE.PointLight(0xff5a1a, 55, 46);
+    rim.position.set(-8, 7, -6);
+    scene.add(rim);
+
+    dummy = new THREE.Object3D();
+    colorA = new THREE.Color();
+    colorB = new THREE.Color();
+    resize();
+    return true;
+  }
+
+  var sized = false;
+  function resize(){
+    if(!renderer) return;
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    if(!w || !h){ sized = false; return; }
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    sized = true;
+  }
+  // El canvas puede medir 0 en el primer layout (fuentes todavía cargando).
+  // Reintentamos hasta que tenga medidas reales y observamos cambios después.
+  function ensureSized(){
+    if(!renderer) return;
+    if(!sized){ resize(); requestAnimationFrame(ensureSized); }
+  }
+
+  function repaint(){
+    if(mesh){
+      colorA.set(css("--dim") || "#6E655D");
+      colorB.set(css("--accent") || "#FF4D00");
+    }
+    coverRedraws.forEach(function(f){ f(); });
+  }
+
+  var mx = 0, my = 0, tx = 0, ty = 0;
+  window.addEventListener("pointermove", function(e){
+    tx = (e.clientX / innerWidth - 0.5);
+    ty = (e.clientY / innerHeight - 0.5);
+  }, {passive:true});
+
+  var _c = null;
+  function frame(t){
+    raf = requestAnimationFrame(frame);
+    if(!running || !renderer) return;
+    var time = t * 0.00046;
+    mx += (tx - mx) * 0.045; my += (ty - my) * 0.045;
+
+    if(!_c) _c = new THREE.Color();
+    var i = 0, c = _c;
+    for(var x = 0; x < COLS; x++){
+      for(var z = 0; z < ROWS; z++){
+        var px = (x - COLS / 2 + 0.5) * 0.74;
+        var pz = (z - ROWS / 2 + 0.5) * 0.74;
+        var d = Math.sqrt(px * px + pz * pz);
+        var wave = Math.sin(d * 0.62 - time * 1.9) * 0.5 + 0.5;
+        var drift = Math.sin(px * 0.35 + time * 0.8) * 0.5 + 0.5;
+        var v = wave * 0.68 + drift * 0.32;
+        var hgt = 0.14 + Math.pow(v, 2.1) * 5.4;
+
+        dummy.position.set(px, 0, pz);
+        dummy.scale.set(1, hgt, 1);
+        dummy.updateMatrix();
+        mesh.setMatrixAt(i, dummy.matrix);
+
+        c.copy(colorA).lerp(colorB, Math.pow(v, 2.6));
+        mesh.setColorAt(i, c);
+        i++;
+      }
+    }
+    mesh.instanceMatrix.needsUpdate = true;
+    if(mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    mesh.rotation.y = time * 0.11 + mx * 0.34;
+    camera.position.y = 15.5 - my * 2.4;
+    camera.lookAt(0, 1.4, 0);
+    renderer.render(scene, camera);
+  }
+
+  if(initGL()){
+    repaint();
+    ensureSized();
+    if("ResizeObserver" in window){ new ResizeObserver(resize).observe(canvas); }
+    if(document.fonts && document.fonts.ready){ document.fonts.ready.then(resize); }
+    if(reduce){
+      // una sola pasada estática, sin bucle continuo
+      (function once(){
+        if(!sized){ requestAnimationFrame(once); return; }
+        running = true; frame(2400); cancelAnimationFrame(raf); running = false;
+      })();
+    }else{
+      raf = requestAnimationFrame(frame);
+      var hero = document.getElementById("top");
+      if("IntersectionObserver" in window){
+        new IntersectionObserver(function(es){ running = es[0].isIntersecting; }, {threshold:0})
+          .observe(hero);
+      }
+      document.addEventListener("visibilitychange", function(){ running = !document.hidden; });
+    }
+    window.addEventListener("resize", function(){ resize(); repaint(); }, {passive:true});
+  }else{
+    repaint();
+  }
+
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", repaint);
+})();
+</script>
+
 </body>
 </html>

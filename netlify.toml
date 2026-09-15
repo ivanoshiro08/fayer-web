@@ -1,0 +1,29 @@
+# Sitio estático: no hay build, se publica la raíz tal cual.
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/og.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Redirige www a apex para no partir el SEO en dos dominios.
+[[redirects]]
+  from = "https://www.fayer.site/*"
+  to = "https://fayer.site/:splat"
+  status = 301
+  force = true
