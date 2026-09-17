@@ -1,0 +1,9 @@
+{
+  "name": "fayer-site",
+  "private": true,
+  "type": "module",
+  "description": "Sitio de Fayer. La unica dependencia es @netlify/blobs, que usa la funcion de canje de codigos.",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
