@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Manual del Sistema Fayer</title>
+<meta name="description" content="Cómo usar el Sistema Fayer: las ocho pestañas, la rutina semanal y las copias de seguridad.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#131110" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAF8F6" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,600;12..96,75..100,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#131110; --bg-deep:#0D0B0A; --surface:#1A1715; --raised:#221E1B;
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+  --text:#F4F0EC; --muted:#9A9086; --dim:#6E655D;
+  --accent:#FF4D00; --accent-2:#FF8A4C;
+  --ok:#4BAE7E; --warn:#E8B64C; --bad:#E5574D;
+  --glass:rgba(26,23,21,.84); --inset:inset 0 1px 0 rgba(255,255,255,.07);
+  --grid-line:rgba(255,255,255,.045);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --f-display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --f-body:"Instrument Sans","Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:#FAF8F6; --bg-deep:#F1ECE7; --surface:#FFFFFF; --raised:#F4EFEA;
+    --line:rgba(24,17,12,.11); --line-2:rgba(24,17,12,.21);
+    --text:#191411; --muted:#6E6259; --dim:#948A81;
+    --accent:#DE4200; --accent-2:#A83200;
+    --ok:#2F8A5E; --warn:#9C6D15; --bad:#C0342B;
+    --glass:rgba(255,255,255,.88); --inset:inset 0 1px 0 rgba(255,255,255,.9);
+    --grid-line:rgba(24,17,12,.05);
+  }
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#FAF8F6; --bg-deep:#F1ECE7; --surface:#FFFFFF; --raised:#F4EFEA;
+  --line:rgba(24,17,12,.11); --line-2:rgba(24,17,12,.21);
+  --text:#191411; --muted:#6E6259; --dim:#948A81;
+  --accent:#DE4200; --accent-2:#A83200;
+  --ok:#2F8A5E; --warn:#9C6D15; --bad:#C0342B;
+  --glass:rgba(255,255,255,.88); --inset:inset 0 1px 0 rgba(255,255,255,.9);
+  --grid-line:rgba(24,17,12,.05);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.66}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);margin:0;letter-spacing:-.028em;line-height:1.14;text-wrap:balance}
+p{margin:0}
+
+.bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:.8rem;
+  padding:.75rem clamp(16px,4vw,34px);padding-top:calc(.75rem + env(safe-area-inset-top,0px));
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:.5rem;font-family:var(--f-display);font-weight:800;font-size:1rem;letter-spacing:-.04em;color:var(--text)}
+.brand:hover{text-decoration:none}
+.brand svg{width:20px;height:20px}
+.sp{flex:1}
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.48rem .95rem;border-radius:999px;font-size:.83rem;
+  font-weight:600;border:1px solid var(--line-2);background:var(--raised);color:var(--text);cursor:pointer;
+  transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.btn:hover{border-color:var(--accent);transform:translateY(-1px);text-decoration:none}
+
+.wrap{max-width:860px;margin-inline:auto;padding:clamp(28px,5vw,58px) clamp(16px,4vw,34px) 100px}
+.hero{padding-bottom:1.6rem;border-bottom:1px solid var(--line);margin-bottom:2.2rem}
+.hero h1{font-size:clamp(2rem,4.6vw,3rem);font-weight:800}
+.hero p{color:var(--muted);margin-top:.7rem;font-size:1.03rem;max-width:58ch}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f-mono);font-size:10px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.2em;color:var(--muted);border:1px solid var(--line);border-radius:999px;
+  padding:.36rem .75rem;background:var(--surface);margin-bottom:1rem}
+.eyebrow::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+nav.toc{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.1rem 1.3rem;margin-bottom:2.6rem}
+nav.toc b{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:.6rem}
+nav.toc ol{margin:0;padding-left:1.1rem;columns:2;column-gap:2rem}
+nav.toc li{margin:.2rem 0;font-size:.9rem}
+nav.toc a{color:var(--text)}
+nav.toc a:hover{color:var(--accent)}
+@media (max-width:620px){nav.toc ol{columns:1}}
+
+section{margin-bottom:2.8rem;scroll-margin-top:80px}
+section h2{font-size:clamp(1.35rem,2.6vw,1.75rem);font-weight:800;margin-bottom:.9rem;
+  padding-top:1.4rem;border-top:1px solid var(--line)}
+section h3{font-size:1.02rem;font-weight:600;margin:1.6rem 0 .5rem}
+section p + p{margin-top:.8rem}
+section p, section li{color:var(--muted)}
+section strong{color:var(--text);font-weight:600}
+ul,ol.pasos{padding-left:1.2rem;margin:.7rem 0}
+li{margin:.35rem 0}
+
+table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1rem 0}
+th{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);
+  text-align:left;padding:.55rem .8rem;border-bottom:1px solid var(--line-2);font-weight:500}
+td{padding:.6rem .8rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted)}
+td:first-child{color:var(--text);font-weight:500;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+.nota{border:1px solid var(--line);border-left:2px solid var(--accent);border-radius:0 14px 14px 0;
+  background:var(--surface);padding:.95rem 1.15rem;margin:1.2rem 0;font-size:.9rem;color:var(--muted)}
+.nota b{color:var(--text)}
+.alerta{border-color:color-mix(in srgb,var(--bad) 40%,transparent);border-left-color:var(--bad);
+  background:color-mix(in srgb,var(--bad) 8%,transparent)}
+.ok{border-left-color:var(--ok)}
+kbd{font-family:var(--f-mono);font-size:.8rem;background:var(--raised);border:1px solid var(--line-2);
+  border-radius:6px;padding:.1rem .4rem;color:var(--text)}
+.faq{border-bottom:1px solid var(--line);padding:.9rem 0}
+.faq:last-child{border-bottom:0}
+.faq b{display:block;color:var(--text);font-weight:600;margin-bottom:.3rem;font-family:var(--f-display);font-size:1rem}
+.faq p{font-size:.92rem}
+
+footer{border-top:1px solid var(--line);padding:2rem 0 0;margin-top:3rem;font-size:.82rem;color:var(--dim)}
+
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+@media print{
+  .bar,nav.toc,.noprint{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .wrap{max-width:none;padding:0}
+  section{margin-bottom:14pt;page-break-inside:avoid}
+  section h2{font-size:14pt;border-top:1px solid #999;padding-top:10pt}
+  section p,section li,td{color:#333}
+  .nota{background:#f6f6f6;border:1px solid #ccc;border-left:3px solid #666;color:#333}
+  a{color:#000;text-decoration:none}
+}
+</style>
+
+<header class="bar">
+  <a class="brand" href="../">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="1.4" y="1.4" width="21.2" height="21.2" rx="6.4" stroke="currentColor" stroke-width="1.3" opacity=".4"/>
+      <path d="M7 16.4V9.1M12 16.4V6.6M17 16.4v-4.6" stroke="#FF4D00" stroke-width="2.1" stroke-linecap="round"/>
+    </svg>Fayer
+  </a>
+  <span class="sp"></span>
+  <button class="btn" onclick="window.print()">Imprimir o guardar en PDF</button>
+  <a class="btn" href="../">Volver al sistema</a>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="eyebrow">Manual de instrucciones</span>
+    <h1>Cómo usar el Sistema Fayer</h1>
+    <p>Todo lo que necesitás saber para tener tus números ordenados. Está escrito para leerse una vez y volver solo cuando tengas una duda puntual.</p>
+  </div>
+
+  <nav class="toc">
+    <b>Contenido</b>
+    <ol>
+      <li><a href="#que-es">Qué es y qué no es</a></li>
+      <li><a href="#modos">Los dos modos</a></li>
+      <li><a href="#empezar">Los primeros 20 minutos</a></li>
+      <li><a href="#pestanas">Las ocho pestañas</a></li>
+      <li><a href="#rutina">La rutina de 10 minutos</a></li>
+      <li><a href="#datos">No perder los datos</a></li>
+      <li><a href="#glosario">Glosario en criollo</a></li>
+      <li><a href="#faq">Preguntas frecuentes</a></li>
+    </ol>
+  </nav>
+
+  <section id="que-es">
+    <h2>Qué es y qué no es</h2>
+    <p>El Sistema Fayer es una herramienta de <strong>gestión</strong>: te dice cuánta plata tenés, cuánta te deben, cuánta debés y si el mes cierra o no. Sirve para tomar decisiones antes de que sea tarde.</p>
+    <p><strong>No es contabilidad formal.</strong> No reemplaza a tu contador, no emite facturas y no presenta declaraciones juradas. Es el tablero que mirás vos para saber cómo viene la mano; los libros los sigue llevando quien corresponde.</p>
+    <div class="nota"><b>La regla que define si esto funciona o no:</b> el sistema no falla por estar mal diseñado, falla porque se deja de cargar. Diez minutos por día valen más que tres horas el último viernes del mes.</div>
+  </section>
+
+  <section id="modos">
+    <h2>Los dos modos</h2>
+    <p>La primera vez que entrás, el sistema te pregunta para qué lo vas a usar. Podés cambiarlo cuando quieras desde <strong>Configuración → Modo de uso</strong>, sin perder nada de lo cargado.</p>
+    <table>
+      <thead><tr><th>Qué cambia</th><th>Modo PyME</th><th>Modo Personal</th></tr></thead>
+      <tbody>
+        <tr><td>Rubros</td><td>Ventas, mercadería, sueldos, cargas sociales</td><td>Sueldo, supermercado, alquiler, transporte</td></tr>
+        <tr><td>IVA</td><td>Se carga por movimiento</td><td>No aparece: cargás el importe final</td></tr>
+        <tr><td>Cobrar y pagar</td><td>Clientes y proveedores</td><td>Quién te debe y a quién le debés</td></tr>
+        <tr><td>Sexta pestaña</td><td>Costeo y punto de equilibrio</td><td>Presupuesto y colchón de emergencia</td></tr>
+        <tr><td>Datos que pide</td><td>CUIT, actividad, IIBB</td><td>Solo tu nombre</td></tr>
+      </tbody>
+    </table>
+    <p>Al cambiar de modo el sistema te pregunta qué hacer con tus rubros. Si ya cargaste movimientos, elegí <strong>agregar</strong> o <strong>dejar</strong> en lugar de reemplazar: así lo viejo sigue agrupándose bien en el flujo de caja.</p>
+  </section>
+
+  <section id="empezar">
+    <h2>Los primeros 20 minutos</h2>
+    <ol class="pasos">
+      <li><strong>Elegí el modo</strong> cuando el sistema te lo pregunte.</li>
+      <li><strong>Andá a Configuración</strong> y cargá tu nombre y, lo más importante, el <strong>saldo inicial</strong>: toda la plata que tenés hoy entre efectivo, banco y billetera virtual. Sin ese número, el flujo de caja arranca de cero y no sirve.</li>
+      <li><strong>Revisá los rubros.</strong> Si tu negocio le dice "materia prima" a lo que el sistema llama "insumos", cambialo. Es un minuto y hace que todo lo demás se lea natural.</li>
+      <li><strong>Cargá los costos fijos</strong> en Costeo (o Presupuesto). Son los que pagás vendas o no vendas: alquiler, sueldos, servicios, seguros.</li>
+      <li><strong>Cargá los últimos tres meses de movimientos.</strong> Es lo único aburrido de todo el proceso y es lo que hace que el primer día ya veas tendencias en lugar de una pantalla vacía.</li>
+    </ol>
+    <div class="nota ok"><b>Antes de arrancar en serio,</b> probá el botón <kbd>Cargar datos de ejemplo</kbd> en la pestaña Datos. Vas a ver el sistema lleno y entender qué hace cada número. Después lo borrás y cargás lo tuyo.</div>
+  </section>
+
+  <section id="pestanas">
+    <h2>Las ocho pestañas</h2>
+
+    <h3>1 · Panel</h3>
+    <p>Es la pantalla que mirás una vez por semana. Arriba, cuatro números: la plata que tenés, cómo viene el mes, cuánto te deben vencido y qué te vence en los próximos siete días.</p>
+    <p>Abajo a la izquierda, el <strong>resultado mes a mes</strong>. Las barras naranjas para arriba son meses en que ganás; las rojas para abajo, meses en que perdés. La línea del medio es el cero.</p>
+    <p>A la derecha, el <strong>semáforo</strong>: cuatro preguntas de sí o no. Cuatro OK significa que este mes está sano. Una sola alerta ya merece una decisión esta semana, no el mes que viene.</p>
+    <p>Si hay algo vencido, aparece <strong>Lo más vencido</strong>: esa es tu lista de a quién llamar hoy, ordenada por antigüedad.</p>
+
+    <h3>2 · Movimientos</h3>
+    <p>El corazón del sistema y la <strong>única carga manual</strong>. Todo lo demás se calcula solo a partir de acá.</p>
+    <p>Cada movimiento lleva fecha, si es ingreso o egreso, el rubro, un detalle, el medio de pago y el importe. En modo PyME también cargás el IVA y el sistema calcula el total; en modo personal ponés el importe final y listo.</p>
+    <p>Arriba tenés filtros por mes, por tipo y un buscador por rubro o detalle. El pie de la tabla te muestra cuántos movimientos estás viendo y los totales de ese filtro.</p>
+    <div class="nota"><b>El detalle importa más de lo que parece.</b> "Factura A 0001-00000123 — Gómez S.A." te sirve dentro de seis meses; "venta" no te sirve para nada.</div>
+
+    <h3>3 · Cobrar (o "Me deben")</h3>
+    <p>Las facturas que emitiste y todavía no te pagaron. Cargás monto y vencimiento, y el sistema calcula solo cuántos días hace que está vencida y la ubica en el tramo que corresponde: vigente, 1 a 30 días, 31 a 60, 61 a 90, más de 90.</p>
+    <p>Eso se llama <strong>antigüedad de cartera</strong> y es el indicador más ignorado de las PyMEs argentinas. Una factura vencida hace 90 días vale mucho menos que una de 30: cuanto más pasa, menos probable es cobrarla.</p>
+    <p>Cuando te pagan, el botón <kbd>Saldar</kbd> la marca como cobrada de una. Si te pagaron una parte, editá y poné cuánto te pagaron.</p>
+
+    <h3>4 · Pagar (o "Debo")</h3>
+    <p>Lo mismo pero al revés. Sirve para dos cosas: no quedar mal con nadie, y saber qué te va a salir de la cuenta en los próximos días antes de comprometer esa plata en otra cosa.</p>
+
+    <h3>5 · Flujo de caja</h3>
+    <p>Doce meses hacia adelante, armado solo con lo que cargaste en Movimientos. <strong>Acá no se escribe nada.</strong></p>
+    <p>La fila que importa es la última: <strong>saldo al cierre</strong>. Si alguna celda queda en negativo, ese es el mes en que te quedás sin plata. Y la gracia es justamente verlo con dos meses de anticipación, cuando todavía podés negociar un plazo, adelantar una cobranza o postergar una compra. Cuando el mes llega, ya no hay nada que hacer.</p>
+
+    <h3>6 · Costeo (modo PyME)</h3>
+    <p>Acá sale el número más importante del negocio: el <strong>punto de equilibrio</strong>. Cuánto tenés que vender por mes para no perder plata.</p>
+    <p>Cargás tres cosas: los costos fijos mensuales, el precio de venta promedio sin IVA y el costo variable de cada unidad. El sistema calcula el margen de contribución y de ahí sale todo lo demás.</p>
+    <p>Abajo hay una tabla que casi nadie mira y que es la más útil: <strong>qué pasa si subís el precio</strong>. Vas a ver que subiendo un 10% podés vender bastante menos y ganar lo mismo. El margen casi siempre mueve más la aguja que el volumen.</p>
+
+    <h3>6 · Presupuesto (modo Personal)</h3>
+    <p>La versión personal de lo mismo. Cargás tus gastos fijos, tu ingreso mensual, cuánto se te va en gastos variables y cuánto tenés ahorrado.</p>
+    <p>El sistema te dice cuánto te queda por mes, qué porcentaje de lo que entra estás ahorrando, y cuántos meses te aguantan tus ahorros si mañana dejás de cobrar. Eso último es el <strong>colchón de emergencia</strong>: la referencia sana son seis meses de gastos, y antes de empezar a invertir conviene tener al menos tres.</p>
+
+    <h3>7 · Configuración</h3>
+    <p>Tus datos, el saldo inicial, el modo de uso y las listas de rubros y medios de pago.</p>
+    <div class="nota alerta"><b>Cuidado al borrar un rubro</b> que ya tiene movimientos cargados. Los movimientos no se pierden, pero dejan de sumar en el flujo de caja hasta que los reasignes a otro rubro.</div>
+
+    <h3>8 · Datos</h3>
+    <p>Dónde se guarda todo, las copias de seguridad, el informe imprimible y los datos de ejemplo. Es la pestaña más importante y la que menos se mira: leé la sección siguiente.</p>
+  </section>
+
+  <section id="rutina">
+    <h2>La rutina de 10 minutos</h2>
+    <table>
+      <thead><tr><th>Cuándo</th><th>Qué hacés</th><th>Cuánto tarda</th></tr></thead>
+      <tbody>
+        <tr><td>Todos los días</td><td>Cargás los movimientos del día en Movimientos</td><td>5 minutos</td></tr>
+        <tr><td>Cuando facturás</td><td>Cargás la factura en Cobrar con su vencimiento</td><td>1 minuto</td></tr>
+        <tr><td>Cuando te llega una factura</td><td>La cargás en Pagar con su vencimiento</td><td>1 minuto</td></tr>
+        <tr><td>Todos los lunes</td><td>Mirás el Panel: cuatro números y el semáforo</td><td>3 minutos</td></tr>
+        <tr><td>Todos los lunes</td><td>Reclamás lo que aparece en "Lo más vencido"</td><td>10 minutos</td></tr>
+        <tr><td>Una vez por semana</td><td>Exportás una copia de seguridad</td><td>1 minuto</td></tr>
+        <tr><td>Fin de mes</td><td>Revisás el flujo de caja e imprimís el informe</td><td>10 minutos</td></tr>
+      </tbody>
+    </table>
+    <p>Si sostenés la carga diaria, el resto del sistema no te pide nada. Si la abandonás una semana, reconstruirla te va a llevar más tiempo del que ahorraste.</p>
+  </section>
+
+  <section id="datos">
+    <h2>No perder los datos</h2>
+    <p>El sistema no tiene servidor: <strong>tus números no se suben a ningún lado</strong>. Eso es bueno para tu privacidad y tiene una contrapartida que hay que entender bien.</p>
+
+    <h3>Lo que pasa por defecto</h3>
+    <p>Los datos se guardan en la memoria del navegador. Funciona perfecto mientras uses la misma computadora y el mismo navegador, y <strong>se borra todo si limpiás los datos de navegación</strong>, si usás modo incógnito o si cambiás de máquina.</p>
+
+    <h3>La solución: vincular un archivo</h3>
+    <p>En la pestaña Datos tenés el botón <kbd>Guardar en un archivo de mi compu</kbd>. Elegís dónde guardarlo una sola vez y, a partir de ahí, el sistema escribe cada cambio en ese archivo automáticamente.</p>
+    <p>Con el archivo vinculado, tus datos viven en tu disco como cualquier otro documento: sobreviven a limpiar el navegador, a reinstalarlo y a cambiar de computadora (llevándote el archivo). Arriba a la derecha vas a ver el indicador en verde diciendo <strong>"Guarda en tu archivo"</strong>.</p>
+    <div class="nota"><b>Funciona en Chrome, Edge y Opera de escritorio.</b> Firefox, Safari y los navegadores de celular todavía no lo permiten. Si usás alguno de esos, exportá una copia a mano una vez por semana: el resultado es el mismo, solo que no es automático.</div>
+
+    <h3>Las copias de seguridad</h3>
+    <p>Aunque tengas el archivo vinculado, exportá una copia cada tanto y guardala en otro lado (mail, pendrive, la nube). Un archivo que se corrompe o un disco que falla te dejan igual de a pie.</p>
+    <p>Para restaurar, el botón <kbd>Importar copia</kbd> acepta el archivo o el texto pegado. Reemplaza todo lo que tengas cargado en ese momento.</p>
+    <div class="nota alerta"><b>Si nunca exportaste y borrás los datos del navegador, no hay forma de recuperarlos.</b> No existe una copia en ningún servidor porque no existe ningún servidor. Por eso el sistema te avisa cuando pasaron más de siete días desde tu última copia.</div>
+  </section>
+
+  <section id="glosario">
+    <h2>Glosario en criollo</h2>
+    <table>
+      <thead><tr><th>Término</th><th>Qué significa de verdad</th></tr></thead>
+      <tbody>
+        <tr><td>Flujo de caja</td><td>La plata que realmente entra y sale, mes a mes. No es lo mismo que la ganancia: podés tener un año buenísimo en el papel y no tener con qué pagar los sueldos de agosto.</td></tr>
+        <tr><td>Costo fijo</td><td>Lo que pagás vendas o no vendas. El alquiler se paga aunque no entre un cliente.</td></tr>
+        <tr><td>Costo variable</td><td>Lo que te cuesta cada unidad vendida: la mercadería, el flete, la comisión de Mercado Pago. Si no vendés, no lo pagás.</td></tr>
+        <tr><td>Margen de contribución</td><td>Lo que te queda de cada venta después de pagar su costo variable. Es la plata que va a cubrir los costos fijos.</td></tr>
+        <tr><td>Punto de equilibrio</td><td>Cuánto tenés que vender para no ganar ni perder. Por debajo de ese número estás perdiendo plata aunque el local esté lleno.</td></tr>
+        <tr><td>Margen de seguridad</td><td>Cuánto podés caer en ventas antes de empezar a perder. Si es chico, cualquier mes flojo te pone en rojo.</td></tr>
+        <tr><td>Antigüedad de cartera</td><td>Hace cuánto está vencido lo que te deben. Una factura de 90 días vale mucho menos que una de 30.</td></tr>
+        <tr><td>Colchón de emergencia</td><td>Cuántos meses podés vivir con lo ahorrado si mañana dejás de cobrar. Seis es la referencia sana.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="faq">
+    <h2>Preguntas frecuentes</h2>
+
+    <div class="faq"><b>¿Puedo usarlo en el celular?</b>
+      <p>Sí, el sistema se adapta a la pantalla. Lo que no funciona en celular es vincular un archivo: eso necesita Chrome, Edge u Opera de escritorio. Para cargar movimientos sobre la marcha va perfecto.</p></div>
+
+    <div class="faq"><b>¿Lo puedo usar en dos computadoras a la vez?</b>
+      <p>No al mismo tiempo. Los datos viven en el navegador de cada máquina, no se sincronizan. Podés exportar de una e importar en otra, pero si las dos se editan en paralelo, la última importación pisa a la otra. El trabajo simultáneo de varias personas necesita un servidor: eso se arma a medida.</p></div>
+
+    <div class="faq"><b>¿Mis números los ve alguien?</b>
+      <p>No. No hay servidor, no hay cuenta y no hay envío de datos. Todo pasa dentro de tu navegador, en tu computadora.</p></div>
+
+    <div class="faq"><b>Cargué un movimiento mal, ¿lo puedo corregir?</b>
+      <p>Sí. En Movimientos, el botón Editar de cada fila. Todo lo demás se recalcula solo.</p></div>
+
+    <div class="faq"><b>¿Por qué el flujo de caja no me muestra un movimiento que cargué?</b>
+      <p>Por una de dos: la fecha cae fuera de los doce meses que arrancan en el "primer mes del ejercicio" que pusiste en Configuración, o el rubro del movimiento ya no existe en tus listas porque lo borraste. Revisá esas dos cosas en ese orden.</p></div>
+
+    <div class="faq"><b>¿El punto de equilibrio me da cero o un número rarísimo?</b>
+      <p>Pasa cuando el costo variable es igual o mayor al precio de venta. Ahí el margen de contribución es negativo: cada unidad que vendés te hace perder plata y no hay volumen que lo arregle. Hay que subir el precio o bajar el costo.</p></div>
+
+    <div class="faq"><b>¿El código de acceso sirve para siempre?</b>
+      <p>Sí, pero es de un solo uso: se canjea una vez y queda atado a ese navegador. Si perdés el acceso o cambiás de computadora, escribinos y lo resolvemos.</p></div>
+
+    <div class="faq"><b>Necesito algo que el sistema no hace.</b>
+      <p>El sistema viene armado para el caso general. Rubros especiales, varios usuarios, integración con tu facturación o informes a medida se arman aparte: escribinos desde <a href="https://fayer.site#contacto">fayer.site</a>.</p></div>
+  </section>
+
+  <footer>
+    Sistema Fayer · <a href="https://fayer.site">fayer.site</a> · Manual versión 1.0<br>
+    Este sistema es una herramienta de gestión interna. No reemplaza la contabilidad formal ni el asesoramiento de un contador matriculado.
+  </footer>
+</div>
+
+<script>
+try{ var t = localStorage.getItem("fayer.tema"); if(t) document.documentElement.setAttribute("data-theme", t); }catch(e){}
+</script>
+
+</body>
+</html>
