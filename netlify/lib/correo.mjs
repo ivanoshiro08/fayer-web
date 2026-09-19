@@ -108,8 +108,7 @@ export function mailComprador({ entregas, monto, pagoId, base }) {
       text-transform:uppercase;color:#D93F00;margin:0 0 5px">Si algo falla</p>
     <p style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#191411;margin:0;line-height:1.55">
       Si el archivo no te llega, no abre o no es lo que compraste, respondé este mail y lo
-      resolvemos el mismo día. Tenés además 10 días corridos para arrepentirte de la compra,
-      como manda la ley.</p>
+      resolvemos el mismo día.</p>
   </div>
 
   <div style="height:1px;background:#E4DCD4;margin:22px 0 14px"></div>
