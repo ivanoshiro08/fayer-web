@@ -24,18 +24,17 @@
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Fayer",
 "description":"Control financiero para PyMEs: flujo de caja, cuentas por cobrar y por pagar, costeo y punto de equilibrio.",
 "url":"https://fayer.site/","areaServed":{"@type":"Country","name":"Argentina"},
-"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"}}
+"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"},"sameAs":["https://fayer.site/tienda/"],"knowsAbout":["Flujo de caja","Finanzas personales","Punto de equilibrio","Presupuesto familiar"]}
 </script>
 
 <!-- ══════════════════════════════════════════════════════════ MEDICIÓN ══
-     Pegá tus IDs acá abajo. Lo que dejes vacío NO se carga: cero pedidos
-     al pedo y cero errores en consola. Es el único lugar que tenés que tocar. -->
+     Lo que quede vacío NO se carga: cero pedidos al pedo y cero errores. -->
 <script>
 window.FAYER_IDS = {
-  ga4:    "G-JHRBRHRYED",   // Google Analytics 4 — fayer.site
-  gtm:    "",   // Google Tag Manager — GTM-XXXXXXX (si usás GTM, dejá ga4 vacío)
-  tiktok: "",   // TikTok Pixel — TikTok Ads Manager → Herramientas → Eventos
-  meta:   ""    // Meta Pixel — Administrador de eventos
+  ga4:    "G-JHRBRHRYED",          // Google Analytics 4 — fayer.site
+  gtm:    "",                      // GTM-XXXXXXX (si usás GTM, vaciá ga4)
+  tiktok: "DAF531BC77UDHLL3KIH0",  // Píxel de TikTok
+  meta:   ""                       // Píxel de Meta
 };
 (function(){
   var ID = window.FAYER_IDS || {};
@@ -76,7 +75,6 @@ window.FAYER_IDS = {
     ttq.load(ID.tiktok); ttq.page();}(window,document,"ttq");
   }
 
-  // Un solo disparador para los cuatro destinos. Si no hay ninguno, no hace nada.
   window.fayerTrack = function(evento, datos){
     try{
       if (window.gtag) gtag("event", evento, datos || {});
@@ -87,11 +85,11 @@ window.FAYER_IDS = {
   };
 })();
 </script>
-</head>
-<body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,600;12..96,75..100,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+</head>
+<body>
 
 <style>
 /* ============================================================ TOKENS ===== */
@@ -327,8 +325,8 @@ body.menu-open .sheet{display:flex}
 .verdict.risk{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 34%,transparent);background:color-mix(in srgb,var(--bad) 9%,transparent)}
 
 /* guias */
-.guias{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,22px)}
-.guia{display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:var(--surface);border:1px solid var(--line);
+.guias{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:clamp(14px,1.8vw,22px)}
+.guia{color:inherit;text-decoration:none;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:var(--surface);border:1px solid var(--line);
   box-shadow:var(--inset);transition:transform .6s var(--ease),border-color .6s var(--ease)}
 .guia:hover{transform:translateY(-6px);border-color:var(--line-2)}
 .cover{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--bg-deep);border-bottom:1px solid var(--line)}
@@ -340,6 +338,9 @@ body.menu-open .sheet{display:flex}
 .guia-body p{font-size:.88rem;color:var(--muted);flex:1}
 .guia-meta{display:flex;align-items:center;justify-content:space-between;padding-top:.85rem;border-top:1px solid var(--line);margin-top:.3rem}
 .guia-meta .num{font-size:1.02rem;font-weight:700}
+.guia-meta .pronto{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 42%,transparent);
+  background:color-mix(in srgb,var(--warn) 11%,transparent);border-radius:999px;padding:.24rem .58rem}
 .guia-meta em{font-style:normal;font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 
 /* proceso */
@@ -356,6 +357,7 @@ body.menu-open .sheet{display:flex}
 .cta-core>*{position:relative;z-index:1}
 
 footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
+footer a{padding:.5rem 0;display:inline-block}
 .foot{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;justify-content:space-between}
 .foot small{color:var(--dim);font-size:.78rem;max-width:56ch;line-height:1.6}
 
@@ -390,6 +392,9 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
   transition:border-color .45s var(--ease)}
 .gate-code button:hover{border-color:var(--accent)}
 .gate-msg{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;min-height:1em}
+.gate-alt{display:block;font-size:.76rem;color:var(--dim);line-height:1.5;margin-top:-.25rem}
+.gate-alt a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;transition:color .35s var(--ease)}
+.gate-alt a:hover{color:var(--accent)}
 .gate-msg.err{color:var(--bad)}
 .gate-msg.ok{color:var(--ok)}
 
@@ -430,159 +435,7 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
   padding:.72rem .95rem;color:var(--text);font-family:var(--f-body);font-size:.9rem;resize:vertical}
 .lead input:focus,.lead textarea:focus{outline:none;border-color:var(--accent)}
 .lead input::placeholder,.lead textarea::placeholder{color:var(--dim)}
-.lead .hp{position:absolute;left:-9999px}
-.form-note{font-size:.78rem;color:var(--dim)}
-@media (max-width:640px){.lead{grid-template-columns:1fr}}
-@media (max-width:980px){.pro-inner{grid-template-columns:1fr}}
-
-
-/* ===================================================== CALCULADORA PRO === */
-.calc-split{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.pro{margin-top:clamp(16px,2vw,24px);position:relative}
-.pro-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
-  padding:1rem 1.25rem;border-bottom:1px solid var(--line);background:var(--surface)}
-.pro-head b{font-family:var(--f-display);font-size:1.02rem;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
-.pro-head .lock{width:15px;height:15px;color:var(--accent)}
-.pro-head small{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
-.pro-body{position:relative;min-height:330px}
-.pro-inner{padding:clamp(20px,2.6vw,32px);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,2.6vw,34px)}
-.pro-locked .pro-inner{filter:blur(7px);opacity:.42;pointer-events:none;user-select:none}
-
-.gate{position:absolute;inset:0;z-index:3;display:none;align-items:center;justify-content:center;padding:1.25rem}
-.pro-locked .gate{display:flex}
-.gate-card{width:min(430px,100%);border-radius:22px;padding:1.6rem;text-align:center;
-  background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border:1px solid var(--line-2);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.85rem;align-items:center}
-.gate-card h4{font-family:var(--f-display);font-size:1.22rem;font-weight:700;letter-spacing:-.025em}
-.gate-card p{font-size:.86rem;color:var(--muted);max-width:34ch}
-.gate-price{font-family:var(--f-mono);font-size:2.05rem;font-weight:700;letter-spacing:-.04em;color:var(--accent);line-height:1}
-.gate-price em{font-style:normal;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:block;margin-top:.3rem}
-.gate-code{display:flex;gap:.4rem;width:100%;max-width:320px}
-.gate-code input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:12px;
-  padding:.58rem .8rem;color:var(--text);font-family:var(--f-mono);font-size:.84rem;letter-spacing:.06em;text-transform:uppercase}
-.gate-code input:focus{outline:none;border-color:var(--accent)}
-.gate-code button{border:1px solid var(--line-2);background:var(--raised);color:var(--text);border-radius:12px;
-  padding:.58rem .95rem;font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--f-body);
-  transition:border-color .45s var(--ease)}
-.gate-code button:hover{border-color:var(--accent)}
-.gate-msg{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;min-height:1em}
-.gate-msg.err{color:var(--bad)}
-.gate-msg.ok{color:var(--ok)}
-
-.proj{display:flex;flex-direction:column;gap:.8rem}
-.proj-bars{display:flex;align-items:flex-end;gap:4px;height:130px;padding-top:.4rem}
-.proj-bars .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
-.proj-bars .b i{display:block;width:64%;margin-inline:auto;border-radius:4px 4px 0 0;background:var(--bad);transition:height .6s var(--ease)}
-.proj-bars .b.pos i{background:var(--accent)}
-.proj-bars.ghost .b i{background:var(--line-2)}
-.proj-bars .b span{font-family:var(--f-mono);font-size:8.5px;color:var(--dim);text-align:center;padding-top:.3rem;letter-spacing:.04em}
-.mini{display:flex;flex-direction:column;gap:.55rem}
-.mini-row{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;padding-bottom:.55rem;border-bottom:1px solid var(--line);font-size:.85rem}
-.mini-row:last-child{border-bottom:0}
-.mini-row span{color:var(--muted)}
-.mini-row b{font-family:var(--f-mono);font-weight:500;font-variant-numeric:tabular-nums}
-.mini-row b.up{color:var(--ok)}
-.mini-row b.down{color:var(--bad)}
-.mini h5{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 .2rem}
-.sens{width:100%;border-collapse:collapse;font-size:.83rem}
-.sens th{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);
-  text-align:right;padding:0 0 .5rem;font-weight:500;border-bottom:1px solid var(--line)}
-.sens th:first-child{text-align:left}
-.sens td{padding:.5rem 0;border-bottom:1px solid var(--line);text-align:right;
-  font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.sens td:first-child{text-align:left;color:var(--muted);font-family:var(--f-body)}
-.sens tr:last-child td{border-bottom:0}
-.sens .hl{color:var(--accent);font-weight:700}
-.sens .delta{color:var(--ok);font-weight:400}
-.growth{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
-.growth label{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.growth input[type=range]{flex:1;min-width:140px;accent-color:var(--accent)}
-.growth b{font-family:var(--f-mono);font-size:.92rem;min-width:3.4em;text-align:right}
-
-/* ============================================================= FORMULARIO = */
-.lead{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;width:100%;max-width:560px;margin-top:.3rem}
-.lead .full{grid-column:1/-1}
-.lead input,.lead textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:14px;
-  padding:.72rem .95rem;color:var(--text);font-family:var(--f-body);font-size:.9rem;resize:vertical}
-.lead input:focus,.lead textarea:focus{outline:none;border-color:var(--accent)}
-.lead input::placeholder,.lead textarea::placeholder{color:var(--dim)}
-.lead .hp{position:absolute;left:-9999px}
-.form-note{font-size:.78rem;color:var(--dim)}
-@media (max-width:640px){.lead{grid-template-columns:1fr}}
-@media (max-width:980px){.pro-inner{grid-template-columns:1fr}}
-
-
-/* ===================================================== CALCULADORA PRO === */
-.calc-split{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.pro{margin-top:clamp(16px,2vw,24px);position:relative}
-.pro-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
-  padding:1rem 1.25rem;border-bottom:1px solid var(--line);background:var(--surface)}
-.pro-head b{font-family:var(--f-display);font-size:1.02rem;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
-.pro-head .lock{width:15px;height:15px;color:var(--accent)}
-.pro-head small{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
-.pro-body{position:relative;min-height:330px}
-.pro-inner{padding:clamp(20px,2.6vw,32px);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,2.6vw,34px)}
-.pro-locked .pro-inner{filter:blur(7px);opacity:.42;pointer-events:none;user-select:none}
-
-.gate{position:absolute;inset:0;z-index:3;display:none;align-items:center;justify-content:center;padding:1.25rem}
-.pro-locked .gate{display:flex}
-.gate-card{width:min(430px,100%);border-radius:22px;padding:1.6rem;text-align:center;
-  background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border:1px solid var(--line-2);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.85rem;align-items:center}
-.gate-card h4{font-family:var(--f-display);font-size:1.22rem;font-weight:700;letter-spacing:-.025em}
-.gate-card p{font-size:.86rem;color:var(--muted);max-width:34ch}
-.gate-price{font-family:var(--f-mono);font-size:2.05rem;font-weight:700;letter-spacing:-.04em;color:var(--accent);line-height:1}
-.gate-price em{font-style:normal;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:block;margin-top:.3rem}
-.gate-code{display:flex;gap:.4rem;width:100%;max-width:320px}
-.gate-code input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:12px;
-  padding:.58rem .8rem;color:var(--text);font-family:var(--f-mono);font-size:.84rem;letter-spacing:.06em;text-transform:uppercase}
-.gate-code input:focus{outline:none;border-color:var(--accent)}
-.gate-code button{border:1px solid var(--line-2);background:var(--raised);color:var(--text);border-radius:12px;
-  padding:.58rem .95rem;font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--f-body);
-  transition:border-color .45s var(--ease)}
-.gate-code button:hover{border-color:var(--accent)}
-.gate-msg{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;min-height:1em}
-.gate-msg.err{color:var(--bad)}
-.gate-msg.ok{color:var(--ok)}
-
-.proj{display:flex;flex-direction:column;gap:.8rem}
-.proj-bars{display:flex;align-items:flex-end;gap:4px;height:130px;padding-top:.4rem}
-.proj-bars .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
-.proj-bars .b i{display:block;width:64%;margin-inline:auto;border-radius:4px 4px 0 0;background:var(--bad);transition:height .6s var(--ease)}
-.proj-bars .b.pos i{background:var(--accent)}
-.proj-bars.ghost .b i{background:var(--line-2)}
-.proj-bars .b span{font-family:var(--f-mono);font-size:8.5px;color:var(--dim);text-align:center;padding-top:.3rem;letter-spacing:.04em}
-.mini{display:flex;flex-direction:column;gap:.55rem}
-.mini-row{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;padding-bottom:.55rem;border-bottom:1px solid var(--line);font-size:.85rem}
-.mini-row:last-child{border-bottom:0}
-.mini-row span{color:var(--muted)}
-.mini-row b{font-family:var(--f-mono);font-weight:500;font-variant-numeric:tabular-nums}
-.mini-row b.up{color:var(--ok)}
-.mini-row b.down{color:var(--bad)}
-.mini h5{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 .2rem}
-.sens{width:100%;border-collapse:collapse;font-size:.83rem}
-.sens th{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);
-  text-align:right;padding:0 0 .5rem;font-weight:500;border-bottom:1px solid var(--line)}
-.sens th:first-child{text-align:left}
-.sens td{padding:.5rem 0;border-bottom:1px solid var(--line);text-align:right;
-  font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.sens td:first-child{text-align:left;color:var(--muted);font-family:var(--f-body)}
-.sens tr:last-child td{border-bottom:0}
-.sens .hl{color:var(--accent);font-weight:700}
-.sens .delta{color:var(--ok);font-weight:400}
-.growth{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
-.growth label{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.growth input[type=range]{flex:1;min-width:140px;accent-color:var(--accent)}
-.growth b{font-family:var(--f-mono);font-size:.92rem;min-width:3.4em;text-align:right}
-
-/* ============================================================= FORMULARIO = */
-.lead{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;width:100%;max-width:560px;margin-top:.3rem}
-.lead .full{grid-column:1/-1}
-.lead input,.lead textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:14px;
-  padding:.72rem .95rem;color:var(--text);font-family:var(--f-body);font-size:.9rem;resize:vertical}
-.lead input:focus,.lead textarea:focus{outline:none;border-color:var(--accent)}
-.lead input::placeholder,.lead textarea::placeholder{color:var(--dim)}
-.lead .hp{position:absolute;left:-9999px}
+.lead .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .form-note{font-size:.78rem;color:var(--dim)}
 @media (max-width:640px){.lead{grid-template-columns:1fr}}
 @media (max-width:980px){.pro-inner{grid-template-columns:1fr}}
@@ -602,6 +455,7 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+.guias-pie{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:clamp(20px,3vw,30px)}
 </style>
 
 <nav class="nav">
@@ -618,6 +472,8 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
       <a href="#calculadora">Calculadora</a>
       <a href="#guias">Guías</a>
       <a href="#proceso">Cómo trabajamos</a>
+      <a href="/sueldo/">Finanzas personales</a>
+      <a href="/tienda/">Tienda</a>
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="Cambiar entre modo claro y oscuro">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -633,6 +489,8 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
   <a href="#calculadora">Calculadora</a>
   <a href="#guias">Guías</a>
   <a href="#proceso">Cómo trabajamos</a>
+  <a href="/sueldo/">Finanzas personales</a>
+  <a href="/tienda/">Tienda</a>
 </div>
 
 <!-- ================================================================ HERO -->
@@ -824,9 +682,9 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
           <div class="gate" id="gate">
             <div class="gate-card">
               <span class="gate-price">$9.900<em>Pago único · acceso permanente</em></span>
-              <h4>Desbloqueá el análisis completo</h4>
+              <h3>Desbloqueá el análisis completo</h3>
               <p>Proyección a doce meses, tres escenarios y la tabla de sensibilidad de precio: cuánto menos podés vender si ajustás el precio.</p>
-              <a class="btn btn-1" id="payBtn" href="https://link.mercadopago.com.ar/fayer" target="_blank" rel="noopener">Comprar acceso
+              <a class="btn btn-1" id="payBtn" href="/api/comprar?producto=pro">Comprar acceso
                 <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               </a>
               <div class="gate-code">
@@ -834,126 +692,7 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
                 <button id="codeBtn" type="button">Entrar</button>
               </div>
               <span class="gate-msg" id="gateMsg"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="shell pro" id="pro">
-      <div class="core pro-locked" id="proCore">
-        <div class="pro-head">
-          <b>
-            <svg class="lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 10.5V7.8a5.5 5.5 0 0 1 11 0v2.7M5 10.5h14v9.2H5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-            Análisis completo
-          </b>
-          <small id="proState">Acceso Pro</small>
-        </div>
-        <div class="pro-body">
-          <div class="pro-inner">
-            <div class="proj">
-              <div class="growth">
-                <label for="gr">Crecimiento mensual</label>
-                <input id="gr" type="range" min="-5" max="15" step="0.5" value="3">
-                <b class="num" id="grOut">3,0%</b>
-              </div>
-              <h5 style="font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0">Resultado mensual proyectado · 12 meses</h5>
-              <div class="proj-bars" id="projBars" aria-hidden="true"></div>
-              <div class="mini-row"><span>Resultado acumulado del año</span><b class="num" id="pAcum">—</b></div>
-              <div class="mini-row"><span>Primer mes en positivo</span><b class="num" id="pBreak">—</b></div>
-            </div>
-
-            <div class="mini">
-              <div>
-                <h5>Escenarios anuales</h5>
-                <div class="mini-row"><span>Pesimista · −20% unidades</span><b class="num" id="sLow">—</b></div>
-                <div class="mini-row"><span>Base</span><b class="num" id="sMid">—</b></div>
-                <div class="mini-row"><span>Optimista · +20% unidades</span><b class="num" id="sHigh">—</b></div>
-              </div>
-              <div style="margin-top:.6rem">
-                <h5>Si subís el precio</h5>
-                <table class="sens">
-                  <thead><tr><th>Ajuste</th><th>Margen</th><th>Unid. necesarias</th></tr></thead>
-                  <tbody id="sensBody"></tbody>
-                </table>
-                <p class="form-note" style="margin-top:.6rem" id="sensNote"></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="gate" id="gate">
-            <div class="gate-card">
-              <span class="gate-price">$9.900<em>Pago único · acceso permanente</em></span>
-              <h4>Desbloqueá el análisis completo</h4>
-              <p>Proyección a doce meses, tres escenarios y la tabla de sensibilidad de precio: cuánto menos podés vender si ajustás el precio.</p>
-              <a class="btn btn-1" id="payBtn" href="https://link.mercadopago.com.ar/fayer" target="_blank" rel="noopener">Comprar acceso
-                <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              </a>
-              <div class="gate-code">
-                <input id="codeIn" placeholder="Ya tengo mi código" aria-label="Código de acceso" autocomplete="off" spellcheck="false">
-                <button id="codeBtn" type="button">Entrar</button>
-              </div>
-              <span class="gate-msg" id="gateMsg"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="shell pro" id="pro">
-      <div class="core pro-locked" id="proCore">
-        <div class="pro-head">
-          <b>
-            <svg class="lock" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.5 10.5V7.8a5.5 5.5 0 0 1 11 0v2.7M5 10.5h14v9.2H5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-            Análisis completo
-          </b>
-          <small id="proState">Acceso Pro</small>
-        </div>
-        <div class="pro-body">
-          <div class="pro-inner">
-            <div class="proj">
-              <div class="growth">
-                <label for="gr">Crecimiento mensual</label>
-                <input id="gr" type="range" min="-5" max="15" step="0.5" value="3">
-                <b class="num" id="grOut">3,0%</b>
-              </div>
-              <h5 style="font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0">Resultado mensual proyectado · 12 meses</h5>
-              <div class="proj-bars" id="projBars" aria-hidden="true"></div>
-              <div class="mini-row"><span>Resultado acumulado del año</span><b class="num" id="pAcum">—</b></div>
-              <div class="mini-row"><span>Primer mes en positivo</span><b class="num" id="pBreak">—</b></div>
-            </div>
-
-            <div class="mini">
-              <div>
-                <h5>Escenarios anuales</h5>
-                <div class="mini-row"><span>Pesimista · −20% unidades</span><b class="num" id="sLow">—</b></div>
-                <div class="mini-row"><span>Base</span><b class="num" id="sMid">—</b></div>
-                <div class="mini-row"><span>Optimista · +20% unidades</span><b class="num" id="sHigh">—</b></div>
-              </div>
-              <div style="margin-top:.6rem">
-                <h5>Si subís el precio</h5>
-                <table class="sens">
-                  <thead><tr><th>Ajuste</th><th>Margen</th><th>Unid. necesarias</th></tr></thead>
-                  <tbody id="sensBody"></tbody>
-                </table>
-                <p class="form-note" style="margin-top:.6rem" id="sensNote"></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="gate" id="gate">
-            <div class="gate-card">
-              <span class="gate-price">$9.900<em>Pago único · acceso permanente</em></span>
-              <h4>Desbloqueá el análisis completo</h4>
-              <p>Proyección a doce meses, tres escenarios y la tabla de sensibilidad de precio: cuánto menos podés vender si ajustás el precio.</p>
-              <a class="btn btn-1" id="payBtn" href="https://link.mercadopago.com.ar/fayer" target="_blank" rel="noopener">Comprar acceso
-                <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              </a>
-              <div class="gate-code">
-                <input id="codeIn" placeholder="Ya tengo mi código" aria-label="Código de acceso" autocomplete="off" spellcheck="false">
-                <button id="codeBtn" type="button">Entrar</button>
-              </div>
-              <span class="gate-msg" id="gateMsg"></span>
+              <span class="gate-alt">¿No te funciona el checkout? <a href="https://link.mercadopago.com.ar/fayer" target="_blank" rel="noopener">Pagá por este link</a> y te mandamos el código por mail dentro de las 24&nbsp;horas.</span>
             </div>
           </div>
         </div>
@@ -967,34 +706,56 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
   <div class="wrap">
     <div class="head">
       <span class="eyebrow">Guías</span>
-      <h2>Lo mismo que implementamos, explicado para que lo hagas solo.</h2>
-      <p class="lede">Material escrito en criollo, sin jerga de manual universitario, con los ejemplos y los números de una PyME argentina real.</p>
+      <h2>Cinco libros para ordenar la plata. En criollo y con números de acá.</h2>
+      <p class="lede">Cada capítulo abre con un caso concreto y cierra con una acción que se hace en menos de quince minutos. Nada de motivación ni de promesas de rendimiento: cuentas, orden y las decisiones explicadas para que las tomes vos. Treinta días de garantía en todos.</p>
     </div>
     <div class="guias">
-      <article class="guia reveal">
+      <a class="guia reveal" href="/tienda/#primer-sueldo">
         <div class="cover"><canvas data-cover="0"></canvas><span class="tag">Guía 01</span></div>
         <div class="guia-body">
-          <h3>Flujo de caja para los que odian Excel</h3>
-          <p>Cómo proyectar doce meses de caja con la información que ya tenés, y cómo leer el mes en que te quedás sin plata dos meses antes de que pase.</p>
-          <div class="guia-meta"><span class="num">$14.900</span><em>48 páginas</em></div>
+          <h3>Tu primer sueldo</h3>
+          <p>Qué hacer con la plata los primeros seis meses, antes de que se te vaya sin saber en qué.</p>
+          <div class="guia-meta"><span class="num">$9.900</span><em>56 páginas</em></div>
         </div>
-      </article>
-      <article class="guia reveal">
+      </a>
+      <a class="guia reveal" href="/tienda/#mes-no-cierra">
         <div class="cover"><canvas data-cover="1"></canvas><span class="tag">Guía 02</span></div>
         <div class="guia-body">
-          <h3>Cobrar a tiempo</h3>
-          <p>Política de crédito, antigüedad de cartera y los guiones concretos para reclamar una factura vencida sin perder al cliente.</p>
-          <div class="guia-meta"><span class="num">$12.900</span><em>36 páginas</em></div>
+          <h3>El mes no cierra</h3>
+          <p>Salir del rojo sin dejar de vivir: el mapa, los fijos antes que los cafés y cómo pedir un plazo.</p>
+          <div class="guia-meta"><span class="num">$14.900</span><em>54 páginas</em></div>
         </div>
-      </article>
-      <article class="guia reveal">
+      </a>
+      <a class="guia reveal" href="/tienda/#seis-meses">
         <div class="cover"><canvas data-cover="2"></canvas><span class="tag">Guía 03</span></div>
         <div class="guia-body">
-          <h3>Poner precio sin adivinar</h3>
-          <p>Costeo por absorción y variable, margen de contribución y cómo recalcular precios en un contexto donde los costos se mueven todos los meses.</p>
-          <div class="guia-meta"><span class="num">$16.900</span><em>52 páginas</em></div>
+          <h3>Seis meses de aire</h3>
+          <p>El colchón que te deja elegir. Los escalones, los cuatro aceleradores y dónde no ponerlo.</p>
+          <div class="guia-meta"><span class="num">$12.900</span><em>51 páginas</em></div>
         </div>
-      </article>
+      </a>
+      <a class="guia reveal" href="/tienda/#plata-en-pareja">
+        <div class="cover"><canvas data-cover="3"></canvas><span class="tag">Guía 04</span></div>
+        <div class="guia-body">
+          <h3>Plata en pareja</h3>
+          <p>El reparto proporcional, el techo de consulta y la reunión de quince minutos.</p>
+          <div class="guia-meta"><span class="num">$14.900</span><em>50 páginas</em></div>
+        </div>
+      </a>
+      <a class="guia reveal" href="/tienda/#cobrar-por-tu-cuenta">
+        <div class="cover"><canvas data-cover="4"></canvas><span class="tag">Guía 05</span></div>
+        <div class="guia-body">
+          <h3>Cobrar por tu cuenta</h3>
+          <p>Cuánto vale tu hora de verdad, cómo presupuestar, la seña y qué hacer cuando no te pagan.</p>
+          <div class="guia-meta"><span class="num">$19.900</span><em>57 páginas</em></div>
+        </div>
+      </a>
+    </div>
+    <div class="guias-pie">
+      <a class="btn btn-1" href="/tienda/">Ver la tienda y los combos
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn btn-2" href="/sueldo/">Probá las calculadoras gratis</a>
     </div>
   </div>
 </section>
@@ -1035,10 +796,10 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
         <form class="lead" name="diagnostico" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="diagnostico">
           <p class="hp"><label>No completar: <input name="bot-field"></label></p>
-          <input name="nombre" placeholder="Tu nombre" required autocomplete="name">
-          <input name="empresa" placeholder="Nombre de la empresa" autocomplete="organization">
-          <input class="full" name="email" type="email" placeholder="Email de contacto" required autocomplete="email">
-          <textarea class="full" name="mensaje" rows="2" placeholder="¿Qué es lo que más te preocupa hoy de tus números?"></textarea>
+          <input name="nombre" placeholder="Tu nombre" aria-label="Tu nombre" required autocomplete="name">
+          <input name="empresa" placeholder="Nombre de la empresa" aria-label="Nombre de la empresa" autocomplete="organization">
+          <input class="full" name="email" type="email" placeholder="Email de contacto" aria-label="Email de contacto" required autocomplete="email">
+          <textarea class="full" name="mensaje" rows="2" aria-label="Qué te preocupa de tus números" placeholder="¿Qué es lo que más te preocupa hoy de tus números?"></textarea>
           <div class="full" style="display:flex;flex-wrap:wrap;gap:.7rem;align-items:center">
             <button class="btn btn-1" type="submit">Reservar el diagnóstico
               <span class="btn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -1153,6 +914,158 @@ footer{border-top:1px solid var(--line);padding-block:2.6rem 3.4rem}
   }
   ids.forEach(function(k){ el[k].addEventListener("input", calc); });
   calc();
+
+
+  /* ------------------------------------------------- calculadora Pro --- */
+  // Códigos válidos, guardados como SHA-256 (no en texto plano).
+  // Para agregar uno nuevo: en la consola del navegador ejecutá
+  // crypto.subtle.digest('SHA-256', new TextEncoder().encode('TU-CODIGO'))
+  //   .then(b => console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')))
+  var CODES = [
+    "700e0932acdb36d9c595386cb0bd8d98ff4e03cfe21070a9a0c3353af907b390",
+    "04bbbf70bb661298307e987ee6f3906983fa0035f65a420a5bc8ccb7d7b04333",
+    "34a160f18f7a931b33fc0fd4d555f3064b5220b54f13956ec4ad6f12c1c474a6",
+    "291596527e711cf425b9fe3b17333e93d9d6fb6d984608ec1015568b52e1d6b1",
+    "6ad1d85d7e2c764615013ad0ba8661d19306a8d24c3ea87c4d456f0449c9fbd0",
+    "dde320ca6b0f0e4eee303b09b94f91b35c99ebc4c4cd4f3b77ab9a9c0c80dd9d",
+    "9be01ece647b2ad85aed327012bf210cc27d247d56a9c743139e9a615ab25a2b",
+    "97d831c13349be014585e86fe094d19ebaa9abd3816147018978c199ac213131",
+    "b14fa81067a7c8f0f0ecd147ab2cf09626e80b2722709681c7b854970088c6b2",
+    "451855e26d8a88b105df7ccad7f9e310b6ce39afdf6fa93d751e7f719f7edea7"
+  ];
+  var proCore = document.getElementById("proCore"),
+      proState = document.getElementById("proState"),
+      gateMsg = document.getElementById("gateMsg"),
+      codeIn = document.getElementById("codeIn"),
+      codeBtn = document.getElementById("codeBtn"),
+      gr = document.getElementById("gr"), grOut = document.getElementById("grOut");
+
+  function unlock(persist){
+    proCore.classList.remove("pro-locked");
+    proState.textContent = "Acceso activo";
+    if(persist){ try{ localStorage.setItem("fayer-pro","1"); }catch(e){} }
+    pro();
+  }
+  try{ if(localStorage.getItem("fayer-pro") === "1"){ unlock(false); } }catch(e){}
+  // Vuelta desde el pago: fayer.site/?acceso=CODIGO
+  try{
+    var qs = new URLSearchParams(location.search).get("acceso");
+    if(qs){ check(qs); }
+  }catch(e){}
+
+  function sha256(txt){
+    if(!(window.crypto && crypto.subtle)) return Promise.resolve(null);
+    return crypto.subtle.digest("SHA-256", new TextEncoder().encode(txt)).then(function(buf){
+      return Array.prototype.map.call(new Uint8Array(buf), function(x){
+        return ("0" + x.toString(16)).slice(-2);
+      }).join("");
+    });
+  }
+  function check(raw){
+    var v = String(raw || "").trim().toUpperCase();
+    if(!v){ return; }
+    sha256(v).then(function(h){
+      if(h && CODES.indexOf(h) !== -1){
+        gateMsg.className = "gate-msg ok";
+        gateMsg.textContent = "Código correcto";
+        if(window.fayerTrack) window.fayerTrack("pro_desbloqueado");
+        unlock(true);
+      }else{
+        gateMsg.className = "gate-msg err";
+        gateMsg.textContent = "Ese código no es válido";
+      }
+    });
+  }
+  codeBtn.addEventListener("click", function(){ check(codeIn.value); });
+  codeIn.addEventListener("keydown", function(e){ if(e.key === "Enter"){ check(codeIn.value); } });
+
+  var projBars = document.getElementById("projBars"),
+      pAcum = document.getElementById("pAcum"), pBreak = document.getElementById("pBreak"),
+      sLow = document.getElementById("sLow"), sMid = document.getElementById("sMid"),
+      sHigh = document.getElementById("sHigh"), sensBody = document.getElementById("sensBody"),
+      sensNote = document.getElementById("sensNote");
+  var MES = ["E","F","M","A","M","J","J","A","S","O","N","D"];
+
+  function anual(u0, g, mc, cf){
+    var t = 0;
+    for(var m = 0; m < 12; m++){ t += u0 * Math.pow(1 + g, m) * mc - cf; }
+    return t;
+  }
+
+  var GHOST = [18,26,22,34,30,42,38,52,47,61,58,72];
+  function ghost(){
+    projBars.className = "proj-bars ghost";
+    projBars.innerHTML = "";
+    GHOST.forEach(function(v, i){
+      var d = document.createElement("div");
+      d.className = "b";
+      d.innerHTML = '<i style="height:' + v + '%"></i><span>' + MES[i] + '</span>';
+      projBars.appendChild(d);
+    });
+  }
+
+  function pro(){
+    if(proCore.classList.contains("pro-locked")){ ghost(); return; }
+    projBars.className = "proj-bars";
+    var cf = +el.cf.value || 0, pv = +el.pv.value || 0, cv = +el.cv.value || 0, uv = +el.uv.value || 0;
+    var mc = pv - cv, g = (+gr.value || 0) / 100;
+    grOut.textContent = (g * 100).toFixed(1).replace(".", ",") + "%";
+
+    if(mc <= 0){
+      projBars.innerHTML = "";
+      [pAcum, pBreak, sLow, sMid, sHigh].forEach(function(n){ n.textContent = "—"; });
+      sensBody.innerHTML = "";
+      sensNote.textContent = "Con margen de contribución negativo no hay proyección posible: primero hay que corregir precio o costo.";
+      return;
+    }
+
+    var vals = [], acum = 0, brk = null;
+    for(var m = 0; m < 12; m++){
+      var r = uv * Math.pow(1 + g, m) * mc - cf;
+      vals.push(r); acum += r;
+      if(brk === null && r > 0){ brk = m; }
+    }
+    var top = Math.max.apply(null, vals.map(Math.abs)) || 1;
+    projBars.innerHTML = "";
+    vals.forEach(function(v, i){
+      var d = document.createElement("div");
+      d.className = "b" + (v > 0 ? " pos" : "");
+      d.innerHTML = '<i style="height:' + Math.max(3, Math.abs(v) / top * 100) + '%"></i><span>' + MES[i] + '</span>';
+      projBars.appendChild(d);
+    });
+
+    pAcum.textContent = (acum < 0 ? "-$" : "$") + ars.format(Math.abs(Math.round(acum)));
+    pAcum.className = "num " + (acum >= 0 ? "up" : "down");
+    pBreak.textContent = brk === null ? "Ninguno en 12 meses" : "Mes " + (brk + 1);
+
+    [["sLow", 0.8, sLow], ["sMid", 1, sMid], ["sHigh", 1.2, sHigh]].forEach(function(s){
+      var t = anual(uv * s[1], g, mc, cf);
+      s[2].textContent = (t < 0 ? "-$" : "$") + ars.format(Math.abs(Math.round(t)));
+      s[2].className = "num " + (t >= 0 ? "up" : "down");
+    });
+
+    var peBase = Math.ceil(cf / mc);
+    sensBody.innerHTML = "";
+    [0, 5, 10, 15].forEach(function(d){
+      var pv2 = pv * (1 + d / 100), mc2 = pv2 - cv;
+      var pe2 = mc2 > 0 ? Math.ceil(cf / mc2) : 0;
+      var dif = peBase > 0 ? (pe2 - peBase) / peBase * 100 : 0;
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        "<td>" + (d === 0 ? "Precio actual" : "+" + d + "% · $" + ars.format(Math.round(pv2))) + "</td>" +
+        "<td>" + pct.format(mc2 / pv2 * 100) + "%</td>" +
+        '<td class="' + (d === 0 ? "" : "hl") + '">' + ars.format(pe2) +
+        (d === 0 ? "" : ' <span class="delta">(' + pct.format(dif) + '%)</span>') + "</td>";
+      sensBody.appendChild(tr);
+    });
+
+    var pv10 = pv * 1.10, pe10 = Math.ceil(cf / (pv10 - cv));
+    sensNote.textContent = "Subiendo el precio un 10% necesitás " + ars.format(peBase - pe10) +
+      " unidades menos por mes para cubrir la misma estructura. Ese es el poder del margen frente al volumen.";
+  }
+  gr.addEventListener("input", pro);
+  ids.forEach(function(k){ el[k].addEventListener("input", pro); });
+  pro();
 
 
   /* ------------------------------------------------- eventos medidos --- */

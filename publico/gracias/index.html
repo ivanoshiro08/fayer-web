@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gracias por tu compra — Fayer</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#131110" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAF8F6" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<!-- ══════════════════════════════════════════════════════════ MEDICIÓN ══
+     Lo que quede vacío NO se carga: cero pedidos al pedo y cero errores. -->
+<script>
+window.FAYER_IDS = {
+  ga4:    "G-JHRBRHRYED",          // Google Analytics 4 — fayer.site
+  gtm:    "",                      // GTM-XXXXXXX (si usás GTM, vaciá ga4)
+  tiktok: "DAF531BC77UDHLL3KIH0",  // Píxel de TikTok
+  meta:   ""                       // Píxel de Meta
+};
+(function(){
+  var ID = window.FAYER_IDS || {};
+  function js(src){ var s=document.createElement("script"); s.async=true; s.src=src;
+    document.head.appendChild(s); return s; }
+
+  window.dataLayer = window.dataLayer || [];
+
+  if (ID.ga4) {
+    js("https://www.googletagmanager.com/gtag/js?id=" + ID.ga4);
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag("js", new Date());
+    gtag("config", ID.ga4);
+  }
+  if (ID.gtm) {
+    dataLayer.push({"gtm.start": Date.now(), event: "gtm.js"});
+    js("https://www.googletagmanager.com/gtm.js?id=" + ID.gtm);
+  }
+  if (ID.meta) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", ID.meta); fbq("track", "PageView");
+  }
+  if (ID.tiktok) {
+    !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+    ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+    ttq.setAndDefer=function(e,n){e[n]=function(){e.push([n].concat(Array.prototype.slice.call(arguments,0)))}};
+    for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+    ttq.instance=function(e){for(var n=ttq._i[e]||[],i=0;i<ttq.methods.length;i++)ttq.setAndDefer(n,ttq.methods[i]);return n};
+    ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js";
+    ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;ttq._t=ttq._t||{};ttq._t[e]=+new Date;
+    ttq._o=ttq._o||{};ttq._o[e]=n||{};var o=d.createElement("script");o.type="text/javascript";
+    o.async=!0;o.src=r+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];
+    a.parentNode.insertBefore(o,a)};
+    ttq.load(ID.tiktok); ttq.page();}(window,document,"ttq");
+  }
+
+  window.fayerTrack = function(evento, datos){
+    try{
+      if (window.gtag) gtag("event", evento, datos || {});
+      else if (ID.gtm) dataLayer.push(Object.assign({event: evento}, datos || {}));
+      if (window.fbq) fbq("trackCustom", evento, datos || {});
+      if (window.ttq) ttq.track(evento, datos || {});
+    }catch(e){}
+  };
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,600;12..96,75..100,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+</head>
+<body>
+
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#131110; --surface:#1A1715; --raised:#221E1B;
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+  --text:#F4F0EC; --muted:#9A9086; --dim:#6E655D;
+  --accent:#FF4D00; --accent-2:#FF8A4C;
+  --ok:#4BAE7E; --bad:#E5574D;
+  --ease:cubic-bezier(.32,.72,0,1);
+  --f-display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --f-body:"Instrument Sans","Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:#FAF8F6; --surface:#FFFFFF; --raised:#F4EFEA;
+    --line:rgba(24,17,12,.11); --line-2:rgba(24,17,12,.21);
+    --text:#191411; --muted:#6E6259; --dim:#948A81;
+    --accent:#DE4200; --accent-2:#A83200; --ok:#2F8A5E; --bad:#C0342B;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#FAF8F6; --surface:#FFFFFF; --raised:#F4EFEA;
+  --line:rgba(24,17,12,.11); --line-2:rgba(24,17,12,.21);
+  --text:#191411; --muted:#6E6259; --dim:#948A81;
+  --accent:#DE4200; --accent-2:#A83200; --ok:#2F8A5E; --bad:#C0342B;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);
+  min-height:100svh;display:grid;place-items:center;padding:24px;line-height:1.6;
+  background-image:radial-gradient(900px 520px at 72% -8%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 62%)}
+h1,h2{font-family:var(--f-display);margin:0;letter-spacing:-.03em;line-height:1.14;text-wrap:balance}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+.caja{width:min(520px,100%);background:var(--surface);border:1px solid var(--line);
+  border-radius:26px;padding:clamp(24px,5vw,38px);box-shadow:0 32px 80px -28px rgba(0,0,0,.6);
+  display:flex;flex-direction:column;gap:1.05rem;align-items:center;text-align:center}
+.marca{display:flex;align-items:center;gap:.5rem;font-family:var(--f-display);font-weight:800;
+  font-size:1rem;letter-spacing:-.04em;color:var(--muted)}
+.marca svg{width:20px;height:20px}
+.tilde{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--ok) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--ok) 45%,transparent);color:var(--ok)}
+h1,.como-h1{font-size:clamp(1.45rem,3.4vw,1.85rem);font-weight:800;margin:0}
+.sub{font-size:.9rem;color:var(--muted);max-width:40ch}
+
+.codigo{width:100%;background:var(--bg);border:1px dashed var(--line-2);border-radius:16px;
+  padding:1.1rem;display:flex;flex-direction:column;gap:.45rem}
+.codigo small{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.codigo b{font-family:var(--f-mono);font-size:clamp(1.15rem,3.6vw,1.6rem);font-weight:700;
+  letter-spacing:.04em;color:var(--accent);word-break:break-all}
+
+.entregas{width:100%;display:flex;flex-direction:column;gap:.7rem}
+.ent{width:100%;background:var(--bg);border:1px solid var(--line-2);border-radius:16px;
+  padding:.95rem 1rem;display:flex;flex-direction:column;gap:.55rem;text-align:left}
+.ent.cod{border-style:dashed}
+.ent .qt{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.ent .nb{font-weight:600;font-size:.92rem;line-height:1.3}
+.ent .cv{font-family:var(--f-mono);font-size:clamp(1.05rem,3.4vw,1.4rem);font-weight:700;
+  letter-spacing:.04em;color:var(--accent);word-break:break-all}
+.ent .pend{font-size:.83rem;color:var(--muted);line-height:1.5}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem 1.3rem;
+  border-radius:999px;font-size:.9rem;font-weight:600;border:1px solid transparent;cursor:pointer;
+  font-family:inherit;transition:transform .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn-1{background:var(--accent);color:#fff}
+.btn-1:hover{background:var(--accent-2);transform:translateY(-1px)}
+.btn-2{background:var(--raised);border-color:var(--line-2);color:var(--text)}
+.btn-2:hover{border-color:var(--accent);transform:translateY(-1px)}
+.fila{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;width:100%}
+.fila .btn{flex:1;min-width:150px}
+
+.aviso{font-size:.8rem;color:var(--dim);border-top:1px solid var(--line);padding-top:.95rem;width:100%;line-height:1.55}
+.estado{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.estado.err{color:var(--bad)}
+.spin{width:26px;height:26px;border:2px solid var(--line-2);border-top-color:var(--accent);
+  border-radius:50%;animation:giro .8s linear infinite}
+@keyframes giro{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin{animation-duration:2s}*{transition-duration:.01ms!important}}
+</style>
+
+<div class="caja">
+  <span class="marca">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="1.4" y="1.4" width="21.2" height="21.2" rx="6.4" stroke="currentColor" stroke-width="1.3" opacity=".4"/>
+      <path d="M7 16.4V9.1M12 16.4V6.6M17 16.4v-4.6" stroke="#FF4D00" stroke-width="2.1" stroke-linecap="round"/>
+    </svg>Fayer
+  </span>
+
+  <!-- Cargando -->
+  <div id="cargando" style="display:flex;flex-direction:column;gap:.9rem;align-items:center">
+    <div class="spin" aria-hidden="true"></div>
+    <span class="estado">Confirmando tu pago…</span>
+  </div>
+
+  <!-- Éxito -->
+  <div id="ok" hidden style="display:flex;flex-direction:column;gap:1.05rem;align-items:center;width:100%">
+    <div class="tilde" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h1>Listo, ya es tuyo</h1>
+    <p class="sub" id="sub"></p>
+
+    <div class="entregas" id="entregas"></div>
+
+    <p class="aviso" id="avisoOk">
+      <b style="color:var(--text)">Guardá esta página.</b> Los códigos son de un solo uso y las descargas
+      quedan en este link. Sacale una captura o mandátelo por mail antes de cerrarla.
+    </p>
+  </div>
+
+  <!-- Error -->
+  <div id="error" hidden style="display:flex;flex-direction:column;gap:.9rem;align-items:center">
+    <h2 id="errTit" class="como-h1">No pudimos confirmar el pago</h2>
+    <p class="sub" id="errTxt"></p>
+    <a class="btn btn-2" href="https://fayer.site#contacto">Escribinos y lo resolvemos</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  try{ var t = localStorage.getItem("fayer.tema"); if(t) document.documentElement.setAttribute("data-theme", t); }catch(e){}
+
+  var $ = function(s){ return document.querySelector(s); };
+  function mostrar(cual){ ["cargando","ok","error"].forEach(function(k){ $("#"+k).hidden = (k !== cual); }); }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function fallar(tit, txt){ if(tit) $("#errTit").textContent = tit; $("#errTxt").textContent = txt; mostrar("error"); }
+
+  var qs = new URLSearchParams(location.search);
+  // Mercado Pago devuelve payment_id; algunos flujos usan collection_id.
+  var pagoId = qs.get("payment_id") || qs.get("collection_id") || "";
+  var estado = qs.get("status") || qs.get("collection_status") || "";
+
+  if(!pagoId){
+    fallar("Nos falta un dato",
+      "Esta página se abre sola después de pagar. Si llegaste por tu cuenta, no hay ningún pago para confirmar.");
+    return;
+  }
+  if(estado && estado !== "approved"){
+    fallar("El pago todavía no está acreditado",
+      "Mercado Pago lo marcó como “" + estado + "”. Si pagaste por transferencia o efectivo puede tardar un rato; " +
+      "volvé a abrir este link más tarde.");
+    return;
+  }
+
+  fetch("/api/pago", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({payment_id: pagoId})
+  }).then(function(r){ return r.json(); })
+    .then(function(d){
+      if(!d || !d.ok){
+        var m = {
+          no_aprobado: "El pago figura como “" + (d && d.estado || "pendiente") + "”. Si acabás de pagar, esperá un minuto y recargá.",
+          no_encontrado: "No encontramos ese pago en Mercado Pago.",
+          sin_config: "Hay un problema de configuración de nuestro lado. Escribinos y te pasamos el código a mano.",
+          mp_error: "No pudimos consultar Mercado Pago en este momento. Recargá en un minuto."
+        };
+        return fallar(null, (d && m[d.error]) || "Algo salió mal. Escribinos y lo resolvemos a mano en el día.");
+      }
+
+      var ents = (d && d.entregas) || [];
+      if(!ents.length){
+        return fallar("El pago entró pero falta la entrega",
+          "Escribinos con el número de operación y te lo resolvemos a mano en el día.");
+      }
+
+      var codigos = ents.filter(function(e){ return e.tipo === "codigo"; }).length;
+      var bajadas = ents.filter(function(e){ return e.tipo === "descarga"; }).length;
+      var partes  = [];
+      if(codigos) partes.push(codigos === 1 ? "un código de acceso" : codigos + " códigos de acceso");
+      if(bajadas) partes.push(bajadas === 1 ? "una descarga" : bajadas + " descargas");
+      $("#sub").textContent = partes.length
+        ? "Tu compra: " + partes.join(" y ") + "."
+        : "Ya registramos tu compra.";
+
+      function entrar(id, codigo){
+        return id === "sistema"
+          ? "/sistema/?acceso=" + encodeURIComponent(codigo)
+          : "/?acceso=" + encodeURIComponent(codigo);
+      }
+
+      $("#entregas").innerHTML = ents.map(function(e, i){
+        var nb = '<span class="nb">' + esc(e.nombre || "Tu compra") + '</span>';
+        if(e.tipo === "codigo"){
+          return '<div class="ent cod"><span class="qt">Código de acceso</span>' + nb +
+            '<span class="cv" id="cv' + i + '">' + esc(e.codigo) + '</span>' +
+            '<div class="fila"><button class="btn btn-2" type="button" data-copiar="cv' + i + '">Copiar código</button>' +
+            '<a class="btn btn-1" href="' + entrar(e.id, e.codigo) + '">Entrar ahora</a></div></div>';
+        }
+        if(e.tipo === "descarga"){
+          return '<div class="ent"><span class="qt">Descarga</span>' + nb +
+            '<div class="fila"><a class="btn btn-1" href="' + esc(e.link) + '" download>Bajar el PDF</a></div></div>';
+        }
+        return '<div class="ent"><span class="qt">En camino</span>' + nb +
+          '<p class="pend">Todavía no está publicado. Escribinos y te lo mandamos apenas salga, sin costo.</p></div>';
+      }).join("");
+
+      mostrar("ok");
+
+      if(window.fayerTrack) window.fayerTrack("compra_confirmada", {
+        items: ents.map(function(e){ return e.id; }).join(","),
+        value: d.monto || 0, currency: "ARS"
+      });
+    })
+    .catch(function(){
+      fallar(null, "No pudimos conectarnos. Revisá tu conexión y recargá la página.");
+    });
+
+  document.addEventListener("click", function(ev){
+    var btn = ev.target.closest("[data-copiar]");
+    if(!btn) return;
+    var destino = document.getElementById(btn.getAttribute("data-copiar"));
+    if(!destino) return;
+    function ok(){ btn.textContent = "Copiado"; setTimeout(function(){ btn.textContent = "Copiar código"; }, 2000); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(destino.textContent).then(ok, function(){ btn.textContent = "Copialo a mano"; });
+    } else {
+      btn.textContent = "Copialo a mano";
+    }
+  });
+
+})();
+</script>
+
+</body>
+</html>

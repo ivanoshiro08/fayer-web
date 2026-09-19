@@ -1,9 +1,17 @@
 import { getStore } from "@netlify/blobs";
 
-/* Códigos de un solo uso.
-   Guardados como SHA-256: el código en texto plano nunca vive en el servidor.
-   La primera vez que se canjea se marca como usado y se devuelve un token.
-   Ese token es lo único que permite volver a entrar con el mismo código. */
+/* ─────────────────────────────────────────────────────────────────────────
+   Canje de códigos. Dos orígenes, mismo tratamiento:
+
+   1. Códigos EMITIDOS automáticamente por una venta (función /api/pago).
+      Viven en Netlify Blobs bajo "emitido/<sha256>".
+   2. Códigos MANUALES tuyos, para regalar o vender a mano.
+      Van en la lista CODIGOS de acá abajo, guardados como SHA-256.
+
+   En los dos casos el código es de UN SOLO USO: al canjearlo se marca
+   y se devuelve un token. Ese token es lo único que permite volver a entrar.
+   ───────────────────────────────────────────────────────────────────────── */
+
 const CODIGOS = {
   "700e0932acdb36d9c595386cb0bd8d98ff4e03cfe21070a9a0c3353af907b390": "pro",
   "04bbbf70bb661298307e987ee6f3906983fa0035f65a420a5bc8ccb7d7b04333": "pro",
@@ -48,17 +56,34 @@ export default async (req) => {
   if (!codigo) return json({ ok: false, error: "invalido" });
 
   const hash = await sha256(codigo);
-  const producto = CODIGOS[hash];
+  const store = getStore("fayer-codigos");
 
-  // Código inexistente, o de otro producto que el que se está pidiendo.
+  // ── 1. ¿Es un código emitido por una venta?
+  const emitido = await store.get(`emitido/${hash}`, { type: "json" });
+  if (emitido) {
+    if (body.producto && body.producto !== emitido.producto) {
+      return json({ ok: false, error: "invalido" });
+    }
+    if (emitido.canjeado) {
+      if (body.token && body.token === emitido.token) {
+        return json({ ok: true, producto: emitido.producto, token: emitido.token, reingreso: true });
+      }
+      return json({ ok: false, error: "usado", fecha: emitido.canjeado_el });
+    }
+    const token = crypto.randomUUID();
+    await store.setJSON(`emitido/${hash}`, {
+      ...emitido, canjeado: true, canjeado_el: new Date().toISOString(), token
+    });
+    return json({ ok: true, producto: emitido.producto, token });
+  }
+
+  // ── 2. ¿Es uno de tus códigos manuales?
+  const producto = CODIGOS[hash];
   if (!producto) return json({ ok: false, error: "invalido" });
   if (body.producto && body.producto !== producto) return json({ ok: false, error: "invalido" });
 
-  const store = getStore("fayer-codigos");
   const usado = await store.get(hash, { type: "json" });
-
   if (usado) {
-    // Ya canjeado. Solo entra quien tenga el token de ese canje.
     if (body.token && body.token === usado.token) {
       return json({ ok: true, producto, token: usado.token, reingreso: true });
     }

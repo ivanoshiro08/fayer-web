@@ -1,0 +1,1132 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Las calculadoras de Fayer — gratis, sin registrarte</title>
+<meta name="description" content="Cuatro calculadoras gratis: adónde se te va el sueldo, cuánto tarda tu colchón, cómo repartir los gastos en pareja y cuánto vale tu hora si trabajás por tu cuenta. Sin registro, sin guardar nada.">
+<link rel="canonical" href="https://fayer.site/sueldo/">
+<meta name="theme-color" content="#131110" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAF8F6" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fayer.site/sueldo/">
+<meta property="og:title" content="¿Adónde se te va el sueldo?">
+<meta property="og:description" content="Cuatro calculadoras gratis: tu mes, tu colchón, las cuentas en pareja y tu hora facturable real.">
+<meta property="og:image" content="https://fayer.site/og-sueldo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<!-- ══════════════════════════════════════════════════════════ MEDICIÓN ══
+     Pegá tus IDs acá abajo. Lo que dejes vacío NO se carga: cero pedidos
+     al pedo y cero errores en consola. Es el único lugar que tenés que tocar. -->
+<script>
+window.FAYER_IDS = {
+  ga4:    "G-JHRBRHRYED",   // Google Analytics 4 — fayer.site
+  gtm:    "",   // Google Tag Manager — GTM-XXXXXXX (si usás GTM, dejá ga4 vacío)
+  tiktok: "DAF531BC77UDHLL3KIH0",   // TikTok Pixel — fayer.site
+  meta:   ""    // Meta Pixel — Administrador de eventos
+};
+(function(){
+  var ID = window.FAYER_IDS || {};
+  function js(src){ var s=document.createElement("script"); s.async=true; s.src=src;
+    document.head.appendChild(s); return s; }
+
+  window.dataLayer = window.dataLayer || [];
+
+  if (ID.ga4) {
+    js("https://www.googletagmanager.com/gtag/js?id=" + ID.ga4);
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag("js", new Date());
+    gtag("config", ID.ga4);
+  }
+  if (ID.gtm) {
+    dataLayer.push({"gtm.start": Date.now(), event: "gtm.js"});
+    js("https://www.googletagmanager.com/gtm.js?id=" + ID.gtm);
+  }
+  if (ID.meta) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", ID.meta); fbq("track", "PageView");
+  }
+  if (ID.tiktok) {
+    !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+    ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+    ttq.setAndDefer=function(e,n){e[n]=function(){e.push([n].concat(Array.prototype.slice.call(arguments,0)))}};
+    for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+    ttq.instance=function(e){for(var n=ttq._i[e]||[],i=0;i<ttq.methods.length;i++)ttq.setAndDefer(n,ttq.methods[i]);return n};
+    ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js";
+    ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;ttq._t=ttq._t||{};ttq._t[e]=+new Date;
+    ttq._o=ttq._o||{};ttq._o[e]=n||{};var o=d.createElement("script");o.type="text/javascript";
+    o.async=!0;o.src=r+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];
+    a.parentNode.insertBefore(o,a)};
+    ttq.load(ID.tiktok); ttq.page();}(window,document,"ttq");
+  }
+
+  // Un solo disparador para los cuatro destinos. Si no hay ninguno, no hace nada.
+  window.fayerTrack = function(evento, datos){
+    try{
+      if (window.gtag) gtag("event", evento, datos || {});
+      else if (ID.gtm) dataLayer.push(Object.assign({event: evento}, datos || {}));
+      if (window.fbq) fbq("trackCustom", evento, datos || {});
+      if (window.ttq) ttq.track(evento, datos || {});
+    }catch(e){}
+  };
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,600;12..96,75..100,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Calculadoras de Fayer","url":"https://fayer.site/sueldo/",
+"applicationCategory":"FinanceApplication","operatingSystem":"Cualquiera, funciona en el navegador",
+"inLanguage":"es-AR","isAccessibleForFree":true,
+"offers":{"@type":"Offer","price":0,"priceCurrency":"ARS"},
+"description":"Cuatro calculadoras gratis de finanzas personales en pesos argentinos: el reparto del sueldo, los escalones del colchón de emergencia, el reparto proporcional de gastos en pareja y la hora facturable real de un trabajador independiente.",
+"featureList":["Reparto del sueldo en tres destinos","Escalones del colchón con plazos","Reparto proporcional en pareja","Hora facturable y sueldo nivelado para freelance"],
+"publisher":{"@type":"Organization","name":"Fayer","url":"https://fayer.site/"}}
+</script>
+</head>
+<body>
+
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#131110; --bg-deep:#0D0B0A; --surface:#1A1715; --raised:#221E1B;
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.17);
+  --text:#F4F0EC; --muted:#9A9086; --dim:#6E655D;
+  --accent:#FF4D00; --accent-2:#FF8A4C;
+  --ok:#4BAE7E; --warn:#E8B64C; --bad:#E5574D;
+  --glass:rgba(26,23,21,.84); --inset:inset 0 1px 0 rgba(255,255,255,.07);
+  --grid-line:rgba(255,255,255,.045);
+  --ease:cubic-bezier(.32,.72,0,1); --ease-out:cubic-bezier(.16,1,.3,1);
+  --f-display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --f-body:"Instrument Sans","Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:#FAF8F6; --bg-deep:#F1ECE7; --surface:#FFFFFF; --raised:#F4EFEA;
+    --line:rgba(24,17,12,.11); --line-2:rgba(24,17,12,.22);
+    --text:#191411; --muted:#6E6259; --dim:#948A81;
+    --accent:#DE4200; --accent-2:#A83200;
+    --ok:#2F8A5E; --warn:#9C6D15; --bad:#C0342B;
+    --glass:rgba(255,255,255,.88); --inset:inset 0 1px 0 rgba(255,255,255,.9);
+    --grid-line:rgba(24,17,12,.05);
+  }
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#FAF8F6; --bg-deep:#F1ECE7; --surface:#FFFFFF; --raised:#F4EFEA;
+  --line:rgba(24,17,12,.11); --line-2:rgba(24,17,12,.22);
+  --text:#191411; --muted:#6E6259; --dim:#948A81;
+  --accent:#DE4200; --accent-2:#A83200;
+  --ok:#2F8A5E; --warn:#9C6D15; --bad:#C0342B;
+  --glass:rgba(255,255,255,.88); --inset:inset 0 1px 0 rgba(255,255,255,.9);
+  --grid-line:rgba(24,17,12,.05);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--f-display);margin:0;letter-spacing:-.032em;line-height:1.05;text-wrap:balance}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;letter-spacing:-.025em}
+
+.wrap{width:100%;max-width:780px;margin-inline:auto;padding-inline:clamp(18px,5vw,28px)}
+.ledger{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px);background-size:100% 44px;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 14%,#000 86%,transparent);
+          mask-image:linear-gradient(to bottom,transparent,#000 14%,#000 86%,transparent)}
+
+/* ───────────────────────────────────────────────────────────────── NAV ── */
+.bar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:.7rem;
+  padding:.7rem clamp(18px,5vw,28px);padding-top:calc(.7rem + env(safe-area-inset-top,0px));
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line)}
+.marca{padding-block:.55rem;margin-block:-.55rem;display:flex;align-items:center;gap:.5rem;font-family:var(--f-display);font-weight:800;
+  font-size:1rem;letter-spacing:-.045em}
+.marca svg{width:20px;height:20px;flex:0 0 20px}
+.sp{flex:1}
+.mini{font-size:.8rem;color:var(--muted);transition:color .35s var(--ease);padding:.65rem .2rem;margin:-.65rem -.2rem;display:inline-flex;align-items:center}
+.mini:hover{color:var(--accent)}
+
+/* ──────────────────────────────────────────────────────────────── HERO ── */
+.hero{position:relative;padding-block:clamp(30px,7vw,54px) clamp(16px,3vw,22px);overflow:hidden}
+.hero::before{content:"";position:absolute;left:50%;top:-40%;width:min(760px,130vw);aspect-ratio:1;
+  transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 16%,transparent),transparent 62%)}
+.hero .wrap{position:relative;z-index:1}
+.tag{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f-mono);font-size:10px;
+  font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;padding:.36rem .75rem;background:var(--surface);
+  box-shadow:var(--inset);margin-bottom:1rem}
+.tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+h1{font-size:clamp(2.1rem,8.2vw,3.5rem);font-weight:800}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{font-size:clamp(.96rem,2.4vw,1.08rem);color:var(--muted);margin-top:.9rem;max-width:48ch}
+
+/* ─────────────────────────────────────────────────────────────── TABS ── */
+.tabs{position:sticky;top:calc(48px + env(safe-area-inset-top,0px));z-index:20;
+  margin-top:clamp(20px,4vw,28px);background:var(--glass);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--line-2);border-radius:999px;padding:.3rem;
+  display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1 0 auto;white-space:nowrap;border:0;background:none;cursor:pointer;
+  padding:.55rem .95rem;border-radius:999px;font-size:.855rem;font-weight:600;color:var(--muted);
+  transition:color .35s var(--ease),background .35s var(--ease);position:relative}
+.tab:hover{color:var(--text)}
+.tab[aria-selected="true"]{background:var(--accent);color:#fff}
+@media (min-width:640px){ .tab{flex:1 1 0} }
+
+.panel{padding-top:clamp(20px,4vw,28px)}
+.panel-cab{margin-bottom:.4rem}
+.panel-cab h2{font-size:clamp(1.25rem,4.4vw,1.6rem);font-weight:800}
+.panel-cab p{color:var(--muted);font-size:.9rem;margin-top:.45rem;max-width:52ch}
+.panel-cab .src{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);margin-top:.6rem;display:block}
+.panel-cab .src a{color:var(--accent);border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
+.panel-cab .src a:hover{border-color:var(--accent)}
+
+/* ─────────────────────────────────────────────────────────── FORMULARIO ── */
+.campos{display:grid;gap:.75rem;margin-top:clamp(18px,4vw,26px)}
+.campo{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.campo label{font-family:var(--f-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.caja{display:flex;align-items:center;gap:.5rem;background:var(--surface);border:1px solid var(--line-2);
+  border-radius:15px;padding:.7rem .95rem;transition:border-color .4s var(--ease)}
+.caja:focus-within{border-color:var(--accent)}
+.caja i{font-style:normal;color:var(--dim);font-family:var(--f-mono);font-size:.95rem;flex:0 0 auto}
+.caja input{flex:1;min-width:0;width:100%;background:none;border:0;padding:0;font-family:var(--f-mono);
+  font-size:1.08rem;font-weight:500;font-variant-numeric:tabular-nums}
+.caja input:focus,.caja select:focus{outline:none}
+.caja select{flex:1;min-width:0;width:100%;background:none;border:0;padding:0;
+  font-size:.96rem;font-weight:500;appearance:none;-webkit-appearance:none;cursor:pointer}
+.caja select option{background:var(--surface);color:var(--text)}
+.caja.sel{position:relative}
+.caja.sel::after{content:"";width:7px;height:7px;border-right:2px solid var(--dim);
+  border-bottom:2px solid var(--dim);transform:rotate(45deg) translateY(-2px);flex:0 0 auto}
+.caja input::-webkit-outer-spin-button,.caja input::-webkit-inner-spin-button{-webkit-appearance:none;appearance:none;margin:0}
+.caja input[type=number]{-moz-appearance:textfield;appearance:textfield}
+.pista{font-size:.76rem;color:var(--dim)}
+.sub{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dim);margin-top:1.5rem;padding-bottom:.5rem;border-bottom:1px solid var(--line);
+  grid-column:1/-1;display:block}
+
+/* ───────────────────────────────────────────────────────── RESULTADO ── */
+.res{position:relative;margin-top:clamp(24px,5vw,34px);border-radius:26px;overflow:hidden;
+  background:var(--surface);border:1px solid var(--line-2);box-shadow:0 30px 70px -30px rgba(0,0,0,.55)}
+.res-top{padding:clamp(20px,5vw,30px);text-align:center;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--line)}
+.res-top::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(420px 220px at 50% 0%,color-mix(in srgb,var(--tinte,var(--accent)) 20%,transparent),transparent 70%)}
+.res-top > *{position:relative;z-index:1}
+.tipo{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.titulo{font-family:var(--f-display);font-size:clamp(1.75rem,6.4vw,2.7rem);font-weight:800;
+  letter-spacing:-.04em;line-height:1.04;margin:.45rem 0 .2rem;color:var(--tinte,var(--accent))}
+.titulo.chico{font-size:clamp(1.5rem,5.4vw,2.1rem)}
+.frase{font-size:.92rem;color:var(--muted);max-width:38ch;margin-inline:auto}
+
+.cifras{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.cifras.dos{grid-template-columns:repeat(2,1fr)}
+.cifra{padding:1rem .6rem;text-align:center;border-right:1px solid var(--line);min-width:0}
+.cifra:last-child{border-right:0}
+.cifra span{display:block;font-family:var(--f-mono);font-size:9px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--dim);margin-bottom:.25rem;line-height:1.35}
+.cifra b{font-family:var(--f-mono);font-size:clamp(.92rem,3.4vw,1.22rem);font-weight:700;letter-spacing:-.03em}
+
+.barra{display:flex;height:16px;margin:0}
+.barra i{display:block;transition:width .7s var(--ease)}
+.leyenda{padding:1rem clamp(18px,4vw,24px) 1.15rem;display:grid;gap:.5rem}
+.item{display:flex;align-items:center;gap:.6rem;font-size:.87rem}
+.item .pt{width:9px;height:9px;border-radius:3px;flex:0 0 9px}
+.item .nb{flex:1;color:var(--muted);min-width:0}
+.item .vl{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:.85rem}
+.item .pc{font-family:var(--f-mono);font-size:.76rem;color:var(--dim);min-width:3.4em;text-align:right}
+
+.pasos{padding:0 clamp(18px,4vw,24px) clamp(20px,4vw,26px);display:grid;gap:.55rem}
+.paso{display:flex;gap:.7rem;align-items:flex-start;padding:.75rem .85rem;border-radius:14px;
+  background:var(--bg);border:1px solid var(--line);font-size:.87rem;line-height:1.5;
+  transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.paso:hover{border-color:var(--line-2);transform:translateX(3px)}
+.paso b{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--accent);
+  padding-top:.18rem;flex:0 0 auto}
+.paso span{color:var(--muted)}
+.paso span em{font-style:normal;color:var(--text);font-weight:600}
+
+.captura{padding:0 clamp(18px,4vw,24px) clamp(18px,4vw,24px);font-size:.76rem;color:var(--dim);text-align:center}
+
+.destinos{padding:.6rem clamp(18px,4vw,24px) 0;display:grid;gap:.55rem}
+@media (min-width:560px){ .destinos{grid-template-columns:repeat(3,1fr)} }
+.dest{border:1px solid var(--line);border-radius:16px;padding:.85rem .9rem;background:var(--bg);
+  transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.dest:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.dest .dn{display:flex;align-items:baseline;gap:.5rem}
+.dest .dn b{font-family:var(--f-display);font-size:1rem;font-weight:800;letter-spacing:-.02em;flex:1}
+.dest .dn span{font-family:var(--f-mono);font-size:.74rem;color:var(--dim)}
+.dest .dm{font-family:var(--f-mono);font-size:clamp(1.05rem,4vw,1.3rem);font-weight:700;
+  letter-spacing:-.03em;margin-top:.3rem;color:var(--acc-dest,var(--accent))}
+.dest .dq{font-size:.78rem;color:var(--muted);line-height:1.45;margin-top:.35rem}
+.dest:nth-child(1){--acc-dest:var(--text)}
+.dest:nth-child(2){--acc-dest:var(--ok)}
+.dest:nth-child(3){--acc-dest:var(--accent)}
+
+/* ───────────────────────────────────────────────────── ESCALERA (colchón) ── */
+.escalera{padding:clamp(16px,4vw,22px) clamp(18px,4vw,24px);display:grid;gap:.6rem}
+.esc{border:1px solid var(--line);border-radius:16px;padding:.8rem .9rem;background:var(--bg);
+  transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.esc:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.esc.hecho{border-color:color-mix(in srgb,var(--ok) 45%,transparent)}
+.esc-cab{display:flex;align-items:baseline;gap:.55rem;flex-wrap:wrap}
+.esc-n{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--accent);flex:0 0 auto}
+.esc-t{font-weight:600;font-size:.92rem;flex:1;min-width:0}
+.esc-m{font-family:var(--f-mono);font-size:.9rem;font-variant-numeric:tabular-nums;font-weight:700}
+.esc-q{font-size:.79rem;color:var(--dim);margin-top:.2rem}
+.esc-pb{height:6px;border-radius:99px;background:var(--raised);overflow:hidden;margin-top:.6rem}
+.esc-pb i{display:block;height:100%;border-radius:99px;background:var(--accent);
+  transition:width .8s var(--ease)}
+.esc.hecho .esc-pb i{background:var(--ok)}
+.esc-pie{display:flex;justify-content:space-between;gap:.6rem;margin-top:.45rem;font-size:.78rem}
+.esc-pie .l{color:var(--dim)}
+.esc-pie .r{font-family:var(--f-mono);font-variant-numeric:tabular-nums;color:var(--text);font-weight:600;text-align:right}
+.esc.hecho .esc-pie .r{color:var(--ok)}
+
+/* ──────────────────────────────────────────────────────── TABLA PAREJA ── */
+.tabla{width:100%;border-collapse:collapse;font-size:.85rem}
+.tabla th,.tabla td{padding:.62rem .6rem;text-align:right;border-bottom:1px solid var(--line)}
+.tabla th:first-child,.tabla td:first-child{text-align:left;color:var(--muted);font-weight:400}
+.tabla thead th{font-family:var(--f-mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--dim);font-weight:500;border-bottom:1px solid var(--line-2)}
+.tabla td b{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-weight:700;letter-spacing:-.02em}
+.tabla tr.destacada td{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.tabla tr.destacada td:first-child{color:var(--text);font-weight:600}
+.tabla-caja{padding:clamp(14px,3vw,20px) clamp(14px,4vw,24px);overflow-x:auto}
+.tabla-tit{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dim);padding:0 clamp(18px,4vw,24px);margin-top:.4rem}
+
+/* ─────────────────────────────────────────────────────── FILAS DE DATO ── */
+.filas{padding:clamp(14px,3vw,20px) clamp(18px,4vw,24px);display:grid;gap:.05rem}
+.fila{display:flex;align-items:baseline;gap:.7rem;padding:.5rem 0;border-bottom:1px solid var(--line);font-size:.87rem}
+.fila:last-child{border-bottom:0}
+.fila .l{flex:1;color:var(--muted);min-width:0}
+.fila .r{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:-.02em;text-align:right}
+.fila.total{border-top:1px solid var(--line-2);border-bottom:0;margin-top:.3rem;padding-top:.7rem}
+.fila.total .l{color:var(--text);font-weight:600}
+.fila.total .r{font-size:1.05rem;font-weight:700;color:var(--accent)}
+
+.aviso{margin:0 clamp(18px,4vw,24px) clamp(18px,4vw,24px);padding:.75rem .9rem;border-radius:14px;
+  background:var(--bg);border:1px solid var(--line);font-size:.8rem;color:var(--muted);line-height:1.5}
+.aviso b{color:var(--text)}
+
+/* ──────────────────────────────────────────────────────────── LIBRO CTA ── */
+.libro{margin:0 clamp(18px,4vw,24px) clamp(18px,4vw,24px);display:flex;align-items:center;gap:.9rem;
+  padding:.85rem .95rem;border-radius:16px;background:var(--bg);border:1px solid var(--line);
+  transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.libro:hover{border-color:var(--accent);transform:translateY(-2px)}
+.libro .tap{width:34px;height:46px;flex:0 0 34px;border-radius:3px 6px 6px 3px;
+  background:linear-gradient(145deg,var(--accent),var(--accent-2));
+  box-shadow:inset 2px 0 0 rgba(0,0,0,.25),0 6px 16px -6px color-mix(in srgb,var(--accent) 60%,transparent)}
+.libro .tx{flex:1;min-width:0}
+.libro .tx b{display:block;font-size:.9rem;font-weight:600}
+.libro .tx span{display:block;font-size:.78rem;color:var(--dim);margin-top:.12rem}
+.libro .fl{flex:0 0 auto;color:var(--accent)}
+
+/* ──────────────────────────────────────────────────────────────── CTA ── */
+.cierre{position:relative;margin-top:clamp(34px,8vw,60px);padding-block:clamp(34px,8vw,60px);
+  border-top:1px solid var(--line);background:var(--bg-deep)}
+.cierre .wrap{position:relative;z-index:1}
+.cierre h2{font-size:clamp(1.5rem,5.5vw,2.1rem);font-weight:800}
+.cierre p{color:var(--muted);margin-top:.75rem;font-size:.95rem;max-width:50ch}
+.btns{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.72rem 1.35rem;
+  border-radius:999px;font-size:.9rem;font-weight:600;border:1px solid transparent;cursor:pointer;
+  transition:transform .45s var(--ease),background .45s var(--ease),border-color .45s var(--ease)}
+.btn:active{transform:scale(.975)}
+.btn-1{background:var(--accent);color:#fff}
+.btn-1:hover{background:var(--accent-2);transform:translateY(-2px)}
+.btn-2{background:var(--surface);border-color:var(--line-2)}
+.btn-2:hover{border-color:var(--accent);transform:translateY(-2px)}
+
+.mail{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem;max-width:460px}
+.mail input{flex:1;min-width:190px;background:var(--surface);border:1px solid var(--line-2);
+  border-radius:14px;padding:.72rem 1rem;font-size:.9rem}
+.mail input:focus{outline:none;border-color:var(--accent)}
+.mail .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.nota{font-size:.76rem;color:var(--dim);margin-top:.7rem}
+
+footer{border-top:1px solid var(--line);padding-block:1.9rem 2.6rem;font-size:.79rem;color:var(--dim)}
+footer a{color:var(--accent);padding:.5rem 0;display:inline-block}
+
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+@media (min-width:620px){ .campos{grid-template-columns:1fr 1fr} .campos .ancho{grid-column:1/-1} }
+</style>
+
+<header class="bar">
+  <a class="marca" href="/">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="1.4" y="1.4" width="21.2" height="21.2" rx="6.4" stroke="currentColor" stroke-width="1.3" opacity=".4"/>
+      <path d="M7 16.4V9.1M12 16.4V6.6M17 16.4v-4.6" stroke="#FF4D00" stroke-width="2.1" stroke-linecap="round"/>
+    </svg>Fayer
+  </a>
+  <span class="sp"></span>
+  <a class="mini" href="/tienda/">Tienda</a>
+</header>
+
+<section class="hero">
+  <div class="ledger" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="tag">Gratis · sin registrarte · nada se guarda</span>
+    <h1>¿Adónde se te <em>va el sueldo</em>?</h1>
+    <p class="lede">Cuatro calculadoras. Tu mes, tu colchón, las cuentas en pareja y tu hora facturable real si trabajás por tu cuenta. Los números se quedan en tu teléfono: no se envían a ningún lado.</p>
+
+    <div class="tabs" role="tablist" aria-label="Calculadoras">
+      <button class="tab" role="tab" id="t-mes"      aria-controls="p-mes"      aria-selected="true">Tu mes</button>
+      <button class="tab" role="tab" id="t-colchon"  aria-controls="p-colchon"  aria-selected="false">Tu colchón</button>
+      <button class="tab" role="tab" id="t-pareja"   aria-controls="p-pareja"   aria-selected="false">En pareja</button>
+      <button class="tab" role="tab" id="t-free"     aria-controls="p-free"     aria-selected="false">Por tu cuenta</button>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════ 1 · TU MES ══ -->
+    <div class="panel" id="p-mes" role="tabpanel" aria-labelledby="t-mes">
+      <div class="panel-cab">
+        <h2>Tu mes, en cuatro números</h2>
+        <p>Cuánto te queda de verdad, qué porcentaje estás guardando y cuántos meses aguantás si mañana dejás de cobrar.</p>
+      </div>
+
+      <div class="campos">
+        <div class="campo">
+          <label for="ing">Lo que cobrás por mes</label>
+          <div class="caja"><i>$</i><input id="ing" type="number" inputmode="numeric" min="0" step="10000" value="1430000"></div>
+        </div>
+        <div class="campo">
+          <label for="fij">Gastos fijos (alquiler, servicios, cuotas)</label>
+          <div class="caja"><i>$</i><input id="fij" type="number" inputmode="numeric" min="0" step="10000" value="745000"></div>
+        </div>
+        <div class="campo">
+          <label for="var">Gastos variables (súper, salidas, nafta)</label>
+          <div class="caja"><i>$</i><input id="var" type="number" inputmode="numeric" min="0" step="10000" value="430000"></div>
+        </div>
+        <div class="campo">
+          <label for="aho">Lo que tenés ahorrado hoy</label>
+          <div class="caja"><i>$</i><input id="aho" type="number" inputmode="numeric" min="0" step="10000" value="420000"></div>
+        </div>
+        <div class="campo ancho">
+          <label for="viv">Cómo vivís</label>
+          <div class="caja sel"><select id="viv">
+            <option value="casa">Vivo con mi familia y aporto algo</option>
+            <option value="compartido" selected>Alquilo compartido</option>
+            <option value="solo">Alquilo solo o con pareja</option>
+          </select></div>
+        </div>
+        <p class="pista ancho">Arranca con números de ejemplo. Cambialos por los tuyos y se recalcula solo.</p>
+      </div>
+
+      <div class="res" id="res">
+        <div class="res-top">
+          <span class="tipo">Tu resultado</span>
+          <div class="titulo" id="rTit">—</div>
+          <p class="frase" id="rFra">—</p>
+        </div>
+        <div class="cifras">
+          <div class="cifra"><span>Te queda</span><b class="num" id="rQueda">—</b></div>
+          <div class="cifra"><span>Tasa de ahorro</span><b class="num" id="rTasa">—</b></div>
+          <div class="cifra"><span>Colchón</span><b class="num" id="rCol">—</b></div>
+        </div>
+        <div class="barra" id="rBarra" aria-hidden="true"></div>
+        <div class="leyenda" id="rLeyenda"></div>
+
+        <p class="tabla-tit">Los tres destinos de cada peso</p>
+        <div class="destinos" id="rDest"></div>
+        <p class="aviso" id="rDestNota"></p>
+
+        <div class="pasos" id="rPasos"></div>
+        <a class="libro" href="/tienda/#mes-no-cierra">
+          <span class="tap" aria-hidden="true"></span>
+          <span class="tx"><b id="rLibroT">El mes no cierra</b><span id="rLibroB">Cómo salir del rojo sin dejar de vivir.</span></span>
+          <svg class="fl" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p class="captura">Sacale una captura y mandásela a quien te tenga que ver los números con vos.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ 2 · TU COLCHÓN ══ -->
+    <div class="panel" id="p-colchon" role="tabpanel" aria-labelledby="t-colchon" hidden>
+      <div class="panel-cab">
+        <h2>Los escalones de tu colchón</h2>
+        <p>El colchón completo no es el primer objetivo: es el tercero. Acá ves los cuatro escalones, cuánto es cada uno y en cuántos meses llegás al ritmo que puedas sostener.</p>
+        <span class="src">El método sale de <a href="/tienda/#seis-meses">Seis meses de aire</a></span>
+      </div>
+
+      <div class="campos">
+        <div class="campo">
+          <label for="cGasto">Tu mes de supervivencia</label>
+          <div class="caja"><i>$</i><input id="cGasto" type="number" inputmode="numeric" min="0" step="10000" value="1150000"></div>
+        </div>
+        <div class="campo">
+          <label for="cAho">Lo que tenés guardado hoy</label>
+          <div class="caja"><i>$</i><input id="cAho" type="number" inputmode="numeric" min="0" step="10000" value="380000"></div>
+        </div>
+        <div class="campo">
+          <label for="cAporte">Lo que podés apartar por mes</label>
+          <div class="caja"><i>$</i><input id="cAporte" type="number" inputmode="numeric" min="0" step="5000" value="180000"></div>
+        </div>
+        <div class="campo">
+          <label for="cMeta">Tu objetivo, en meses de gasto</label>
+          <div class="caja"><input id="cMeta" type="number" inputmode="numeric" min="1" max="24" step="1" value="6"><i>meses</i></div>
+        </div>
+        <div class="campo ancho">
+          <label for="cExtra">Extras al año que mandás al colchón (aguinaldo, bonos, changas)</label>
+          <div class="caja"><i>$</i><input id="cExtra" type="number" inputmode="numeric" min="0" step="50000" value="700000"></div>
+        </div>
+        <p class="pista ancho">El mes de supervivencia no es tu sueldo: es lo que te sale vivir un mes en el que no entra nada. Suele ser entre 30% y 50% menos.</p>
+      </div>
+
+      <div class="res" id="cRes">
+        <div class="res-top">
+          <span class="tipo">Tu objetivo</span>
+          <div class="titulo" id="cTit">—</div>
+          <p class="frase" id="cFra">—</p>
+        </div>
+        <div class="cifras">
+          <div class="cifra"><span>Ya tenés</span><b class="num" id="cYa">—</b></div>
+          <div class="cifra"><span>Te falta</span><b class="num" id="cFalta">—</b></div>
+          <div class="cifra"><span>Llegás en</span><b class="num" id="cTiempo">—</b></div>
+        </div>
+        <p class="tabla-tit">Los escalones</p>
+        <div class="escalera" id="cEsc"></div>
+        <div class="pasos" id="cPasos"></div>
+        <a class="libro" href="/tienda/#seis-meses">
+          <span class="tap" aria-hidden="true"></span>
+          <span class="tx"><b>Seis meses de aire</b><span>Los escalones, los cuatro aceleradores y dónde no poner la plata.</span></span>
+          <svg class="fl" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p class="captura">Los tiempos suponen que el aporte se mantiene y que los extras entran repartidos en el año.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════ 3 · EN PAREJA ══ -->
+    <div class="panel" id="p-pareja" role="tabpanel" aria-labelledby="t-pareja" hidden>
+      <div class="panel-cab">
+        <h2>El reparto proporcional</h2>
+        <p>Cuando los ingresos son distintos, mitad y mitad no es igual esfuerzo. Acá ves qué porcentaje aporta cada uno, cuánto va al pozo común y cuánto le queda a cada uno después.</p>
+        <span class="src">El método sale de <a href="/tienda/#plata-en-pareja">Plata en pareja</a></span>
+      </div>
+
+      <div class="campos">
+        <div class="campo">
+          <label for="pN1">Nombre (o inicial)</label>
+          <div class="caja"><input id="pN1" type="text" maxlength="14" value="Dani" autocomplete="off"></div>
+        </div>
+        <div class="campo">
+          <label for="pI1">Lo que cobra por mes</label>
+          <div class="caja"><i>$</i><input id="pI1" type="number" inputmode="numeric" min="0" step="10000" value="2400000"></div>
+        </div>
+        <div class="campo">
+          <label for="pN2">Nombre (o inicial)</label>
+          <div class="caja"><input id="pN2" type="text" maxlength="14" value="Ceci" autocomplete="off"></div>
+        </div>
+        <div class="campo">
+          <label for="pI2">Lo que cobra por mes</label>
+          <div class="caja"><i>$</i><input id="pI2" type="number" inputmode="numeric" min="0" step="10000" value="960000"></div>
+        </div>
+        <div class="campo ancho">
+          <label for="pCom">Gastos comunes del mes (lo que va al pozo)</label>
+          <div class="caja"><i>$</i><input id="pCom" type="number" inputmode="numeric" min="0" step="10000" value="1400000"></div>
+        </div>
+        <div class="campo ancho">
+          <label for="pMin">Mínimo personal intocable de cada uno (opcional)</label>
+          <div class="caja"><i>$</i><input id="pMin" type="number" inputmode="numeric" min="0" step="10000" value="0"></div>
+        </div>
+        <p class="pista ancho">Si hay mucha diferencia de ingresos, el mínimo personal protege a quien gana menos: el reparto se calcula sobre lo que queda por encima de ese piso.</p>
+      </div>
+
+      <div class="res" id="pRes">
+        <div class="res-top">
+          <span class="tipo">Reparto proporcional</span>
+          <div class="titulo chico" id="pTit">—</div>
+          <p class="frase" id="pFra">—</p>
+        </div>
+        <div class="cifras dos">
+          <div class="cifra"><span id="pL1">—</span><b class="num" id="pA1">—</b></div>
+          <div class="cifra"><span id="pL2">—</span><b class="num" id="pA2">—</b></div>
+        </div>
+        <div class="tabla-caja">
+          <table class="tabla">
+            <thead><tr><th></th><th id="pH1">—</th><th id="pH2">—</th></tr></thead>
+            <tbody id="pCuerpo"></tbody>
+          </table>
+        </div>
+        <div class="pasos" id="pPasos"></div>
+        <a class="libro" href="/tienda/#plata-en-pareja">
+          <span class="tap" aria-hidden="true"></span>
+          <span class="tx"><b>Plata en pareja</b><span>Los tres esquemas, el techo de consulta y la reunión de quince minutos.</span></span>
+          <svg class="fl" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p class="captura">El reparto proporcional divide los gastos comunes, no los ingresos. Lo que cada uno gana sigue siendo suyo.</p>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════════════════ 4 · POR TU CUENTA ══ -->
+    <div class="panel" id="p-free" role="tabpanel" aria-labelledby="t-free" hidden>
+      <div class="panel-cab">
+        <h2>Tu hora, tu sueldo y tu aire</h2>
+        <p>La cuenta ingenua —lo que querés ganar dividido 160— da casi la mitad de lo que necesitás cobrar. Acá está la cuenta completa, con el tiempo que no se factura y los costos adentro.</p>
+        <span class="src">El método sale de <a href="/tienda/#cobrar-por-tu-cuenta">Cobrar por tu cuenta</a></span>
+      </div>
+
+      <div class="campos">
+        <span class="sub">Tu hora facturable real</span>
+        <div class="campo">
+          <label for="fNeto">Lo que querés ganar por mes, neto</label>
+          <div class="caja"><i>$</i><input id="fNeto" type="number" inputmode="numeric" min="0" step="50000" value="2000000"></div>
+        </div>
+        <div class="campo">
+          <label for="fCostos">Costos de tu actividad por mes</label>
+          <div class="caja"><i>$</i><input id="fCostos" type="number" inputmode="numeric" min="0" step="10000" value="300000"></div>
+        </div>
+        <div class="campo">
+          <label for="fImp">Impuestos y comisiones, sobre lo que facturás</label>
+          <div class="caja"><input id="fImp" type="number" inputmode="numeric" min="0" max="80" step="1" value="18"><i>%</i></div>
+        </div>
+        <div class="campo">
+          <label for="fHoras">Horas por semana que le dedicás</label>
+          <div class="caja"><input id="fHoras" type="number" inputmode="numeric" min="1" max="90" step="1" value="45"><i>h</i></div>
+        </div>
+        <div class="campo">
+          <label for="fVac">Semanas de vacaciones</label>
+          <div class="caja"><input id="fVac" type="number" inputmode="numeric" min="0" max="20" step="1" value="3"><i>sem</i></div>
+        </div>
+        <div class="campo">
+          <label for="fFer">Semanas de feriados y enfermedad</label>
+          <div class="caja"><input id="fFer" type="number" inputmode="numeric" min="0" max="20" step="1" value="3"><i>sem</i></div>
+        </div>
+        <div class="campo ancho">
+          <label for="fPct">Porcentaje de tu tiempo que es facturable</label>
+          <div class="caja"><input id="fPct" type="number" inputmode="numeric" min="10" max="100" step="5" value="60"><i>%</i></div>
+        </div>
+        <p class="pista ancho">El porcentaje facturable descuenta presupuestos, reuniones, administración y búsqueda de clientes. Para la mayoría está entre 50% y 70%.</p>
+
+        <span class="sub">Tu sueldo y cuánto aire tenés</span>
+        <div class="campo">
+          <label for="fFact">Lo que facturaste en los últimos 12 meses</label>
+          <div class="caja"><i>$</i><input id="fFact" type="number" inputmode="numeric" min="0" step="100000" value="22200000"></div>
+        </div>
+        <div class="campo">
+          <label for="fGuard">Lo que tenés guardado hoy</label>
+          <div class="caja"><i>$</i><input id="fGuard" type="number" inputmode="numeric" min="0" step="50000" value="1600000"></div>
+        </div>
+        <p class="pista ancho">Si tenés menos de doce meses de historia, poné lo que tengas: el sueldo sale conservador igual.</p>
+      </div>
+
+      <div class="res" id="fRes">
+        <div class="res-top">
+          <span class="tipo">Tu hora facturable real</span>
+          <div class="titulo" id="fTit">—</div>
+          <p class="frase" id="fFra">—</p>
+        </div>
+        <div class="cifras">
+          <div class="cifra"><span>Horas facturables al año</span><b class="num" id="fHF">—</b></div>
+          <div class="cifra"><span>Tenés que facturar al año</span><b class="num" id="fFA">—</b></div>
+          <div class="cifra"><span>La cuenta ingenua daba</span><b class="num" id="fIng">—</b></div>
+        </div>
+        <div class="filas" id="fFilas"></div>
+
+        <p class="tabla-tit">Tu sueldo, a partir de tu historial</p>
+        <div class="filas" id="fSueldo"></div>
+
+        <div class="pasos" id="fPasos"></div>
+        <p class="aviso"><b>El porcentaje de impuestos es tuyo, no nuestro.</b> Depende de tu régimen, tu actividad y tu jurisdicción. Pedíselo una vez a un contador matriculado y usalo todo el año: acá va como dato de entrada, no como recomendación.</p>
+        <a class="libro" href="/tienda/#cobrar-por-tu-cuenta">
+          <span class="tap" aria-hidden="true"></span>
+          <span class="tx"><b>Cobrar por tu cuenta</b><span>Presupuestar, la seña, los plazos reales y qué hacer cuando no te pagan.</span></span>
+          <svg class="fl" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cierre">
+  <div class="ledger" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2>Esto es una foto. Lo que ordena es la película.</h2>
+    <p>Un mes te dice poco. Lo que cambia las cosas es ver los doce meses seguidos: cuándo te quedás corto, cuánto te deben, qué vence la semana que viene. Para eso está el sistema.</p>
+
+    <div class="btns">
+      <a class="btn btn-1" href="/sistema/">Ver el sistema
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn btn-2" href="/tienda/">Las guías</a>
+      <a class="btn btn-2" href="/">Fayer para empresas</a>
+    </div>
+
+    <form class="mail" name="guia" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="guia">
+      <p class="hp"><label>No completar: <input name="bot-field"></label></p>
+      <input name="email" type="email" placeholder="Tu mail" required autocomplete="email" aria-label="Tu mail">
+      <button class="btn btn-1" type="submit">Mandame la guía gratis</button>
+    </form>
+    <p class="nota">Una guía corta para ordenar tus números en una semana. Sin spam: si no te sirve, te das de baja y listo.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Fayer · <a href="/">fayer.site</a> — Estas calculadoras son orientativas y no reemplazan asesoramiento financiero ni impositivo profesional.
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  try{ var t = localStorage.getItem("fayer.tema"); if(t) document.documentElement.setAttribute("data-theme", t); }catch(e){}
+
+  var $  = function(s){ return document.querySelector(s); };
+  var ID = function(s){ return document.getElementById(s); };
+  var ARS = new Intl.NumberFormat("es-AR",{maximumFractionDigits:0});
+  function money(n){ n = Math.round(n||0); return (n<0?"-$":"$") + ARS.format(Math.abs(n)); }
+  function pc(n){ return Math.round(n||0) + "%"; }
+  function num(id){ var e = ID(id); return e ? (+e.value || 0) : 0; }
+  function txt(id, def){ var e = ID(id); var v = e ? (e.value||"").trim() : ""; return v || def; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function meses(n){
+    if(!isFinite(n) || n <= 0) return "—";
+    if(n < 1) return "menos de un mes";
+    if(n < 12) return Math.ceil(n) + (Math.ceil(n) === 1 ? " mes" : " meses");
+    var a = Math.floor(n/12), m = Math.round(n%12);
+    if(m === 12){ a += 1; m = 0; }
+    return a + (a === 1 ? " año" : " años") + (m ? " y " + m + (m === 1 ? " mes" : " meses") : "");
+  }
+  function pintar(cont, filas){
+    ID(cont).innerHTML = filas.map(function(f){
+      var cls = f[2] ? ' class="fila total"' : ' class="fila"';
+      var col = f[3] ? ' style="color:' + f[3] + '"' : '';
+      return '<div' + cls + '><span class="l">' + f[0] + '</span><span class="r"' + col + '>' + f[1] + '</span></div>';
+    }).join("");
+  }
+  function pasosHTML(cont, arr){
+    ID(cont).innerHTML = arr.map(function(p, i){
+      return '<div class="paso"><b>' + ("0"+(i+1)).slice(-2) + '</b><span>' + p + '</span></div>';
+    }).join("");
+  }
+
+  /* ═════════════════════════════════════════════════════════════ 1 · MES ══ */
+  var TRAMOS = [
+    { max:  0,    tit:"El mes no cierra", tinte:"var(--bad)",
+      fra:"Estás gastando más de lo que entra. Pasa, y tiene arreglo: lo primero es ver dónde." },
+    { max:  0.05, tit:"Al límite", tinte:"var(--warn)",
+      fra:"Llegás, pero sin aire. Cualquier imprevisto te empuja al rojo." },
+    { max:  0.15, tit:"Equilibrado", tinte:"var(--warn)",
+      fra:"Te queda algo todos los meses. Ahora la pregunta es si ese resto se acumula o se evapora." },
+    { max:  0.30, tit:"Con margen", tinte:"var(--ok)",
+      fra:"Estás ahorrando en serio. A este ritmo el colchón se construye solo." },
+    { max: 99,    tit:"Blindado", tinte:"var(--ok)",
+      fra:"Guardás más de un tercio de lo que entra. Muy poca gente llega acá." }
+  ];
+
+  function pasosMes(d){
+    if(d.sobra <= 0) return [
+      "Anotá <em>todo</em> lo que gastás durante dos semanas. No para recortar todavía: para ver. Casi siempre aparece un gasto que nadie recordaba.",
+      "Mirá primero los <em>fijos</em>, no los cafés. Bajar " + money(d.fij*0.1) + " de gastos fijos rinde más que cualquier recorte chico.",
+      "Si hay cuotas o tarjeta, ordenalas por <em>tasa</em> y atacá la más cara primero."
+    ];
+    if(d.colchon < 3) return [
+      "Tu meta ahora no es invertir: es llegar a <em>tres meses</em> de colchón. Te faltan " + money(d.gasto*3 - d.aho) + ".",
+      "A este ritmo llegás en <em>" + meses((d.gasto*3 - d.aho)/d.sobra) + "</em>. Automatizá la transferencia el día que cobrás, antes de gastar.",
+      "Recién con el colchón armado tiene sentido pensar en dónde poner la plata."
+    ];
+    if(d.colchon < 6) return [
+      "Ya tenés <em>" + d.colchon.toFixed(1).replace(".",",") + " meses</em> de respaldo. La referencia sana son seis.",
+      "Te faltan " + money(Math.max(0, d.gasto*6 - d.aho)) + " para llegar. Son <em>" + meses(Math.max(0,(d.gasto*6 - d.aho))/d.sobra) + "</em> más al ritmo actual.",
+      "Mientras tanto, que ese dinero <em>no se quede quieto</em> perdiendo contra la inflación."
+    ];
+    return [
+      "Tenés más de seis meses cubiertos. El colchón ya está: <em>dejá de agrandarlo</em>.",
+      "De acá en adelante, lo que sobra conviene que trabaje en vez de dormir en la caja de ahorro.",
+      "Y revisá si podés subir el ingreso: con los gastos ordenados, cada peso extra va directo al objetivo."
+    ];
+  }
+
+  var LIBRO_MES = [
+    { t:"El mes no cierra", b:"Cómo salir del rojo sin dejar de vivir.", h:"/tienda/#mes-no-cierra" },
+    { t:"Tu primer sueldo", b:"Repartir la plata antes de gastarla, no después.", h:"/tienda/#primer-sueldo" },
+    { t:"Seis meses de aire", b:"El colchón que te saca del apuro, y cómo armarlo sin sufrir.", h:"/tienda/#seis-meses" }
+  ];
+
+  /* El reparto en tres destinos del capítulo 2 de "Tu primer sueldo".
+     No hay fórmula universal: estos son puntos de partida según dónde vivís,
+     que después se ajustan con los números reales del mes 1. */
+  var REPARTOS = {
+    casa:        { v:.45, g:.30, d:.25, txt:"vivís con tu familia y aportás algo" },
+    compartido:  { v:.70, g:.20, d:.10, txt:"alquilás compartido" },
+    solo:        { v:.80, g:.10, d:.10, txt:"alquilás solo o con pareja" }
+  };
+
+  function destinos(d){
+    var r = REPARTOS[ID("viv").value] || REPARTOS.compartido;
+    var filas = [
+      ["Vivir", r.v, "Lo que pagarías igual aunque te quedaras todo el mes en tu casa."],
+      ["Guardar", r.g, "Sale de la cuenta el día que cobrás. Si sigue ahí, no está guardado."],
+      ["Disfrutar", r.d, "Se gasta sin pedir permiso. No es opcional: es lo que sostiene a las otras dos."]
+    ];
+    ID("rDest").innerHTML = filas.map(function(f){
+      return '<div class="dest"><div class="dn"><b>' + f[0] + '</b>' +
+        '<span>' + Math.round(f[1]*100) + '%</span></div>' +
+        '<div class="dm">' + money(d.ing * f[1]) + '</div>' +
+        '<p class="dq">' + f[2] + '</p></div>';
+    }).join("");
+
+    var vivirHoy = d.ing > 0 ? d.gasto/d.ing : 0;
+    var nota;
+    if(d.ing <= 0){
+      nota = "Poné lo que cobrás y el reparto sale en pesos.";
+    } else if(vivirHoy > r.v + 0.08){
+      nota = "<b>Hoy gastás el " + pc(vivirHoy*100) + " de lo que entra</b> y la referencia para quien " +
+        r.txt + " es " + pc(r.v*100) + ". La diferencia sale de guardar o de disfrutar, y casi siempre de los dos.";
+    } else if(vivirHoy < r.v - 0.10){
+      nota = "<b>Gastás menos que la referencia</b> (" + pc(vivirHoy*100) + " contra " + pc(r.v*100) +
+        "). Tenés margen: lo importante es que el excedente salga de la cuenta el día que cobrás, no a fin de mes.";
+    } else {
+      nota = "<b>Estás en la referencia</b> para quien " + r.txt + ". Lo que decide de acá en adelante no es " +
+        "cuánto gastás: es si separás los tres montos el día que cobrás o a fin de mes.";
+    }
+    ID("rDestNota").innerHTML = nota + " Los porcentajes son un punto de partida, no una regla.";
+  }
+
+  function calcMes(){
+    var ing = num("ing"), fij = num("fij"), va = num("var"), aho = num("aho");
+    var gasto = fij + va, sobra = ing - gasto;
+    var tasa = ing > 0 ? sobra/ing : 0;
+    var colchon = gasto > 0 ? aho/gasto : 0;
+    var d = {ing:ing, fij:fij, va:va, aho:aho, gasto:gasto, sobra:sobra, tasa:tasa, colchon:colchon};
+
+    var tr = TRAMOS.find(function(t){ return tasa <= t.max; }) || TRAMOS[TRAMOS.length-1];
+    if(sobra <= 0) tr = TRAMOS[0];
+
+    ID("res").style.setProperty("--tinte", tr.tinte);
+    ID("rTit").textContent = tr.tit;
+    ID("rFra").textContent = tr.fra;
+    ID("rQueda").textContent = money(sobra);
+    ID("rQueda").style.color = sobra >= 0 ? "var(--ok)" : "var(--bad)";
+    ID("rTasa").textContent = ing > 0 ? pc(tasa*100) : "—";
+    ID("rCol").textContent  = gasto > 0 ? colchon.toFixed(1).replace(".",",") + " m" : "—";
+
+    var base = Math.max(ing, gasto);
+    var trozos = [
+      ["Gastos fijos", fij, "var(--accent)"],
+      ["Gastos variables", va, "color-mix(in srgb, var(--accent) 45%, var(--dim))"],
+      [sobra >= 0 ? "Te queda" : "Te falta", Math.abs(sobra), sobra >= 0 ? "var(--ok)" : "var(--bad)"]
+    ];
+    ID("rBarra").innerHTML = trozos.map(function(t){
+      return '<i style="width:' + (base > 0 ? (t[1]/base*100) : 0) + '%;background:' + t[2] + '"></i>';
+    }).join("");
+    ID("rLeyenda").innerHTML = trozos.map(function(t){
+      return '<div class="item"><span class="pt" style="background:' + t[2] + '"></span>' +
+        '<span class="nb">' + t[0] + '</span><span class="vl">' + money(t[1]) + '</span>' +
+        '<span class="pc">' + (ing > 0 ? Math.round(t[1]/ing*100) : 0) + '%</span></div>';
+    }).join("");
+
+    destinos(d);
+    pasosHTML("rPasos", pasosMes(d));
+
+    var lb = sobra <= 0 ? LIBRO_MES[0] : (colchon < 3 ? LIBRO_MES[1] : LIBRO_MES[2]);
+    ID("rLibroT").textContent = lb.t;
+    ID("rLibroB").textContent = lb.b;
+    ID("rLibroT").closest("a").setAttribute("href", lb.h);
+  }
+
+  /* ═════════════════════════════════════════════════════════ 2 · COLCHÓN ══ */
+  /* Simula mes a mes: el aporte entra todos los meses, los extras repartidos
+     en el año (una doceava parte por mes). Devuelve en qué mes se alcanza. */
+  function mesesHasta(objetivo, inicial, aporte, extraAnual){
+    if(inicial >= objetivo) return 0;
+    var porMes = aporte + (extraAnual/12);
+    if(porMes <= 0) return Infinity;
+    return (objetivo - inicial) / porMes;
+  }
+
+  function calcColchon(){
+    var g = num("cGasto"), aho = num("cAho"), ap = num("cAporte"),
+        metaM = Math.max(1, num("cMeta")), extra = num("cExtra");
+    var objetivo = g * metaM;
+    var falta = Math.max(0, objetivo - aho);
+    var tTotal = mesesHasta(objetivo, aho, ap, extra);
+
+    ID("cYa").textContent    = money(aho);
+    ID("cFalta").textContent = money(falta);
+    ID("cTiempo").textContent = falta <= 0 ? "listo" : (isFinite(tTotal) ? meses(tTotal) : "—");
+    ID("cFalta").style.color = falta <= 0 ? "var(--ok)" : "";
+
+    var ESCALONES = [
+      { n:"1", t:"El primer piso",  f:0.5, q:"El imprevisto común: algo que se rompe, una muela, un viaje urgente." },
+      { n:"2", t:"Un mes entero",   f:1,   q:"Un mes completo sin que entre nada." },
+      { n:"3", t:"Tres meses",      f:3,   q:"El piso desde el que podés buscar trabajo sin aceptar lo primero." },
+      { n:"4", t:"Tu objetivo",     f:metaM, q:"El número que te deja elegir: renunciar, mudarte, rechazar un mal cliente." }
+    ].filter(function(e, i, arr){
+      return i === arr.length-1 ? true : e.f < metaM;   // no mostramos escalones por encima del objetivo
+    });
+
+    ID("cEsc").innerHTML = ESCALONES.map(function(e){
+      var obj = g * e.f;
+      var hecho = aho >= obj;
+      var prog = obj > 0 ? Math.min(100, aho/obj*100) : 0;
+      var t = mesesHasta(obj, aho, ap, extra);
+      return '<div class="esc' + (hecho ? " hecho" : "") + '">' +
+        '<div class="esc-cab"><span class="esc-n">ESCALÓN ' + e.n + '</span>' +
+        '<span class="esc-t">' + e.t + '</span>' +
+        '<span class="esc-m">' + money(obj) + '</span></div>' +
+        '<p class="esc-q">' + e.q + '</p>' +
+        '<div class="esc-pb"><i style="width:' + prog.toFixed(1) + '%"></i></div>' +
+        '<div class="esc-pie"><span class="l">' + (hecho ? "Ya lo tenés" : "Te faltan " + money(obj - aho)) + '</span>' +
+        '<span class="r">' + (hecho ? "✓ cubierto" : (isFinite(t) ? meses(t) : "sin aporte no llega")) + '</span></div>' +
+        '</div>';
+    }).join("");
+
+    var primerObj = g * 0.5;
+    var tit, fra, tinte;
+    if(ap <= 0 && extra <= 0){
+      tit = "Falta el aporte";   tinte = "var(--warn)";
+      fra = "Sin un monto mensual el colchón no avanza. Poné aunque sea uno chico: el escalón 1 se banca cualquier presupuesto.";
+    } else if(aho >= objetivo){
+      tit = "Objetivo cumplido"; tinte = "var(--ok)";
+      fra = "Ya tenés " + metaM + " meses cubiertos. De acá en adelante lo que sobra conviene que trabaje, no que se agrande el colchón.";
+    } else if(aho >= primerObj){
+      tit = "Ya saliste de cero"; tinte = "var(--ok)";
+      fra = "El salto grande no es de tres a seis meses: es de cero a algo, y ese ya lo diste. Ahora es sostener el ritmo.";
+    } else {
+      tit = "Empezá por el escalón 1"; tinte = "var(--accent)";
+      fra = "Tu primer objetivo son " + money(primerObj) + ", no " + money(objetivo) + ". Ese llega en " +
+            meses(mesesHasta(primerObj, aho, ap, extra)) + " y ya te cambia la situación.";
+    }
+    ID("cRes").style.setProperty("--tinte", tinte);
+    ID("cTit").textContent = tit;
+    ID("cFra").textContent = fra;
+
+    var ps = [];
+    if(ap > 0){
+      ps.push("Programá la transferencia automática para <em>el día siguiente al que cobrás</em>, no para fin de mes. Es el único paso que se automatiza del todo y el que más peso tiene.");
+    } else {
+      ps.push("Elegí un monto, aunque sea chico, y programalo el <em>día que cobrás</em>. Un plan lento que sigue en pie junta más que uno rápido que se abandona en el mes 3.");
+    }
+    if(extra > 0){
+      ps.push("Los extras que cargaste (" + money(extra) + " al año) te adelantan <em>" +
+        meses(Math.max(0, mesesHasta(objetivo, aho, ap, 0) - tTotal)) + "</em> respecto de aportar solo el mensual.");
+    } else {
+      ps.push("Cargá tus <em>extras</em>: aguinaldo, bonos, una changa, la venta de algo. Mandando el 70% de cada extra al colchón, dos aguinaldos pueden valer más que varios meses de aporte.");
+    }
+    ps.push("Cuando termina una cuota, ese monto <em>queda libre</em>. Si lo mandás al colchón en vez de absorberlo en el gasto, el ritmo sube de golpe y para siempre.");
+    pasosHTML("cPasos", ps);
+  }
+
+  /* ══════════════════════════════════════════════════════════ 3 · PAREJA ══ */
+  function calcPareja(){
+    var n1 = txt("pN1","Persona 1"), n2 = txt("pN2","Persona 2");
+    var i1 = num("pI1"), i2 = num("pI2"), com = num("pCom"), min = num("pMin");
+    var total = i1 + i2;
+
+    ID("pH1").textContent = n1; ID("pH2").textContent = n2;
+    ID("pL1").textContent = "Aporta " + n1; ID("pL2").textContent = "Aporta " + n2;
+
+    if(total <= 0){
+      ID("pTit").textContent = "Faltan los ingresos";
+      ID("pFra").textContent = "Poné lo que cobra cada uno por mes y la cuenta sale sola.";
+      ID("pA1").textContent = "—"; ID("pA2").textContent = "—";
+      ID("pCuerpo").innerHTML = ""; ID("pPasos").innerHTML = "";
+      return;
+    }
+
+    /* Base del reparto: el ingreso, o lo que queda por encima del mínimo
+       personal si se definió uno. Si el mínimo se come todo el ingreso de
+       alguien, esa persona no aporta y el otro cubre el resto. */
+    var b1 = Math.max(0, i1 - min), b2 = Math.max(0, i2 - min);
+    var bTot = b1 + b2;
+    var p1 = bTot > 0 ? b1/bTot : 0.5, p2 = bTot > 0 ? b2/bTot : 0.5;
+    var a1 = com * p1, a2 = com * p2;
+    var q1 = i1 - a1, q2 = i2 - a2;
+
+    var m = com/2;
+    var em1 = i1 > 0 ? m/i1*100 : 0, em2 = i2 > 0 ? m/i2*100 : 0;
+    var ep  = i1 > 0 ? a1/i1*100 : 0, ep2 = i2 > 0 ? a2/i2*100 : 0;
+
+    ID("pA1").textContent = money(a1);
+    ID("pA2").textContent = money(a2);
+
+    ID("pCuerpo").innerHTML = [
+      ['<th scope="row">Ingreso</th>', money(i1), money(i2)],
+      ['<th scope="row">% del ingreso conjunto</th>', pc(i1/total*100), pc(i2/total*100)],
+      ['<th scope="row">Aporte al pozo común</th>', money(a1), money(a2), 1],
+      ['<th scope="row">Esfuerzo (% de su ingreso)</th>', pc(ep), pc(ep2)],
+      ['<th scope="row">Le queda después</th>', money(q1), money(q2)],
+      ['<th scope="row">Si fuera mitad y mitad</th>', money(m), money(m)],
+      ['<th scope="row">Esfuerzo con mitades</th>', pc(em1), pc(em2)]
+    ].map(function(f){
+      return '<tr' + (f[3] ? ' class="destacada"' : '') + '>' + f[0] +
+        '<td><b>' + f[1] + '</b></td><td><b>' + f[2] + '</b></td></tr>';
+    }).join("");
+
+    var dif = Math.abs(em1 - em2);
+    ID("pTit").textContent = com <= 0 ? "Falta el pozo común"
+      : (dif < 6 ? "Ganan parecido" : (dif < 25 ? "Hay diferencia" : "La diferencia es grande"));
+    ID("pFra").textContent = com <= 0
+      ? "Poné cuánto suman los gastos comunes del mes y ves el reparto."
+      : (dif < 6
+        ? "Con ingresos tan parecidos, mitad y mitad y proporcional dan casi lo mismo. Elijan el que les resulte más simple."
+        : "Con mitades, " + (em1 > em2 ? esc(n1) : esc(n2)) + " pondría el " + pc(Math.max(em1,em2)) +
+          " de lo que gana y " + (em1 > em2 ? esc(n2) : esc(n1)) + " el " + pc(Math.min(em1,em2)) +
+          ". Con el reparto proporcional los dos ponen el " + pc(ep) + ".");
+
+    var ps = [];
+    ps.push("El reparto proporcional divide <em>los gastos comunes</em>, no los ingresos. Después de aportar, al que gana más le sigue quedando más: " +
+      esc(q1 >= q2 ? n1 : n2) + " se queda con " + money(Math.max(q1,q2)) + " y " + esc(q1 >= q2 ? n2 : n1) + " con " + money(Math.min(q1,q2)) + ".");
+    ps.push("Pasen el aporte al pozo el <em>día que cobran</em>, con transferencia automática. Un monto fijo mensual funciona mejor que sumar los gastos cada mes.");
+    ps.push("Fijen un <em>techo de consulta</em>: por arriba de ese monto se habla antes de comprar. Un punto de partida razonable es entre el 5% y el 10% del ingreso conjunto, o sea entre " +
+      money(total*0.05) + " y " + money(total*0.10) + ".");
+    pasosHTML("pPasos", ps);
+  }
+
+  /* ═════════════════════════════════════════════════════════ 4 · FREELANCE ══ */
+  function calcFree(){
+    var neto = num("fNeto"), costos = num("fCostos");
+    var imp  = Math.min(80, Math.max(0, num("fImp")))/100;
+    var hs   = num("fHoras"), vac = num("fVac"), fer = num("fFer");
+    var pct  = Math.min(100, Math.max(1, num("fPct")))/100;
+
+    var semanas = Math.max(1, 52 - vac - fer);
+    var horasAnio = semanas * hs;
+    var horasFact = horasAnio * pct;
+
+    /* Los impuestos son un % de lo FACTURADO, así que la facturación necesaria
+       se despeja: (neto + costos) / (1 - %). No se suman al final. */
+    var netoAnual = neto*12, costosAnual = costos*12;
+    var factAnual = imp < 1 ? (netoAnual + costosAnual)/(1 - imp) : 0;
+    var impAnual  = factAnual - netoAnual - costosAnual;
+    var hora      = horasFact > 0 ? factAnual/horasFact : 0;
+    var ingenua   = neto/160;
+
+    ID("fHF").textContent  = ARS.format(Math.round(horasFact)) + " h";
+    ID("fFA").textContent  = money(factAnual);
+    ID("fIng").textContent = money(ingenua);
+    ID("fIng").style.color = "var(--dim)";
+
+    ID("fTit").textContent = money(hora);
+    var veces = ingenua > 0 ? hora/ingenua : 0;
+    ID("fFra").textContent = veces >= 1.15
+      ? "Es " + (veces).toFixed(1).replace(".",",") + " veces la cuenta ingenua. Esa diferencia es el tiempo que no facturás más los costos que hoy salen de tu bolsillo."
+      : "Tu cuenta ingenua estaba cerca. Revisá igual el porcentaje facturable: es el error más grande en magnitud.";
+    ID("fRes").style.setProperty("--tinte", "var(--accent)");
+
+    pintar("fFilas", [
+      ["Semanas trabajadas al año", semanas + " de 52"],
+      ["Horas que le dedicás al año", ARS.format(Math.round(horasAnio)) + " h"],
+      ["De esas, facturables (" + pc(pct*100) + ")", ARS.format(Math.round(horasFact)) + " h"],
+      ["Tu sueldo objetivo, al año", money(netoAnual)],
+      ["Costos de la actividad, al año", money(costosAnual)],
+      ["Impuestos y comisiones (" + pc(imp*100) + " de lo facturado)", money(impAnual)],
+      ["Facturación que necesitás al año", money(factAnual), 1]
+    ]);
+
+    /* Sueldo nivelado, a partir del historial */
+    var fact12 = num("fFact"), guard = num("fGuard");
+    var prom = fact12/12;
+    var netoProm = prom*(1 - imp) - costos;
+    var sueldo = Math.max(0, netoProm*0.75);
+    var fondo = sueldo*3;
+    var aire = sueldo > 0 ? guard/sueldo : 0;
+
+    pintar("fSueldo", [
+      ["Promedio mensual facturado", money(prom)],
+      ["− impuestos y comisiones (" + pc(imp*100) + ")", "-" + money(prom*imp)],
+      ["− costos de la actividad", "-" + money(costos)],
+      ["Tu neto promedio", money(netoProm)],
+      ["Tu sueldo (75% del neto promedio)", money(sueldo), 1],
+      ["Fondo de nivelación a juntar (3 sueldos)", money(fondo)],
+      ["Con lo guardado, aguantás", meses(aire) + " sin facturar", 0,
+        aire >= 3 ? "var(--ok)" : (aire >= 1 ? "var(--warn)" : "var(--bad)")]
+    ]);
+
+    var ps = [];
+    ps.push("Cobrás a una <em>cuenta de trabajo</em>. De ahí sale un monto fijo a tu cuenta personal, el mismo día de cada mes. Ese monto es tu sueldo: " + money(sueldo) + ". El resto se queda y amortigua.");
+    ps.push("Te pagás el <em>75%</em>, no el 100%, porque el promedio incluye meses que no se repiten. Esa diferencia es lo que construye el fondo de nivelación.");
+    if(aire < 3){
+      ps.push("Con lo guardado aguantás <em>" + meses(aire) + "</em> sin facturar. El objetivo mínimo es el fondo de nivelación: " + money(fondo) + ". Te faltan " + money(Math.max(0, fondo - guard)) + ".");
+    } else {
+      ps.push("Tenés <em>" + meses(aire) + "</em> de aire. El fondo de nivelación ya está cubierto: un mes vacío es un mes normal desde el punto de vista de tu vida personal.");
+    }
+    ps.push("La hora es tu <em>herramienta de cálculo interno</em>, no un número que le decís al cliente. Al cliente le das un precio por el proyecto.");
+    pasosHTML("fPasos", ps);
+  }
+
+  /* ════════════════════════════════════════════════════════════ CABLEADO ══ */
+  var CALCS = { "p-mes":calcMes, "p-colchon":calcColchon, "p-pareja":calcPareja, "p-free":calcFree };
+  var medidos = {};
+
+  function recalcular(panel){
+    try{ CALCS[panel](); }catch(e){ if(window.console) console.warn("fayer:", e); }
+  }
+
+  Object.keys(CALCS).forEach(function(pid){
+    var p = ID(pid);
+    p.addEventListener("input", function(){
+      recalcular(pid);
+      if(!medidos[pid]){
+        medidos[pid] = true;
+        if(window.fayerTrack) window.fayerTrack("sueldo_calculado", { herramienta: pid.slice(2) });
+      }
+    });
+  });
+
+  var tabs = [].slice.call(document.querySelectorAll(".tab"));
+  function abrir(id, foco){
+    tabs.forEach(function(b){
+      var sel = b.getAttribute("aria-controls") === id;
+      b.setAttribute("aria-selected", sel ? "true" : "false");
+      ID(b.getAttribute("aria-controls")).hidden = !sel;
+      if(sel && foco) b.focus();
+    });
+    recalcular(id);
+    try{ history.replaceState(null, "", "#" + id.slice(2)); }catch(e){}
+    if(window.fayerTrack) window.fayerTrack("calculadora_abierta", { herramienta: id.slice(2) });
+  }
+  tabs.forEach(function(b, i){
+    b.setAttribute("tabindex", "0");
+    b.addEventListener("click", function(){ abrir(b.getAttribute("aria-controls"), false); });
+    b.addEventListener("keydown", function(ev){
+      var d = ev.key === "ArrowRight" ? 1 : (ev.key === "ArrowLeft" ? -1 : 0);
+      if(!d) return;
+      ev.preventDefault();
+      var n = tabs[(i + d + tabs.length) % tabs.length];
+      abrir(n.getAttribute("aria-controls"), true);
+    });
+  });
+
+  /* Deep links: /sueldo/#colchon, #pareja, #free — así los libros pueden
+     mandar directo a la calculadora que corresponde. Escuchamos también
+     hashchange, porque cambiar solo el ancla no recarga la página. */
+  var DESTINOS = { mes:"p-mes", colchon:"p-colchon", pareja:"p-pareja",
+                   free:"p-free", freelance:"p-free" };
+  function abrirPorHash(){
+    var destino = DESTINOS[(location.hash || "").replace("#","")];
+    if(destino) abrir(destino, false);
+  }
+  window.addEventListener("hashchange", abrirPorHash);
+  abrirPorHash();
+
+  Object.keys(CALCS).forEach(recalcular);
+
+  var fm = document.querySelector("form[name=guia]");
+  if(fm) fm.addEventListener("submit", function(){ if(window.fayerTrack) window.fayerTrack("guia_mail_enviado"); });
+})();
+</script>
+
+</body>
+</html>

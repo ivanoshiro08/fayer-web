@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tienda — Guías de finanzas y el Sistema Fayer</title>
+<meta name="description" content="Herramientas y guías para ordenar tus números. Sistema de control financiero, análisis de la calculadora y guías de finanzas personales.">
+<link rel="canonical" href="https://fayer.site/tienda/">
+<meta name="theme-color" content="#131110" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAF8F6" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fayer.site/tienda/">
+<meta property="og:title" content="Tienda Fayer">
+<meta property="og:description" content="Herramientas y guías para ordenar tus números. Pago por Mercado Pago y entrega inmediata.">
+<meta property="og:image" content="https://fayer.site/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<!-- ══════════════════════════════════════════════════════════ MEDICIÓN ══
+     Lo que quede vacío NO se carga: cero pedidos al pedo y cero errores. -->
+<script>
+window.FAYER_IDS = {
+  ga4:    "G-JHRBRHRYED",          // Google Analytics 4 — fayer.site
+  gtm:    "",                      // GTM-XXXXXXX (si usás GTM, vaciá ga4)
+  tiktok: "DAF531BC77UDHLL3KIH0",  // Píxel de TikTok
+  meta:   ""                       // Píxel de Meta
+};
+(function(){
+  var ID = window.FAYER_IDS || {};
+  function js(src){ var s=document.createElement("script"); s.async=true; s.src=src;
+    document.head.appendChild(s); return s; }
+
+  window.dataLayer = window.dataLayer || [];
+
+  if (ID.ga4) {
+    js("https://www.googletagmanager.com/gtag/js?id=" + ID.ga4);
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag("js", new Date());
+    gtag("config", ID.ga4);
+  }
+  if (ID.gtm) {
+    dataLayer.push({"gtm.start": Date.now(), event: "gtm.js"});
+    js("https://www.googletagmanager.com/gtm.js?id=" + ID.gtm);
+  }
+  if (ID.meta) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", ID.meta); fbq("track", "PageView");
+  }
+  if (ID.tiktok) {
+    !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+    ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+    ttq.setAndDefer=function(e,n){e[n]=function(){e.push([n].concat(Array.prototype.slice.call(arguments,0)))}};
+    for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+    ttq.instance=function(e){for(var n=ttq._i[e]||[],i=0;i<ttq.methods.length;i++)ttq.setAndDefer(n,ttq.methods[i]);return n};
+    ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js";
+    ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;ttq._t=ttq._t||{};ttq._t[e]=+new Date;
+    ttq._o=ttq._o||{};ttq._o[e]=n||{};var o=d.createElement("script");o.type="text/javascript";
+    o.async=!0;o.src=r+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];
+    a.parentNode.insertBefore(o,a)};
+    ttq.load(ID.tiktok); ttq.page();}(window,document,"ttq");
+  }
+
+  window.fayerTrack = function(evento, datos){
+    try{
+      if (window.gtag) gtag("event", evento, datos || {});
+      else if (ID.gtm) dataLayer.push(Object.assign({event: evento}, datos || {}));
+      if (window.fbq) fbq("trackCustom", evento, datos || {});
+      if (window.ttq) ttq.track(evento, datos || {});
+    }catch(e){}
+  };
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,600;12..96,75..100,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+</head>
+<body>
+
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#131110; --bg-deep:#0D0B0A; --surface:#1A1715; --raised:#221E1B;
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.17);
+  --text:#F4F0EC; --muted:#9A9086; --dim:#6E655D;
+  --accent:#FF4D00; --accent-2:#FF8A4C;
+  --ok:#4BAE7E; --warn:#E8B64C; --bad:#E5574D;
+  --glass:rgba(26,23,21,.86); --inset:inset 0 1px 0 rgba(255,255,255,.07);
+  --grid-line:rgba(255,255,255,.045);
+  --ease:cubic-bezier(.32,.72,0,1); --ease-out:cubic-bezier(.16,1,.3,1);
+  --f-display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --f-body:"Instrument Sans","Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:#FAF8F6; --bg-deep:#F1ECE7; --surface:#FFFFFF; --raised:#F4EFEA;
+    --line:rgba(24,17,12,.11); --line-2:rgba(24,17,12,.22);
+    --text:#191411; --muted:#6E6259; --dim:#948A81;
+    --accent:#DE4200; --accent-2:#A83200; --ok:#2F8A5E; --warn:#9C6D15; --bad:#C0342B;
+    --glass:rgba(255,255,255,.9); --inset:inset 0 1px 0 rgba(255,255,255,.9);
+    --grid-line:rgba(24,17,12,.05);
+  }
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#FAF8F6; --bg-deep:#F1ECE7; --surface:#FFFFFF; --raised:#F4EFEA;
+  --line:rgba(24,17,12,.11); --line-2:rgba(24,17,12,.22);
+  --text:#191411; --muted:#6E6259; --dim:#948A81;
+  --accent:#DE4200; --accent-2:#A83200; --ok:#2F8A5E; --warn:#9C6D15; --bad:#C0342B;
+  --glass:rgba(255,255,255,.9); --inset:inset 0 1px 0 rgba(255,255,255,.9);
+  --grid-line:rgba(24,17,12,.05);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-bottom:104px}
+h1,h2,h3{font-family:var(--f-display);margin:0;letter-spacing:-.032em;line-height:1.08;text-wrap:balance}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;letter-spacing:-.025em}
+.wrap{width:100%;max-width:1060px;margin-inline:auto;padding-inline:clamp(18px,5vw,30px)}
+.ledger{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px);background-size:100% 44px;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 14%,#000 86%,transparent);
+          mask-image:linear-gradient(to bottom,transparent,#000 14%,#000 86%,transparent)}
+
+.bar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:.8rem;
+  padding:.7rem clamp(18px,5vw,30px);padding-top:calc(.7rem + env(safe-area-inset-top,0px));
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line)}
+.marca{padding-block:.55rem;margin-block:-.55rem;display:flex;align-items:center;gap:.5rem;font-family:var(--f-display);font-weight:800;font-size:1rem;letter-spacing:-.045em}
+.marca svg{width:20px;height:20px;flex:0 0 20px}
+.sp{flex:1}
+.bar a.mini{padding:.65rem .2rem;margin:-.65rem -.2rem;display:inline-flex;align-items:center;font-size:.82rem;color:var(--muted);transition:color .35s var(--ease)}
+.bar a.mini:hover{color:var(--accent)}
+
+.hero{position:relative;padding-block:clamp(30px,6vw,52px) clamp(18px,3vw,26px);overflow:hidden}
+.hero::before{content:"";position:absolute;left:50%;top:-46%;width:min(820px,130vw);aspect-ratio:1;
+  transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 15%,transparent),transparent 62%)}
+.hero .wrap{position:relative;z-index:1}
+h1{font-size:clamp(2rem,6vw,3rem);font-weight:800}
+.lede{color:var(--muted);margin-top:.85rem;max-width:52ch;font-size:clamp(.95rem,2.2vw,1.05rem)}
+
+section.grupo{padding-block:clamp(22px,4vw,34px);scroll-margin-top:72px}
+.tit{display:flex;align-items:baseline;gap:.8rem;margin-bottom:1.1rem;flex-wrap:wrap}
+.tit h2{font-size:clamp(1.25rem,3vw,1.6rem);font-weight:800}
+.tit span{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+.grilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:clamp(12px,1.6vw,16px)}
+.prod{scroll-margin-top:92px;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
+  border-radius:20px;padding:1.2rem 1.25rem;box-shadow:var(--inset);
+  transition:border-color .45s var(--ease),transform .45s var(--ease)}
+.prod:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.prod.destacado{border-color:color-mix(in srgb,var(--accent) 50%,transparent)}
+.prod .etq{font-family:var(--f-mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:.5rem;display:flex;gap:.5rem;align-items:center}
+.prod .etq b{color:var(--accent);font-weight:500}
+.prod h3{font-size:1.06rem;font-weight:700;letter-spacing:-.025em}
+.prod p{font-size:.86rem;color:var(--muted);margin-top:.45rem;flex:1}
+.incluye{margin-top:.7rem;display:grid;gap:.22rem}
+.incluye span{font-size:.79rem;color:var(--dim);display:flex;gap:.45rem;align-items:flex-start}
+.incluye span::before{content:"–";color:var(--accent)}
+.pie{display:flex;align-items:center;justify-content:space-between;gap:.7rem;
+  margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--line);flex-wrap:wrap}
+.precio{display:flex;flex-direction:column;line-height:1.15}
+.precio b{font-family:var(--f-mono);font-size:1.15rem;font-weight:700;letter-spacing:-.035em}
+.precio s{font-family:var(--f-mono);font-size:.76rem;color:var(--dim)}
+.precio em{font-style:normal;font-family:var(--f-mono);font-size:.7rem;color:var(--ok);letter-spacing:.05em}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.55rem 1.05rem;
+  border-radius:999px;font-size:.85rem;font-weight:600;border:1px solid transparent;cursor:pointer;
+  white-space:nowrap;transition:transform .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn-1{background:var(--accent);color:#fff}
+.btn-1:hover{background:var(--accent-2);transform:translateY(-1px)}
+.btn-2{background:var(--raised);border-color:var(--line-2)}
+.btn-2:hover{border-color:var(--accent);transform:translateY(-1px)}
+.btn-3{background:none;border-color:var(--line-2);color:var(--muted)}
+.btn-3:hover{color:var(--text);border-color:var(--accent)}
+.btn.puesto{background:color-mix(in srgb,var(--ok) 16%,transparent);
+  border-color:color-mix(in srgb,var(--ok) 45%,transparent);color:var(--ok)}
+
+.pronto{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 42%,transparent);
+  background:color-mix(in srgb,var(--warn) 11%,transparent);border-radius:999px;padding:.25rem .6rem}
+
+/* ─────────────────────────────────────────────────────────── CARRITO ── */
+.carro{position:fixed;left:0;right:0;bottom:0;z-index:50;
+  padding:.8rem clamp(18px,5vw,30px);
+  padding-bottom:calc(.8rem + env(safe-area-inset-bottom,0px));
+  background:var(--glass);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border-top:1px solid var(--line-2);
+  transform:translateY(110%);transition:transform .5s var(--ease)}
+.carro.on{transform:none}
+.carro-in{max-width:1060px;margin-inline:auto;display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.carro .res{flex:1;min-width:150px;display:flex;flex-direction:column;line-height:1.25}
+.carro .res small{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.carro .res b{font-family:var(--f-mono);font-size:1.25rem;font-weight:700;letter-spacing:-.035em}
+.lista{width:100%;display:grid;gap:.3rem;max-height:34vh;overflow-y:auto;
+  padding-bottom:.6rem;margin-bottom:.2rem;border-bottom:1px solid var(--line)}
+.lista .fila{display:flex;align-items:center;gap:.6rem;font-size:.84rem;padding:.3rem 0}
+.lista .fila .n{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lista .fila .p{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:.82rem;color:var(--muted)}
+.lista .fila button{border:0;background:none;color:var(--dim);cursor:pointer;padding:0 .2rem;
+  font-size:1.1rem;line-height:1;transition:color .3s var(--ease),transform .3s var(--ease)}
+.lista .fila button:hover{color:var(--bad);transform:scale(1.2)}
+
+.aviso{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;
+  margin-top:1.2rem;padding:.9rem 1.1rem;border-radius:16px;
+  border:1px solid color-mix(in srgb,var(--warn) 40%,transparent);
+  background:color-mix(in srgb,var(--warn) 9%,transparent);font-size:.85rem}
+
+.mail{display:flex;gap:.5rem;flex-wrap:wrap;max-width:480px;margin-top:1rem}
+.mail input{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--line-2);
+  border-radius:14px;padding:.7rem 1rem;font-size:.9rem;font-family:inherit;color:inherit}
+.mail input:focus{outline:none;border-color:var(--accent)}
+.mail .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.nota{font-size:.78rem;color:var(--dim);margin-top:.65rem}
+
+footer{border-top:1px solid var(--line);padding-block:1.9rem 2.4rem;font-size:.79rem;color:var(--dim);margin-top:2rem}
+footer a{color:var(--accent);padding:.5rem 0;display:inline-block}
+.cargando{padding:3rem 0;text-align:center;color:var(--muted);font-size:.9rem}
+
+/* Esqueleto: misma estructura y alto que la tarjeta real, sin contenido.
+   Es lo que evita que la página salte cuando llega el catálogo. */
+.hueso{background:var(--raised);border-radius:6px;display:block}
+@keyframes latido{0%,100%{opacity:.55}50%{opacity:.85}}
+.esq .hueso{animation:latido 1.5s var(--ease) infinite}
+.esq{pointer-events:none}
+.esq .h-etq{height:9px;width:42%;margin-bottom:.85rem}
+.esq .h-tit{height:17px;width:72%;margin-bottom:.7rem}
+.esq .h-tx{height:11px;width:100%;margin-bottom:.35rem}
+.esq .h-tx.corta{width:64%}
+.esq .h-pie{height:34px;width:100%;margin-top:1.1rem;border-radius:999px}
+@media (prefers-reduced-motion:reduce){.esq .hueso{animation:none}}
+
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+@keyframes destello{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}
+  100%{box-shadow:0 0 0 14px transparent}
+}
+.prod.marcada{border-color:var(--accent);animation:destello 1.4s var(--ease) 2}
+@media (prefers-reduced-motion:reduce){.prod.marcada{animation:none}}
+.carro .cuotas{grid-column:1/-1;font-size:.74rem;color:var(--dim);text-align:center;margin:.55rem 0 0;line-height:1.4}
+</style>
+
+<header class="bar">
+  <a class="marca" href="/">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="1.4" y="1.4" width="21.2" height="21.2" rx="6.4" stroke="currentColor" stroke-width="1.3" opacity=".4"/>
+      <path d="M7 16.4V9.1M12 16.4V6.6M17 16.4v-4.6" stroke="#FF4D00" stroke-width="2.1" stroke-linecap="round"/>
+    </svg>Fayer
+  </a>
+  <span class="sp"></span>
+  <a class="mini" href="/sueldo/">Calculadora gratis</a>
+</header>
+
+<section class="hero">
+  <div class="ledger" aria-hidden="true"></div>
+  <div class="wrap">
+    <h1>Tienda</h1>
+    <p class="lede">Herramientas y guías para ordenar tus números, sean los de tu casa o los de tu empresa. Pago por Mercado Pago y entrega inmediata.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div id="catalogo" aria-busy="true"></div>
+  <script id="catalogo-inicial" type="application/json">[{"id":"pro","tipo":"acceso","nombre":"Análisis completo de la calculadora","bajada":"Proyección a 12 meses, tres escenarios y la tabla de sensibilidad de precio.","precio":9900,"disponible":true,"entrega":"codigo","precioSuelto":9900},{"id":"sistema","tipo":"acceso","nombre":"Sistema Fayer","bajada":"Movimientos, cobranzas, pagos, flujo de caja a 12 meses y punto de equilibrio. Sirve para empresa o para finanzas personales.","precio":89000,"disponible":true,"entrega":"codigo","precioSuelto":89000},{"id":"primer-sueldo","tipo":"ebook","nombre":"Tu primer sueldo","bajada":"Qué hacer con la plata los primeros seis meses, antes de que se te vaya sin saber en qué.","precio":9900,"paginas":56,"disponible":true,"entrega":"descarga","archivo":"tu-primer-sueldo-d9b21c6e89d7.pdf","precioSuelto":9900},{"id":"mes-no-cierra","tipo":"ebook","nombre":"El mes no cierra","bajada":"Cómo salir del rojo sin dejar de vivir.","precio":14900,"paginas":54,"disponible":true,"entrega":"descarga","archivo":"el-mes-no-cierra-059c5f39726a.pdf","precioSuelto":14900},{"id":"seis-meses","tipo":"ebook","nombre":"Seis meses de aire","bajada":"El colchón que te saca del apuro, y cómo armarlo sin sufrir.","precio":12900,"paginas":51,"disponible":true,"entrega":"descarga","archivo":"seis-meses-de-aire-aed610ab1e6a.pdf","precioSuelto":12900},{"id":"plata-en-pareja","tipo":"ebook","nombre":"Plata en pareja","bajada":"Cómo organizar las cuentas de a dos sin terminar peleados.","precio":14900,"paginas":50,"disponible":true,"entrega":"descarga","archivo":"plata-en-pareja-fd42d17aa639.pdf","precioSuelto":14900},{"id":"cobrar-por-tu-cuenta","tipo":"ebook","nombre":"Cobrar por tu cuenta","bajada":"Freelance: presupuestar, cobrar y no llevarte sorpresas.","precio":19900,"paginas":57,"disponible":true,"entrega":"descarga","archivo":"cobrar-por-tu-cuenta-cf0b8beba195.pdf","precioSuelto":19900},{"id":"combo-ordenar","tipo":"combo","nombre":"Combo Ordenar","bajada":"Los tres para poner tus números en orden, de principio a fin.","incluye":["primer-sueldo","mes-no-cierra","seis-meses"],"precio":27900,"disponible":true,"entrega":"descarga","precioSuelto":37700},{"id":"combo-completo","tipo":"combo","nombre":"Combo Completo","bajada":"Los cinco ebooks. Todo lo que escribimos sobre finanzas personales.","incluye":["primer-sueldo","mes-no-cierra","seis-meses","plata-en-pareja","cobrar-por-tu-cuenta"],"precio":44900,"disponible":true,"entrega":"descarga","precioSuelto":72500},{"id":"combo-todo","tipo":"combo","nombre":"Sistema + los cinco ebooks","bajada":"La herramienta y todo el material. Es el que más conviene por lejos.","incluye":["sistema","primer-sueldo","mes-no-cierra","seis-meses","plata-en-pareja","cobrar-por-tu-cuenta"],"precio":109000,"disponible":true,"entrega":"mixta","precioSuelto":161500}]</script>
+
+  <div class="aviso" id="avisoPronto" hidden>
+    <span><b>Varias guías todavía se están escribiendo.</b> Dejanos tu mail y te avisamos apenas salga la primera, con descuento de lanzamiento.</span>
+  </div>
+
+  <form class="mail" name="lanzamiento" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="lanzamiento">
+    <p class="hp"><label>No completar: <input name="bot-field"></label></p>
+    <input name="email" type="email" placeholder="Tu mail" required autocomplete="email" aria-label="Tu mail">
+    <button class="btn btn-1" type="submit">Avisame cuando salgan</button>
+  </form>
+  <p class="nota">Sin spam. Te escribimos cuando hay algo nuevo, y nada más.</p>
+</div>
+
+<footer>
+  <div class="wrap">
+    Fayer · <a href="/">fayer.site</a> — Los precios están en pesos argentinos e incluyen impuestos.
+    El material es informativo y no constituye asesoramiento financiero personalizado.
+  </div>
+</footer>
+
+<div class="carro" id="carro" aria-live="polite">
+  <div class="carro-in">
+    <div class="lista" id="lista"></div>
+    <div class="res">
+      <small id="carroCant">0 productos</small>
+      <b class="num" id="carroTotal">$0</b>
+    </div>
+    <button class="btn btn-3" id="vaciar" type="button">Vaciar</button>
+    <button class="btn btn-1" id="pagar" type="button">Pagar con Mercado Pago</button>
+    <p class="cuotas">Con Mercado Pago podés pagar en cuotas, con tarjeta, débito o dinero en cuenta.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  try{ var t = localStorage.getItem("fayer.tema"); if(t) document.documentElement.setAttribute("data-theme", t); }catch(e){}
+
+  var $ = function(s){ return document.querySelector(s); };
+  var ARS = new Intl.NumberFormat("es-AR",{maximumFractionDigits:0});
+  var money = function(n){ return "$" + ARS.format(Math.round(n||0)); };
+  var CLAVE = "fayer.carro";
+
+  var catalogo = [], carro = [];
+  try{ carro = JSON.parse(localStorage.getItem(CLAVE) || "[]"); }catch(e){ carro = []; }
+
+  function guardar(){ try{ localStorage.setItem(CLAVE, JSON.stringify(carro)); }catch(e){} }
+  function porId(id){ return catalogo.filter(function(p){ return p.id === id; })[0]; }
+
+  var GRUPOS = [
+    ["combo",  "Combos",       "lo que más conviene"],
+    ["acceso", "Herramientas", "acceso inmediato"],
+    ["ebook",  "Guías",        "para leer y aplicar"]
+  ];
+
+  function tarjeta(p){
+    var enCarro = carro.indexOf(p.id) >= 0;
+    var ahorro = p.incluye && p.precioSuelto > p.precio
+      ? Math.round((1 - p.precio / p.precioSuelto) * 100) : 0;
+
+    var incluye = "";
+    if(p.incluye && p.incluye.length){
+      incluye = '<div class="incluye">' + p.incluye.map(function(id){
+        var h = porId(id); return "<span>" + (h ? h.nombre : id) + "</span>";
+      }).join("") + "</div>";
+    }
+
+    var accion = !p.disponible
+      ? '<span class="pronto">Próximamente</span>'
+      : '<button class="btn ' + (enCarro ? "puesto" : "btn-2") + '" data-add="' + p.id + '">' +
+        (enCarro ? "Agregado" : "Agregar") + "</button>";
+
+    return '<article class="prod' + (ahorro >= 30 ? " destacado" : "") + '" id="' + p.id + '">' +
+      '<div class="etq">' + (p.tipo === "combo" ? "Combo" : p.tipo === "ebook" ? "Guía" : "Herramienta") +
+        (p.paginas ? ' · ' + p.paginas + ' páginas' : '') +
+        (ahorro ? ' · <b>' + ahorro + '% menos</b>' : '') + '</div>' +
+      "<h3>" + p.nombre + "</h3>" +
+      "<p>" + p.bajada + "</p>" + incluye +
+      '<div class="pie"><span class="precio">' +
+        "<b>" + money(p.precio) + "</b>" +
+        (ahorro ? "<s>" + money(p.precioSuelto) + "</s>" : "") +
+      "</span>" + accion + "</div></article>";
+  }
+
+  /* Los libros y la calculadora linkean a /tienda/#<id>. Como el catálogo se
+     dibuja con JS, el salto lo hacemos nosotros cuando ya existe la tarjeta. */
+  var anclaUsada = false;
+  function irAlAncla(){
+    if(anclaUsada) return;
+    var id = (location.hash || "").replace("#", "");
+    if(!id) return;
+    var el = document.getElementById(id);
+    if(!el) return;
+    anclaUsada = true;
+    el.classList.add("marcada");
+    requestAnimationFrame(function(){
+      el.scrollIntoView({behavior: "smooth", block: "center"});
+    });
+    setTimeout(function(){ el.classList.remove("marcada"); }, 3200);
+  }
+
+  function pintar(){
+    var html = "";
+    GRUPOS.forEach(function(g){
+      var items = catalogo.filter(function(p){ return p.tipo === g[0]; });
+      if(!items.length) return;
+      html += '<section class="grupo"><div class="tit"><h2>' + g[1] + "</h2><span>" + g[2] + "</span></div>" +
+              '<div class="grilla">' + items.map(tarjeta).join("") + "</div></section>";
+    });
+    $("#catalogo").innerHTML = html;
+    $("#catalogo").removeAttribute("aria-busy");
+    datosEstructurados();
+    $("#avisoPronto").hidden = !catalogo.some(function(p){ return !p.disponible; });
+    pintarCarro();
+    irAlAncla();
+  }
+
+  /* JSON-LD con el catálogo real. Un solo bloque, reescrito si cambia. */
+  function datosEstructurados(){
+    var items = catalogo.filter(function(p){ return p.disponible; }).map(function(p, i){
+      return {
+        "@type": "ListItem", position: i + 1,
+        item: {
+          "@type": p.tipo === "ebook" ? "Book" : "Product",
+          name: p.nombre, description: p.bajada,
+          url: "https://fayer.site/tienda/#" + p.id,
+          brand: { "@type": "Brand", name: "Fayer" },
+          inLanguage: "es-AR",
+          offers: {
+            "@type": "Offer", price: p.precio, priceCurrency: "ARS",
+            availability: "https://schema.org/InStock",
+            url: "https://fayer.site/tienda/#" + p.id
+          }
+        }
+      };
+    });
+    var bloque = document.getElementById("ldjson") || (function(){
+      var s = document.createElement("script");
+      s.type = "application/ld+json"; s.id = "ldjson";
+      document.head.appendChild(s); return s;
+    })();
+    bloque.textContent = JSON.stringify({
+      "@context": "https://schema.org", "@type": "ItemList",
+      name: "Guías de finanzas y herramientas de Fayer",
+      itemListElement: items
+    });
+  }
+
+  function pintarCarro(){
+    var items = carro.map(porId).filter(Boolean);
+    // El carrito es fijo abajo: le dejamos al body exactamente el alto que ocupa,
+    // así nunca tapa la última tarjeta.
+    requestAnimationFrame(function(){
+      var c = $("#carro");
+      document.body.style.paddingBottom = (items.length ? c.offsetHeight + 24 : 24) + "px";
+    });
+    var total = items.reduce(function(a, p){ return a + p.precio; }, 0);
+    $("#carro").classList.toggle("on", items.length > 0);
+    $("#carroCant").textContent = items.length + (items.length === 1 ? " producto" : " productos");
+    $("#carroTotal").textContent = money(total);
+    $("#lista").innerHTML = items.map(function(p){
+      return '<div class="fila"><span class="n">' + p.nombre + '</span>' +
+        '<span class="p">' + money(p.precio) + "</span>" +
+        '<button data-del="' + p.id + '" aria-label="Quitar ' + p.nombre + '">&times;</button></div>';
+    }).join("");
+  }
+
+  document.addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest("[data-add],[data-del]") : null;
+    if(!b) return;
+    var add = b.getAttribute("data-add"), del = b.getAttribute("data-del");
+    if(add){
+      var i = carro.indexOf(add);
+      if(i >= 0) carro.splice(i, 1); else carro.push(add);
+      if(window.fayerTrack && i < 0) window.fayerTrack("carro_agregar", {producto: add});
+    }
+    if(del){ var j = carro.indexOf(del); if(j >= 0) carro.splice(j, 1); }
+    guardar(); pintar();
+  });
+
+  $("#vaciar").addEventListener("click", function(){ carro = []; guardar(); pintar(); });
+
+  $("#pagar").addEventListener("click", function(){
+    if(!carro.length) return;
+    var items = carro.map(porId).filter(Boolean);
+    var total = items.reduce(function(a, p){ return a + p.precio; }, 0);
+    if(window.fayerTrack) window.fayerTrack("checkout_iniciado", {valor: total, moneda: "ARS", cantidad: items.length});
+    location.href = "/api/comprar?items=" + encodeURIComponent(carro.join(","));
+  });
+
+  /* El catálogo viene embebido en el HTML, así que la tienda se dibuja
+     entera en el primer cuadro: nada salta de lugar. El fetch de abajo la
+     actualiza si cambió algo, y si no, ni repinta. El precio que se cobra
+     siempre sale del servidor, no de acá. */
+  function catalogoInicial(){
+    var el = document.getElementById("catalogo-inicial");
+    if(!el) return null;
+    try{ return JSON.parse(el.textContent); }catch(e){ return null; }
+  }
+
+  /* Si por lo que sea no está embebido, el esqueleto evita la página vacía. */
+  function esqueleto(){
+    var GRUPOS_ESQ = [["Combos","lo que más conviene",3],
+                      ["Herramientas","acceso inmediato",2],
+                      ["Guías","para leer y aplicar",5]];
+    $("#catalogo").innerHTML = GRUPOS_ESQ.map(function(g){
+      var tarjetas = "";
+      for(var i = 0; i < g[2]; i++){
+        tarjetas += '<article class="prod esq" aria-hidden="true">' +
+          '<span class="hueso h-etq"></span><span class="hueso h-tit"></span>' +
+          '<span class="hueso h-tx"></span><span class="hueso h-tx"></span>' +
+          '<span class="hueso h-tx corta"></span><span class="hueso h-pie"></span></article>';
+      }
+      return '<section class="grupo"><div class="tit"><h2>' + g[0] + "</h2><span>" + g[1] + "</span></div>" +
+             '<div class="grilla">' + tarjetas + "</div></section>";
+    }).join("");
+  }
+  var inicial = catalogoInicial();
+  if(inicial && inicial.length){ catalogo = inicial; pintar(); }
+  else { esqueleto(); }
+
+  var huella = JSON.stringify(catalogo);
+
+  fetch("/api/productos")
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .then(function(d){
+      if(!d || !d.length) return;
+      if(JSON.stringify(d) === huella) return;   // nada cambió: no repintamos
+      catalogo = d;
+      pintar();
+    })
+    .catch(function(){
+      $("#catalogo").removeAttribute("aria-busy");
+      if(catalogo.length) return;   // ya está pintado con lo embebido
+      $("#catalogo").innerHTML = '<div class="cargando">No pudimos cargar el catálogo. ' +
+        'Recargá la página, y si sigue sin andar <a href="/#contacto" style="color:var(--accent)">escribinos</a>.</div>';
+    });
+})();
+</script>
+
+</body>
+</html>

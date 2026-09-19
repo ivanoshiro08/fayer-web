@@ -1,0 +1,4 @@
+node_modules/
+.netlify/
+# Nunca versionar la lista de códigos
+CODIGOS*.md

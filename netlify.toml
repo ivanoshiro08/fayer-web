@@ -1,12 +1,27 @@
-# Sitio estático: no hay build, se publica la raíz tal cual.
+# ═══════════════════════════════════════════════════════════════════════════
+#  Fayer
+#
+#  Dos carpetas, y la diferencia es la que protege los libros:
+#
+#    publico/   → lo que Netlify sube al CDN. Cualquiera puede pedirlo.
+#    privado/   → NO se publica. Solo lo leen las funciones, desde adentro.
+#
+#  Los PDF están en privado/descargas/. No hay ninguna URL que los sirva:
+#  la única puerta es /api/bajar, que antes valida el token de la compra.
+# ═══════════════════════════════════════════════════════════════════════════
+
 [build]
-  publish = "."
+  publish = "publico"
   command = ""
 
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+  # Esto es lo que mete los PDF adentro del paquete de las funciones
+  # sin publicarlos. Si se saca, /api/bajar deja de encontrar los archivos.
+  included_files = ["privado/**"]
 
+# ─────────────────────────────────────────────────────────────── cabeceras ──
 [[headers]]
   for = "/*"
   [headers.values]
@@ -21,10 +36,19 @@
     Cache-Control = "public, max-age=604800"
 
 [[headers]]
-  for = "/og.png"
+  for = "/og*.png"
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
+# Nada de lo que responden las funciones se cachea: los links de descarga
+# son personales y las respuestas de pago no se repiten.
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "private, no-store"
+    X-Robots-Tag = "noindex, nofollow"
+
+# ─────────────────────────────────────────────────────────────── redirects ──
 # Redirige www a apex para no partir el SEO en dos dominios.
 [[redirects]]
   from = "https://www.fayer.site/*"
