@@ -250,6 +250,15 @@ footer a{color:var(--accent);padding:.5rem 0;display:inline-block}
 .prod.marcada{border-color:var(--accent);animation:destello 1.4s var(--ease) 2}
 @media (prefers-reduced-motion:reduce){.prod.marcada{animation:none}}
 .carro .cuotas{grid-column:1/-1;font-size:.74rem;color:var(--dim);text-align:center;margin:.55rem 0 0;line-height:1.4}
+.confianza{display:grid;gap:.6rem;margin-top:clamp(18px,3vw,26px)}
+@media (min-width:720px){ .confianza{grid-template-columns:repeat(3,1fr)} }
+.cf{display:flex;gap:.7rem;align-items:flex-start;padding:.85rem .95rem;border-radius:16px;
+  background:var(--surface);border:1px solid var(--line);
+  transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.cf:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.cf svg{width:19px;height:19px;flex:0 0 19px;color:var(--accent);margin-top:.1rem}
+.cf b{display:block;font-size:.88rem;font-weight:600;letter-spacing:-.01em}
+.cf span{display:block;font-size:.78rem;color:var(--muted);line-height:1.45;margin-top:.15rem}
 </style>
 
 <header class="bar">
@@ -272,6 +281,21 @@ footer a{color:var(--accent);padding:.5rem 0;display:inline-block}
 </section>
 
 <div class="wrap">
+  <div class="confianza">
+    <div class="cf">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7.5 3v5.3c0 4.4-3 8.4-7.5 9.7-4.5-1.3-7.5-5.3-7.5-9.7V6L12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2.2 2.2L15.5 10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><b>Si algo falla, lo resolvemos</b><span>Si el archivo no te llega o no abre, escribinos y lo arreglamos el mismo día.</span></div>
+    </div>
+    <div class="cf">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2L4.5 13.5H11l-.8 8.5L19 10.5h-6.6L13 2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      <div><b>Lo tenés al instante</b><span>Apenas se acredita el pago aparece en pantalla y te llega por mail.</span></div>
+    </div>
+    <div class="cf">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M2.5 10h19" stroke="currentColor" stroke-width="1.7"/></svg>
+      <div><b>Pagás con Mercado Pago</b><span>En cuotas, con tarjeta, débito o dinero en cuenta. Tus datos no pasan por acá.</span></div>
+    </div>
+  </div>
+
   <div id="catalogo" aria-busy="true"></div>
   <script id="catalogo-inicial" type="application/json">[{"id":"pro","tipo":"acceso","nombre":"Análisis completo de la calculadora","bajada":"Proyección a 12 meses, tres escenarios y la tabla de sensibilidad de precio.","precio":9900,"disponible":true,"entrega":"codigo","precioSuelto":9900},{"id":"sistema","tipo":"acceso","nombre":"Sistema Fayer","bajada":"Movimientos, cobranzas, pagos, flujo de caja a 12 meses y punto de equilibrio. Sirve para empresa o para finanzas personales.","precio":89000,"disponible":true,"entrega":"codigo","precioSuelto":89000},{"id":"primer-sueldo","tipo":"ebook","nombre":"Tu primer sueldo","bajada":"Qué hacer con la plata los primeros seis meses, antes de que se te vaya sin saber en qué.","precio":9900,"paginas":56,"disponible":true,"entrega":"descarga","archivo":"tu-primer-sueldo-d9b21c6e89d7.pdf","precioSuelto":9900},{"id":"mes-no-cierra","tipo":"ebook","nombre":"El mes no cierra","bajada":"Cómo salir del rojo sin dejar de vivir.","precio":14900,"paginas":54,"disponible":true,"entrega":"descarga","archivo":"el-mes-no-cierra-059c5f39726a.pdf","precioSuelto":14900},{"id":"seis-meses","tipo":"ebook","nombre":"Seis meses de aire","bajada":"El colchón que te saca del apuro, y cómo armarlo sin sufrir.","precio":12900,"paginas":51,"disponible":true,"entrega":"descarga","archivo":"seis-meses-de-aire-aed610ab1e6a.pdf","precioSuelto":12900},{"id":"plata-en-pareja","tipo":"ebook","nombre":"Plata en pareja","bajada":"Cómo organizar las cuentas de a dos sin terminar peleados.","precio":14900,"paginas":50,"disponible":true,"entrega":"descarga","archivo":"plata-en-pareja-fd42d17aa639.pdf","precioSuelto":14900},{"id":"cobrar-por-tu-cuenta","tipo":"ebook","nombre":"Cobrar por tu cuenta","bajada":"Freelance: presupuestar, cobrar y no llevarte sorpresas.","precio":19900,"paginas":57,"disponible":true,"entrega":"descarga","archivo":"cobrar-por-tu-cuenta-cf0b8beba195.pdf","precioSuelto":19900},{"id":"combo-ordenar","tipo":"combo","nombre":"Combo Ordenar","bajada":"Los tres para poner tus números en orden, de principio a fin.","incluye":["primer-sueldo","mes-no-cierra","seis-meses"],"precio":27900,"disponible":true,"entrega":"descarga","precioSuelto":37700},{"id":"combo-completo","tipo":"combo","nombre":"Combo Completo","bajada":"Los cinco ebooks. Todo lo que escribimos sobre finanzas personales.","incluye":["primer-sueldo","mes-no-cierra","seis-meses","plata-en-pareja","cobrar-por-tu-cuenta"],"precio":44900,"disponible":true,"entrega":"descarga","precioSuelto":72500},{"id":"combo-todo","tipo":"combo","nombre":"Sistema + los cinco ebooks","bajada":"La herramienta y todo el material. Es el que más conviene por lejos.","incluye":["sistema","primer-sueldo","mes-no-cierra","seis-meses","plata-en-pareja","cobrar-por-tu-cuenta"],"precio":109000,"disponible":true,"entrega":"mixta","precioSuelto":161500}]</script>
 
@@ -290,8 +314,9 @@ footer a{color:var(--accent);padding:.5rem 0;display:inline-block}
 
 <footer>
   <div class="wrap">
-    Fayer · <a href="/">fayer.site</a> — Los precios están en pesos argentinos e incluyen impuestos.
-    El material es informativo y no constituye asesoramiento financiero personalizado.
+    Fayer · <a href="/">fayer.site</a> · <a href="mailto:fayer.help@gmail.com">fayer.help@gmail.com</a> · <a href="/legales/">Condiciones</a> · <a href="/legales/#arrepentimiento">Botón de arrepentimiento</a><br>
+    Los precios están en pesos argentinos e incluyen impuestos. El material es informativo
+    y no constituye asesoramiento financiero personalizado.
   </div>
 </footer>
 

@@ -1,5 +1,6 @@
 import { getStore } from "@netlify/blobs";
 import { PRODUCTOS, porId } from "../lib/productos.mjs";
+import { avisarCompra } from "../lib/correo.mjs";
 
 /* ─────────────────────────────────────────────────────────────────────────
    Entrega automática después del pago.
@@ -126,12 +127,24 @@ export default async (req) => {
     });
   }
 
+  // El mail: si falla, la compra sigue siendo válida igual. La pantalla de
+  // gracias ya le mostró todo al comprador; esto es el respaldo.
+  let correo = null;
+  try {
+    correo = await avisarCompra({
+      entregas, monto: pago.transaction_amount, pagoId, email,
+      base: new URL(req.url).origin
+    });
+  } catch (e) {
+    correo = { error: String(e) };
+  }
+
   await ventas.setJSON(pagoId, {
     entregas, monto: pago.transaction_amount,
-    email, referencia: ref, fecha: ahora
+    email, referencia: ref, fecha: ahora, correo
   });
 
-  return json({ ok: true, entregas });
+  return json({ ok: true, entregas, mail: !!(correo && correo.comprador && correo.comprador.ok) });
 };
 
 export const config = { path: "/api/pago" };
